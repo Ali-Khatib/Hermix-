@@ -8,3 +8,6 @@ Thumbs.db
 !.env.example
 .vercel
 .env*
+
+supabase/.temp/
+node_modules/
