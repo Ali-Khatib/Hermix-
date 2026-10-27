@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hermix — an AI coworker for Windows</title>
+  <meta name="description" content="Hermix brings your email, meetings, tasks, and team updates into one calm view, and drafts replies for you to check. Nothing goes out without you." />
+  <meta name="theme-color" content="#f6f1e8" />
+  <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" href="media/landing/posters/hermix-hero-poster.webp" />
+  <link rel="stylesheet" href="styles.css?v=20261027c" />
+</head>
+<body>
+  <a class="skip" href="#how">Skip to how it works</a>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="Hermix home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M0.55 1.25 L0.70 2.70 L1.85 5.30 L3.30 7.30 L5.40 9.20 L8.40 11.55 L12.30 13.45 L16.60 14.75 L21.15 15.65 L17.10 12.55 L14.05 10.45 L11.50 8.05 L8.15 5.30 L4.50 3.00 L1.50 1.50 Z"/>
+        <path d="M2.00 10.45 L1.95 10.95 L3.05 13.35 L4.30 15.05 L6.40 16.35 L11.40 17.05 L19.50 17.70 L12.60 13.85 L8.70 12.10 L3.95 10.95 Z"/>
+        <path d="M10.84 19.17 L8.56 20.34 L7.44 21.32 L6.27 22.89 L5.36 24.91 L4.57 27.92 L4.11 29.16 L3.79 30.73 L3.66 30.92 L3.72 31.12 L5.29 30.79 L7.25 30.01 L9.14 28.96 L10.91 27.59 L12.02 26.42 L12.80 25.37 L13.84 23.22 L14.43 20.60 L14.43 20.15 L14.30 20.02 L12.54 19.49 L11.30 19.17 Z"/>
+        <path d="M31.15 0.15 L29.20 1.25 L27.55 2.00 L26.10 3.00 L24.90 4.15 L23.10 6.35 L21.70 9.40 L20.40 14.40 L18.90 17.15 L18.55 20.70 L19.35 21.70 L19.45 24.75 L20.25 27.55 L21.25 29.15 L22.30 30.15 L24.20 31.20 L24.70 30.15 L25.75 25.70 L26.80 21.20 L27.95 16.90 L28.55 13.80 L29.25 10.80 L29.85 7.60 L31.45 0.85 Z"/>
+      </svg>
+      <span>Hermix</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <button class="nav-btn" type="button" data-menu="features" aria-expanded="false" aria-controls="menu-features">Features</button>
+      <button class="nav-btn" type="button" data-menu="cases" aria-expanded="false" aria-controls="menu-cases">Use cases</button>
+      <a class="nav-btn" href="#soon">Coming soon</a>
+    </nav>
+    <button class="nav-btn nav-more" type="button" data-menu="all" aria-expanded="false" aria-controls="menu-all">Menu</button>
+    <a class="btn btn-ink btn-sm" href="#waitlist">Join the waitlist</a>
+  </header>
+
+  <div class="menu" data-lenis-prevent id="menu-features" role="dialog" aria-label="Features" hidden></div>
+  <div class="menu" data-lenis-prevent id="menu-cases" role="dialog" aria-label="Use cases" hidden></div>
+  <div class="menu" data-lenis-prevent id="menu-all" role="dialog" aria-label="Menu" hidden></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-media">
+        <video id="hero-video" class="hero-video" muted playsinline preload="auto"
+          poster="media/landing/posters/hermix-hero-poster.webp"
+          data-src="media/landing/video/hermix-hero.mp4"
+          data-src-sm="media/landing/video/720/hermix-hero-720.mp4"
+          aria-hidden="true"></video>
+      </div>
+      <div class="hero-copy" id="hero-copy">
+        <p class="eyebrow">An AI coworker for Windows</p>
+        <h1 id="hero-title">Your work,<br />understood.</h1>
+        <p class="lede">Hermix brings your email, meetings, tasks, and team updates into one calm view, then drafts the replies for you to check. Nothing goes out without you.</p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="#waitlist">Join the waitlist</a>
+          <a class="btn btn-line" href="#how">See how it works</a>
+        </div>
+        <p class="meta">Windows 11 · Early preview</p>
+      </div>
+      <a class="scroll-cue" href="#how" aria-label="Scroll to how it works"><span></span></a>
+    </section>
+
+    <!-- STORY -->
+    <section class="story" id="how" aria-labelledby="story-title">
+      <div class="story-rail">
+        <div class="rail-inner">
+          <p class="kicker">A day with Hermix</p>
+          <h2 id="story-title" class="rail-title">Six places Hermix helps, in the order your day happens.</h2>
+          <ol class="rail-list" id="rail-list">
+            <li><a href="#s-today" data-step="today"><span class="n">01</span><span class="t">Today</span></a></li>
+            <li><a href="#s-new" data-step="new"><span class="n">02</span><span class="t">What’s new</span></a></li>
+            <li><a href="#s-tasks" data-step="tasks"><span class="n">03</span><span class="t">Tasks</span></a></li>
+            <li><a href="#s-email" data-step="email"><span class="n">04</span><span class="t">Email</span></a></li>
+            <li><a href="#s-meetings" data-step="meetings"><span class="n">05</span><span class="t">Meetings</span></a></li>
+            <li><a href="#s-ask" data-step="ask"><span class="n">06</span><span class="t">Ask Hermix</span></a></li>
+          </ol>
+          <div class="rail-mascot" aria-hidden="true">
+            <img data-outfit="default" src="media/landing/mascot/default.webp" alt="" class="on" />
+            <img data-outfit="curious" src="media/landing/mascot/curious.webp" alt="" loading="lazy" />
+            <img data-outfit="organizing" src="media/landing/mascot/organizing.webp" alt="" loading="lazy" />
+            <img data-outfit="inbox" src="media/landing/mascot/inbox.webp" alt="" loading="lazy" />
+            <img data-outfit="meeting" src="media/landing/mascot/meeting.webp" alt="" loading="lazy" />
+            <img data-outfit="thinking" src="media/landing/mascot/thinking.webp" alt="" loading="lazy" />
+            <span class="rail-mood" id="rail-mood">Listening</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-panels">
+        <article class="panel" id="s-today" data-step="today" data-outfit="default" data-mood="Listening">
+          <header class="panel-copy">
+            <p class="step"><span>01</span> Today</p>
+            <h3>Start the day in one sentence.</h3>
+            <p>Hermix opens with a short briefing in plain words: your meetings, your free time, and the emails waiting on you. Tap any line to jump straight there.</p>
+          </header>
+          <div class="film">
+            <video muted playsinline preload="none" poster="media/landing/posters/feature-today-poster.webp"
+              data-src="media/landing/video/feature-today.mp4" data-src-sm="media/landing/video/720/feature-today-720.mp4"
+              aria-label="Hermix Today screen: a morning briefing with two meetings, a free afternoon, and two emails waiting."></video>
+            <button class="replay" type="button" aria-label="Replay the Today demo">Replay</button>
+          </div>
+        </article>
+
+        <article class="panel" id="s-new" data-step="new" data-outfit="curious" data-mood="Exploring">
+          <header class="panel-copy">
+            <p class="step"><span>02</span> What’s new</p>
+            <h3>Catch up without the endless scroll.</h3>
+            <p>See what changed in Gmail, Slack, GitHub, and Calendar since you last looked. What people sent sits on one side, what Hermix drafted on the other, so it’s always clear who wrote what.</p>
+          </header>
+          <div class="film">
+            <video muted playsinline preload="none" poster="media/landing/posters/feature-whats-new-poster.webp"
+              data-src="media/landing/video/feature-whats-new.mp4" data-src-sm="media/landing/video/720/feature-whats-new-720.mp4"
+              aria-label="Hermix What's new screen: switching to Slack, opening a message from Finance, and a reply draft that has not been posted."></video>
+            <button class="replay" type="button" aria-label="Replay the What's new demo">Replay</button>
+          </div>
+        </article>
+
+        <article class="panel" id="s-tasks" data-step="tasks" data-outfit="organizing" data-mood="Sorting">
+          <header class="panel-copy">
+            <p class="step"><span>03</span> Tasks</p>
+            <h3>Know what matters next.</h3>
+            <p>Commitments buried in threads become a short list. Each task gets a brief in normal English and a button that opens the right place. Finish one and it moves to Finished, with Undo.</p>
+          </header>
+          <div class="film">
+            <video muted playsinline preload="none" poster="media/landing/posters/feature-tasks-poster.webp"
+              data-src="media/landing/video/feature-tasks.mp4" data-src-sm="media/landing/video/720/feature-tasks-720.mp4"
+              aria-label="Hermix Tasks screen: selecting a task, reading its brief, and marking it done."></video>
+            <button class="replay" type="button" aria-label="Replay the Tasks demo">Replay</button>
+          </div>
+        </article>
+
+        <article class="panel" id="s-email" data-step="email" data-outfit="inbox" data-mood="Handling email">
+          <header class="panel-copy">
+            <p class="step"><span>04</span> Email</p>
+            <h3>Replies, drafted and waiting for you.</h3>
+            <p>Hermix separates what needs a reply from what’s just for your information, and writes a first draft in context. You read it, change it, and decide when it goes.</p>
+          </header>
+          <div class="film">
+            <video muted playsinline preload="none" poster="media/landing/posters/feature-email-poster.webp"
+              data-src="media/landing/video/feature-email.mp4" data-src-sm="media/landing/video/720/feature-email-720.mp4"
+              aria-label="Hermix Email screen: opening Maya's message and showing a Hermix draft reply that has not been sent."></video>
+            <button class="replay" type="button" aria-label="Replay the Email demo">Replay</button>
+          </div>
+        </article>
+
+        <article class="panel" id="s-meetings" data-step="meetings" data-outfit="meeting" data-mood="Preparing">
+          <header class="panel-copy">
+            <p class="step"><span>05</span> Meetings</p>
+            <h3>Walk into every meeting prepared.</h3>
+            <p>For each meeting: who’s coming, what you decided last time, what’s still open, and what to bring. Save the brief on your device and come back to it whenever you need.</p>
+            <p class="note">Joining live calls is on the way. For now, Hermix gets you ready.</p>
+          </header>
+          <div class="film">
+            <video muted playsinline preload="none" poster="media/landing/posters/feature-meetings-poster.webp"
+              data-src="media/landing/video/feature-meetings.mp4" data-src-sm="media/landing/video/720/feature-meetings-720.mp4"
+              aria-label="Hermix Meetings screen: roadmap planning with attendees, prep notes, and a brief saved on this device."></video>
+            <button class="replay" type="button" aria-label="Replay the Meetings demo">Replay</button>
+          </div>
+        </article>
+
+        <article class="panel" id="s-ask" data-step="ask" data-outfit="thinking" data-mood="Thinking">
+          <header class="panel-copy">
+            <p class="step"><span>06</span> Ask Hermix</p>
+            <h3>Just ask.</h3>
+            <p>Ask what needs a reply or what to remember today. Hermix answers first, then offers the place to go, or a reminder for tomorrow.</p>
+          </header>
+          <div class="film">
+            <video muted playsinline preload="none" poster="media/landing/posters/feature-ask-hermix-poster.webp"
+              data-src="media/landing/video/feature-ask-hermix.mp4" data-src-sm="media/landing/video/720/feature-ask-hermix-720.mp4"
+              aria-label="Ask Hermix: asking which emails need a reply, reading the answer, and setting a reminder for tomorrow."></video>
+            <button class="replay" type="button" aria-label="Replay the Ask Hermix demo">Replay</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WARDROBE -->
+    <section class="wardrobe" id="meet" aria-labelledby="meet-title">
+      <div class="wardrobe-copy">
+        <p class="kicker">Meet Hermix</p>
+        <h2 id="meet-title">One coworker.<br />Seven moods.</h2>
+        <p>Hermix dresses for the job, so you can tell what it’s doing at a glance. A detective hat while it checks, a tie for meeting prep, an envelope for your inbox, a scarf when it’s time to rest.</p>
+      </div>
+      <div class="wardrobe-stage">
+        <div class="wardrobe-glow" aria-hidden="true"></div>
+        <video id="wardrobe-video" class="wardrobe-video" muted playsinline loop preload="none"
+          poster="media/landing/posters/mascot-outfit-transition-poster.webp"
+          data-src="media/landing/video/mascot-outfit-transition.webm"
+          aria-label="Hermix changing between its seven moods."></video>
+        <div class="wardrobe-fallback" id="wardrobe-fallback" aria-hidden="true"></div>
+      </div>
+      <ul class="outfits" id="outfits" aria-label="Hermix moods">
+        <li><button type="button" data-i="0"><span class="fill" aria-hidden="true"></span>Listening</button></li>
+        <li><button type="button" data-i="1"><span class="fill" aria-hidden="true"></span>Thinking</button></li>
+        <li><button type="button" data-i="2"><span class="fill" aria-hidden="true"></span>Checking</button></li>
+        <li><button type="button" data-i="3"><span class="fill" aria-hidden="true"></span>Organizing</button></li>
+        <li><button type="button" data-i="4"><span class="fill" aria-hidden="true"></span>Inbox</button></li>
+        <li><button type="button" data-i="5"><span class="fill" aria-hidden="true"></span>Meeting</button></li>
+        <li><button type="button" data-i="6"><span class="fill" aria-hidden="true"></span>Resting</button></li>
+      </ul>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="preview" id="soon" aria-labelledby="soon-title">
+      <div class="preview-head">
+        <p class="kicker">Coming soon</p>
+        <h2 id="soon-title">Here today. Even better soon.</h2>
+        <p>The preview runs on a sample day so you can try everything right now. Here’s what’s landing next.</p>
+      </div>
+      <div class="preview-cols">
+        <div class="pcol">
+          <h3>Try it now</h3>
+          <ul class="ticks">
+            <li>A morning briefing on Today</li>
+            <li>Catch-up across Gmail, Slack, GitHub, and Calendar</li>
+            <li>Tasks with briefs, Finished, and Undo</li>
+            <li>Email drafts you can read and edit</li>
+            <li>Meeting prep, with briefs saved on your device</li>
+            <li>Ask Hermix, with reminders for tomorrow</li>
+            <li>Day and Night, reduced motion, mascot on or off</li>
+          </ul>
+        </div>
+        <div class="pcol pcol-soon">
+          <h3>On the way</h3>
+          <ul class="sparks">
+            <li><b>Your real accounts</b> Gmail, Calendar, Slack, and GitHub, synced live</li>
+            <li><b>Send and post from Hermix</b> One click, and only when you say so</li>
+            <li><b>A smarter Ask Hermix</b> Real answers from a live AI model</li>
+            <li><b>Hermix in your meetings</b> Join the call and bring back the notes</li>
+            <li><b>Ready when Windows is</b> Start Hermix when you log in</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- site:waitlist -->
+    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
+      <img class="waitlist-bot" src="media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
+      <h2 id="waitlist-title">Be the first to meet Hermix.</h2>
+      <p class="waitlist-lede">Get notified when Hermix is ready for your Windows PC. Leave your email and we’ll let you know when there’s something new to try.</p>
+      <form class="wl-form" data-waitlist novalidate>
+        <div class="wl-row">
+          <label class="sr-only" for="wl-email">Email address</label>
+          <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254"
+            placeholder="Enter your email address" required aria-describedby="wl-status wl-note" />
+          <button class="btn btn-ink" type="submit">Join the waitlist</button>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+        <p class="form-status" id="wl-status" role="status" aria-live="polite"></p>
+        <p class="wl-note" id="wl-note">Only updates about Hermix. You can ask to be removed at any time. <a href="legal/privacy.html">Privacy Policy</a></p>
+      </form>
+    </section>
+  <!-- /site:waitlist -->
+  </main>
+
+  <!-- site:footer -->
+  <footer class="site-foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" aria-label="Hermix home">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M0.55 1.25 L0.70 2.70 L1.85 5.30 L3.30 7.30 L5.40 9.20 L8.40 11.55 L12.30 13.45 L16.60 14.75 L21.15 15.65 L17.10 12.55 L14.05 10.45 L11.50 8.05 L8.15 5.30 L4.50 3.00 L1.50 1.50 Z"/>
+        <path d="M2.00 10.45 L1.95 10.95 L3.05 13.35 L4.30 15.05 L6.40 16.35 L11.40 17.05 L19.50 17.70 L12.60 13.85 L8.70 12.10 L3.95 10.95 Z"/>
+        <path d="M10.84 19.17 L8.56 20.34 L7.44 21.32 L6.27 22.89 L5.36 24.91 L4.57 27.92 L4.11 29.16 L3.79 30.73 L3.66 30.92 L3.72 31.12 L5.29 30.79 L7.25 30.01 L9.14 28.96 L10.91 27.59 L12.02 26.42 L12.80 25.37 L13.84 23.22 L14.43 20.60 L14.43 20.15 L14.30 20.02 L12.54 19.49 L11.30 19.17 Z"/>
+        <path d="M31.15 0.15 L29.20 1.25 L27.55 2.00 L26.10 3.00 L24.90 4.15 L23.10 6.35 L21.70 9.40 L20.40 14.40 L18.90 17.15 L18.55 20.70 L19.35 21.70 L19.45 24.75 L20.25 27.55 L21.25 29.15 L22.30 30.15 L24.20 31.20 L24.70 30.15 L25.75 25.70 L26.80 21.20 L27.95 16.90 L28.55 13.80 L29.25 10.80 L29.85 7.60 L31.45 0.85 Z"/>
+      </svg>
+          <span>Hermix</span>
+        </a>
+        <p>A calm AI coworker for Windows. It turns your day into one clear next step.</p>
+        <div class="foot-ctas">
+          <a class="btn btn-cream" href="index.html#waitlist">Join the waitlist</a>
+          <a class="btn btn-dark-line" href="index.html#how">See how it works</a>
+        </div>
+      </div>
+      <nav class="foot-col" aria-labelledby="foot-product">
+        <h2 id="foot-product">Product</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#how">Features</a></li>
+          <li><a href="index.html#meet">Meet Hermix</a></li>
+          <li><a href="index.html#soon">Coming soon</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-labelledby="foot-legal">
+        <h2 id="foot-legal">Legal</h2>
+        <ul>
+          <li><a href="legal/privacy.html">Privacy Policy</a></li>
+          <li><a href="legal/terms.html">Terms of Service</a></li>
+          <li><a href="legal/cookies.html">Cookie Policy</a></li>
+          <li><a href="legal/acceptable-use.html">Acceptable Use Policy</a></li>
+          <li><a href="legal/copyright.html">Copyright Policy</a></li>
+          <li><a href="legal/security.html">Security</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-labelledby="foot-support">
+        <h2 id="foot-support">Support</h2>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html?topic=remove_waitlist">Leave the waitlist</a></li>
+          <li><a href="contact.html?topic=privacy">Privacy requests</a></li>
+          <li><a href="legal/security.html#report">Report a security issue</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-bar">
+      <p>© <span data-year>2026</span> Hermix. All rights reserved.</p>
+      <nav aria-label="Legal shortcuts">
+        <a href="legal/privacy.html">Privacy</a>
+        <a href="legal/terms.html">Terms</a>
+        <a href="legal/cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
+  <!-- /site:footer -->
+
+
+  <script src="media/vendor/lenis.min.js"></script>
+  <script src="smooth.js?v=20261027c"></script>
+  <script src="app.js?v=20261027c"></script>
+  <script src="forms.js?v=20261027c"></script>
+</body>
+</html>

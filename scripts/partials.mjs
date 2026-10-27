@@ -1,0 +1,117 @@
+// Shared markup for the Hermix website. `base` is the relative path back to the site root.
+export const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M0.55 1.25 L0.70 2.70 L1.85 5.30 L3.30 7.30 L5.40 9.20 L8.40 11.55 L12.30 13.45 L16.60 14.75 L21.15 15.65 L17.10 12.55 L14.05 10.45 L11.50 8.05 L8.15 5.30 L4.50 3.00 L1.50 1.50 Z"/>
+        <path d="M2.00 10.45 L1.95 10.95 L3.05 13.35 L4.30 15.05 L6.40 16.35 L11.40 17.05 L19.50 17.70 L12.60 13.85 L8.70 12.10 L3.95 10.95 Z"/>
+        <path d="M10.84 19.17 L8.56 20.34 L7.44 21.32 L6.27 22.89 L5.36 24.91 L4.57 27.92 L4.11 29.16 L3.79 30.73 L3.66 30.92 L3.72 31.12 L5.29 30.79 L7.25 30.01 L9.14 28.96 L10.91 27.59 L12.02 26.42 L12.80 25.37 L13.84 23.22 L14.43 20.60 L14.43 20.15 L14.30 20.02 L12.54 19.49 L11.30 19.17 Z"/>
+        <path d="M31.15 0.15 L29.20 1.25 L27.55 2.00 L26.10 3.00 L24.90 4.15 L23.10 6.35 L21.70 9.40 L20.40 14.40 L18.90 17.15 L18.55 20.70 L19.35 21.70 L19.45 24.75 L20.25 27.55 L21.25 29.15 L22.30 30.15 L24.20 31.20 L24.70 30.15 L25.75 25.70 L26.80 21.20 L27.95 16.90 L28.55 13.80 L29.25 10.80 L29.85 7.60 L31.45 0.85 Z"/>
+      </svg>`;
+export const mark = MARK;
+
+export const LEGAL_LINKS = [
+  ["legal/privacy.html", "Privacy Policy"],
+  ["legal/terms.html", "Terms of Service"],
+  ["legal/cookies.html", "Cookie Policy"],
+  ["legal/acceptable-use.html", "Acceptable Use Policy"],
+  ["legal/copyright.html", "Copyright Policy"],
+  ["legal/security.html", "Security"],
+];
+
+// Static nav for sub-pages (the home page keeps its own nav with the pop-up menus).
+export function header(base, cfg, hasWaitlist = true) {
+  return `  <header class="nav" id="nav">
+    <a class="brand" href="${base}index.html" aria-label="Hermix home">
+      ${MARK}
+      <span>Hermix</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a class="nav-btn" href="${base}index.html#how">Features</a>
+      <a class="nav-btn" href="${base}pricing.html">Pricing</a>
+      <a class="nav-btn" href="${base}faq.html">FAQ</a>
+    </nav>
+    <a class="btn btn-ink btn-sm" href="${hasWaitlist ? "" : `${base}index.html`}#waitlist">Join the waitlist</a>
+  </header>`;
+}
+
+export function waitlist(base) {
+  return `    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
+      <img class="waitlist-bot" src="${base}media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
+      <h2 id="waitlist-title">Be the first to meet Hermix.</h2>
+      <p class="waitlist-lede">Get notified when Hermix is ready for your Windows PC. Leave your email and we’ll let you know when there’s something new to try.</p>
+      <form class="wl-form" data-waitlist novalidate>
+        <div class="wl-row">
+          <label class="sr-only" for="wl-email">Email address</label>
+          <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254"
+            placeholder="Enter your email address" required aria-describedby="wl-status wl-note" />
+          <button class="btn btn-ink" type="submit">Join the waitlist</button>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+        <p class="form-status" id="wl-status" role="status" aria-live="polite"></p>
+        <p class="wl-note" id="wl-note">Only updates about Hermix. You can ask to be removed at any time. <a href="${base}legal/privacy.html">Privacy Policy</a></p>
+      </form>
+    </section>`;
+}
+
+export function footer(base) {
+  const year = new Date().getFullYear();
+  const li = (href, label, extra = "") => `<li><a href="${base}${href}"${extra}>${label}</a></li>`;
+  return `  <footer class="site-foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="${base}index.html" aria-label="Hermix home">
+          ${MARK}
+          <span>Hermix</span>
+        </a>
+        <p>A calm AI coworker for Windows. It turns your day into one clear next step.</p>
+        <div class="foot-ctas">
+          <a class="btn btn-cream" href="${base}index.html#waitlist">Join the waitlist</a>
+          <a class="btn btn-dark-line" href="${base}index.html#how">See how it works</a>
+        </div>
+      </div>
+      <nav class="foot-col" aria-labelledby="foot-product">
+        <h2 id="foot-product">Product</h2>
+        <ul>
+          ${li("index.html", "Home")}
+          ${li("index.html#how", "Features")}
+          ${li("index.html#meet", "Meet Hermix")}
+          ${li("index.html#soon", "Coming soon")}
+          ${li("pricing.html", "Pricing")}
+          ${li("faq.html", "FAQ")}
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-labelledby="foot-legal">
+        <h2 id="foot-legal">Legal</h2>
+        <ul>
+          ${LEGAL_LINKS.map(([h, l]) => li(h, l)).join("\n          ")}
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-labelledby="foot-support">
+        <h2 id="foot-support">Support</h2>
+        <ul>
+          ${li("contact.html", "Contact")}
+          ${li("contact.html?topic=remove_waitlist", "Leave the waitlist")}
+          ${li("contact.html?topic=privacy", "Privacy requests")}
+          ${li("legal/security.html#report", "Report a security issue")}
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-bar">
+      <p>© <span data-year>${year}</span> Hermix. All rights reserved.</p>
+      <nav aria-label="Legal shortcuts">
+        <a href="${base}legal/privacy.html">Privacy</a>
+        <a href="${base}legal/terms.html">Terms</a>
+        <a href="${base}legal/cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>`;
+}
+
+// "How to reach us" sentence used across policies. Uses the contact form, and the
+// configured email address too once one is set in site.config.json.
+export function reach(cfg, base, topic) {
+  const form = `<a href="${base}contact.html${topic ? `?topic=${topic}` : ""}">contact form</a>`;
+  return cfg.contactEmail
+    ? `our ${form} or email <a href="mailto:${esc(cfg.contactEmail)}">${esc(cfg.contactEmail)}</a>`
+    : `our ${form}`;
+}

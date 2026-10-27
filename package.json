@@ -1,0 +1,11 @@
+{
+  "name": "hermix-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Hermix marketing site",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs"
+  }
+}
