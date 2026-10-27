@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "echo 'website has no dependencies'",
+  "installCommand": "npm install --omit=dev",
   "buildCommand": "node scripts/build.mjs",
   "outputDirectory": ".",
   "headers": [

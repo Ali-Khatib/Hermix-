@@ -76,12 +76,12 @@ class NotConfigured extends Error {}
 // Insert one row through Supabase's REST API with the service-role key.
 // The tables have row-level security on and no public policies, so only this
 // server-side call can write, and nobody can read the list through the public API.
-async function insertRow(table, row, { ignoreDuplicatesOn } = {}) {
+async function insertRow(table, row, { ignoreDuplicatesOn, returnRows = false } = {}) {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new NotConfigured("Supabase is not configured");
   const q = ignoreDuplicatesOn ? `?on_conflict=${encodeURIComponent(ignoreDuplicatesOn)}` : "";
-  const prefer = ["return=minimal"];
+  const prefer = [returnRows ? "return=representation" : "return=minimal"];
   if (ignoreDuplicatesOn) prefer.push("resolution=ignore-duplicates");
   const r = await fetch(`${url.replace(/\/+$/, "")}/rest/v1/${table}${q}`, {
     method: "POST",
@@ -97,6 +97,13 @@ async function insertRow(table, row, { ignoreDuplicatesOn } = {}) {
     const err = new Error(`Database insert failed (${r.status})`);
     err.status = r.status;
     throw err;
+  }
+  if (!returnRows) return [];
+  try {
+    const data = await r.json();
+    return Array.isArray(data) ? data : data ? [data] : [];
+  } catch {
+    return [];
   }
 }
 
