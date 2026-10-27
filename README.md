@@ -28,3 +28,12 @@ Open http://localhost:3000. Forms need `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE
 ## Deploy
 
 Root of this repo is the Vercel project root. `vercel.json` runs `node scripts/build.mjs` then serves the site and `/api/*`.
+
+## Waitlist email
+
+Signups go to Supabase (`waitlist_signups`). New signups also get a confirmation email from `hermixwaitlist@gmail.com` when this Vercel env is set:
+
+- `WAITLIST_FROM_EMAIL` = `hermixwaitlist@gmail.com`
+- `WAITLIST_GMAIL_APP_PASSWORD` = Google App Password for that mailbox
+
+Create the Gmail account, turn on 2-Step Verification, then create an App Password at https://myaccount.google.com/apppasswords and add it on Vercel.
