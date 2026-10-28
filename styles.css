@@ -83,7 +83,12 @@ p { margin: 0; }
 }
 .nav.scrolled { background: rgba(255, 253, 248, 0.96); box-shadow: 0 12px 34px rgba(40, 32, 22, 0.1); }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; }
-.mark { width: 24px; height: 24px; fill: currentColor; }
+.mark { width: 28px; height: 28px; fill: currentColor; flex: none; background: transparent; }
+.mark-art {
+  display: block; object-fit: contain; background: transparent;
+  /* Knock out the black square behind the 3D cutouts. */
+  mix-blend-mode: lighten;
+}
 .nav-links { display: flex; gap: 4px; margin: 0 auto; }
 .nav-btn {
   display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: transparent; cursor: pointer;
@@ -111,7 +116,7 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
   text-align: left; font: inherit; color: var(--ink); transition: background-color 0.2s;
 }
 .menu-item:hover, .menu-item:focus-visible { background: var(--ivory); }
-.menu-item img { width: 58px; height: 46px; object-fit: contain; flex: none; transition: transform 0.3s var(--ease); }
+.menu-item img { width: 58px; height: 46px; object-fit: contain; flex: none; transition: transform 0.3s var(--ease); mix-blend-mode: lighten; }
 .menu-item:hover img { transform: translateY(-3px) rotate(-4deg); }
 .menu-item b { display: block; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
 .menu-item small { display: block; margin-top: 2px; font-size: 14px; line-height: 1.35; color: var(--ink-2); }
@@ -166,7 +171,7 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
 .rail-list a.on { color: var(--ink); font-weight: 800; }
 .rail-list a.on::before { transform: scaleY(1); }
 .rail-mascot { position: relative; margin-top: 34px; width: 200px; height: 160px; }
-.rail-mascot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: translateY(8px) scale(0.96); transition: opacity 0.45s var(--ease), transform 0.6s var(--ease); }
+.rail-mascot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: translateY(8px) scale(0.96); transition: opacity 0.45s var(--ease), transform 0.6s var(--ease); mix-blend-mode: lighten; }
 .rail-mascot img.on { opacity: 1; transform: none; animation: bob 3.2s ease-in-out infinite; will-change: transform; }
 @keyframes bob { 50% { transform: translateY(-6px); } }
 .rail-mood { position: absolute; left: 196px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: 13px; font-weight: 700; color: var(--bronze-d); background: var(--paper); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
@@ -212,7 +217,7 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
 .wardrobe-glow { position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(196, 179, 154, 0.22), transparent); }
 .wardrobe-video, .wardrobe-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .wardrobe-fallback { display: none; }
-.wardrobe-fallback img { position: absolute; inset: 12% 8% 18%; width: 84%; height: 70%; object-fit: contain; opacity: 0; transition: opacity 0.35s; }
+.wardrobe-fallback img { position: absolute; inset: 12% 8% 18%; width: 84%; height: 70%; object-fit: contain; opacity: 0; transition: opacity 0.35s; mix-blend-mode: lighten; }
 .wardrobe-fallback img.on { opacity: 1; }
 .wardrobe.no-alpha .wardrobe-video { display: none; }
 .wardrobe.no-alpha .wardrobe-fallback { display: block; }
@@ -272,7 +277,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #9a3d3
     linear-gradient(180deg, var(--ivory), var(--stone));
   border-top: 1px solid var(--line);
 }
-.waitlist-bot { width: min(260px, 56vw); height: auto; margin: 0 auto; animation: bob 4s ease-in-out infinite; will-change: transform; }
+.waitlist-bot { width: min(260px, 56vw); height: auto; margin: 0 auto; animation: bob 4s ease-in-out infinite; will-change: transform; mix-blend-mode: lighten; }
 .waitlist h2 { margin: 22px auto 0; font-size: clamp(36px, 4.8vw, 68px); max-width: 13em; }
 .waitlist-lede { margin: 16px auto 0; max-width: 34em; color: var(--ink-2); font-size: 18px; }
 .wl-form { max-width: 560px; margin: 30px auto 0; }

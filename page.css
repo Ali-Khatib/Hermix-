@@ -87,8 +87,8 @@
   .prose td { padding: 2px 0; border: 0; }
 }
 
-.subpage .nav .btn-sm { margin-left: auto; }
-@media (min-width: 961px) { .subpage .nav .btn-sm { margin-left: 0; } }
+.subpage .nav-links { margin-left: auto; }
+@media (min-width: 961px) { .subpage .nav-links { margin-left: auto; margin-right: 0; } }
 .price-card li { position: relative; padding: 9px 0 9px 34px; border-top: 1px solid var(--line); font-size: 16px; margin: 0; }
 .price-card li:first-child { border-top: 0; }
 .price-card .ticks li::before { content: ""; position: absolute; left: 2px; top: 13px; width: 18px; height: 18px; border-radius: 50%; background: #2f6b45 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") center / 12px no-repeat; }
