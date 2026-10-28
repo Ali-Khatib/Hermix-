@@ -216,7 +216,11 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
 .wardrobe-stage { position: relative; aspect-ratio: 1; width: min(100%, 600px); justify-self: center; background: transparent; }
 .wardrobe-glow { position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(196, 179, 154, 0.22), transparent); pointer-events: none; }
 .wardrobe-fallback { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; display: block; }
-.wardrobe-fallback img { position: absolute; inset: 8% 6% 14%; width: 88%; height: 78%; object-fit: contain; opacity: 0; transition: opacity 0.35s; background: transparent; }
+.wardrobe-fallback img {
+  position: absolute; inset: 4%; width: 92%; height: 92%; margin: auto;
+  object-fit: contain; opacity: 0; transition: opacity 0.35s;
+  background: transparent; image-rendering: auto;
+}
 .wardrobe-fallback img.on { opacity: 1; }
 .outfits { grid-column: 1 / -1; list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .outfits button {
