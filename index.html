@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="media/landing/posters/hermix-hero-poster.webp" />
-  <link rel="stylesheet" href="styles.css?v=20261028d" />
+  <link rel="stylesheet" href="styles.css?v=20261028e" />
 </head>
 <body>
   <a class="skip" href="#how">Skip to how it works</a>
@@ -177,10 +177,9 @@
       </div>
       <div class="wardrobe-stage">
         <div class="wardrobe-glow" aria-hidden="true"></div>
-        <video id="wardrobe-video" class="wardrobe-video" muted playsinline loop preload="metadata"
-          data-src="media/landing/video/mascot-outfit-transition.webm"
-          aria-label="Hermix changing between work states."></video>
-        <div class="wardrobe-fallback" id="wardrobe-fallback" aria-hidden="true"></div>
+        <div class="wardrobe-fallback" id="wardrobe-fallback" aria-hidden="true">
+          <img src="media/landing/mascot/default.webp" alt="" class="on" />
+        </div>
       </div>
       <ul class="outfits" id="outfits" aria-label="Hermix states">
         <li><button type="button" data-i="0"><span class="fill" aria-hidden="true"></span>Listening</button></li>
@@ -316,7 +315,7 @@
 
   <script src="media/vendor/lenis.min.js"></script>
   <script src="smooth.js?v=20261028a"></script>
-  <script src="app.js?v=20261028d"></script>
+  <script src="app.js?v=20261028e"></script>
   <script src="forms.js?v=20261028a"></script>
 </body>
 </html>

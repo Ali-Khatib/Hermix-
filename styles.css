@@ -215,15 +215,9 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
 .wardrobe-copy p:not(.kicker) { margin-top: 20px; color: #cfc8bc; max-width: 28em; font-size: 18px; }
 .wardrobe-stage { position: relative; aspect-ratio: 1; width: min(100%, 600px); justify-self: center; background: transparent; }
 .wardrobe-glow { position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(196, 179, 154, 0.22), transparent); pointer-events: none; }
-.wardrobe-video, .wardrobe-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: transparent; }
-/* Video is opaque black-plate (no alpha). lighten knocks the plate out on the dark section.
-   Poster removed — it was a cream square that flashed before playback. */
-.wardrobe-video { background-color: transparent; mix-blend-mode: lighten; }
-.wardrobe-fallback { display: none; }
+.wardrobe-fallback { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; display: block; }
 .wardrobe-fallback img { position: absolute; inset: 12% 8% 18%; width: 84%; height: 70%; object-fit: contain; opacity: 0; transition: opacity 0.35s; mix-blend-mode: lighten; background: transparent; }
 .wardrobe-fallback img.on { opacity: 1; }
-.wardrobe.no-alpha .wardrobe-video { display: none; }
-.wardrobe.no-alpha .wardrobe-fallback { display: block; }
 .outfits { grid-column: 1 / -1; list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .outfits button {
   position: relative; overflow: hidden; height: 44px; padding: 0 22px; border-radius: 999px; cursor: pointer;

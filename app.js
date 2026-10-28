@@ -202,10 +202,8 @@
 
   // ---------- wardrobe ----------
   // Must match WARDROBE / HOLD / SWAP in scripts/motion/scenes/brand.js.
-  const SEG = 2.4;        // seconds per mood in mascot-outfit-transition.webm
-  const SWITCH_AT = 2.2;  // moment inside a segment when the crossfade is half-way
+  const SEG = 2.4;        // seconds per mood
   const wardrobe = $("#meet");
-  const wv = $("#wardrobe-video");
   const chips = $$("#outfits button");
   const names = ["default", "thinking", "detective", "organizing", "inbox", "meeting", "idle"];
   const N = names.length;
@@ -222,21 +220,16 @@
     const f = Math.round(frac * 200) / 200;
     if (f !== shownF && fills[i]) { fills[i].style.transform = `scaleX(${f})`; shownF = f; }
   };
-  const fromTime = (t) => {
-    const shifted = t + (SEG - SWITCH_AT);
-    return [Math.floor(shifted / SEG) % N, (shifted % SEG) / SEG];
-  };
   show(0, 0);
 
-  // VP9 alpha is reliable in Chromium and Firefox. Elsewhere, cycle the stills at the same pace.
-  const ua = navigator.userAgent;
-  const isSafari = /Safari\//.test(ua) && !/Chrome|Chromium|Edg|OPR|Firefox/.test(ua);
-  const alphaOK = !isSafari && wv && wv.canPlayType('video/webm; codecs="vp9"') !== "";
+  // Outfit webm is opaque (cream/black plate) — it paints a square on this dark section.
+  // Transparent stills only.
   const fb = $("#wardrobe-fallback");
 
   function startFallback() {
-    wardrobe.classList.add("no-alpha");
-    if (!fb.children.length) fb.innerHTML = names.map((n, i) => `<img src="media/landing/mascot/${n}.webp" alt="" class="${i === 0 ? "on" : ""}">`).join("");
+    if (fb && !fb.querySelector("img")) {
+      fb.innerHTML = names.map((n, i) => `<img src="media/landing/mascot/${n}.webp" alt="" class="${i === 0 ? "on" : ""}">`).join("");
+    }
     let t0 = performance.now(), offset = 0, raf = 0, last = -1;
     const frame = (now) => {
       const t = offset + (now - t0) / 1000;
@@ -252,27 +245,7 @@
     };
   }
 
-  let wardrobeCtl;
-  if (alphaOK) {
-    let raf = 0;
-    const tick = () => { show(...fromTime(wv.currentTime)); raf = requestAnimationFrame(tick); };
-    wv.addEventListener("play", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
-    wv.addEventListener("pause", () => cancelAnimationFrame(raf));
-    wv.addEventListener("error", () => { wardrobeCtl = startFallback(); wardrobeCtl.play(); });
-    chips.forEach((c) => c.addEventListener("click", () => {
-      attach(wv);
-      // Land just after the previous crossfade so the chosen mood is fully on screen.
-      const seek = () => { wv.currentTime = Math.max(0, +c.dataset.i * SEG - (SEG - SWITCH_AT) + 0.25); show(...fromTime(wv.currentTime)); };
-      if (wv.readyState >= 1) seek(); else wv.addEventListener("loadedmetadata", seek, { once: true });
-      if (!reduceMotion.matches) safePlay(wv);
-    }));
-    wardrobeCtl = {
-      play() { attach(wv); if (!reduceMotion.matches) safePlay(wv); },
-      pause() { wv.pause(); },
-    };
-  } else {
-    wardrobeCtl = startFallback();
-  }
+  const wardrobeCtl = startFallback();
 
   new IntersectionObserver(
     (entries) => entries.forEach((e) => (e.isIntersecting ? wardrobeCtl.play() : wardrobeCtl.pause())),
