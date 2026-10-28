@@ -63,7 +63,7 @@ export function footer(base) {
           ${MARK}
           <span>Hermix</span>
         </a>
-        <p>A calm AI coworker for Windows. It turns your day into one clear next step.</p>
+        <p>An AI coworker for Windows. It connects the work across your apps and turns it into a clear plan for your day.</p>
         <div class="foot-ctas">
           <a class="btn btn-cream" href="${base}index.html#waitlist">Join the waitlist</a>
           <a class="btn btn-dark-line" href="${base}index.html#how">See how it works</a>
