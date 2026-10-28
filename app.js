@@ -227,7 +227,8 @@
   const fb = $("#wardrobe-fallback");
 
   function startFallback() {
-    if (fb && !fb.querySelector("img")) {
+    // Always mount every outfit still — a single seed <img> in HTML must not block the rest.
+    if (fb) {
       fb.innerHTML = names.map((n, i) => `<img src="media/landing/mascot/${n}.webp" alt="" class="${i === 0 ? "on" : ""}">`).join("");
     }
     let t0 = performance.now(), offset = 0, raf = 0, last = -1;
