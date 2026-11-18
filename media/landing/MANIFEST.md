@@ -47,3 +47,5 @@ Notes
 - hermix-hero-v5 (+720, poster): 2D anime Hermix. Five giant app icons cleared by an unseen streak, reveal, dash through 12 more apps, then his Greek-tech office (portraits of Zeus, Hera, Athena, Poseidon, Apollo, outfit swaps, sorting rack, sync). Frames 8.9-14.0 are a seamless cycle; app.js loops from 8.9s. Scene scripts/motion/scenes/hero5.js. v4 kept, unreferenced; hermix-fly.webm no longer used.
 
 - hermix-hero-v6 (+720, poster): refined flat-vector Hermix (no cartoon outlines, slimmer proportions), two portraits only (Zeus, Athena), richer desk/rug/vase. Replaces v5 in the page.
+
+- hermix-hero-v8 (+720, poster): simple cut. Hermix dashes through 16 different app icons clearing badges, lands in the middle and says "Don't worry. I've got you." while hovering and changing faces. 0-6.8 s intro; 6.8-9.8 s is a seamless 3 s cycle that app.js loops. Scene scripts/motion/scenes/hero6.js. Office/portrait cuts (v5-v7) are unreferenced.

@@ -129,14 +129,14 @@
   const focusHero = () => heroMedia && heroMedia.classList.add("focus");
   if (reduceMotion.matches || !heroVideo) focusHero();
   else {
-    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 9.0) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
+    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 6.8) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
     heroVideo.addEventListener("error", focusHero);
     heroVideo.addEventListener("ended", focusHero);
   }
 
   // ---------- hero loop: the story plays once, then his office keeps working (seamless cycle from 8.9s) ----------
   if (heroVideo && !reduceMotion.matches) {
-    const LOOP_AT = 8.9;
+    const LOOP_AT = 6.8;
     const wrap = () => {
       if (heroVideo.duration && heroVideo.currentTime >= heroVideo.duration - 0.05) { heroVideo.currentTime = LOOP_AT; safePlay(heroVideo); }
       requestAnimationFrame(wrap);
