@@ -105,9 +105,13 @@
 .pr-foot-note a { color: var(--ink); font-weight: 700; }
 
 @media (max-width: 1080px) {
-  .pr-grid { grid-template-columns: 1fr; gap: 28px; }
-  .pr-stage { order: -1; min-height: 300px; }
-  .pr-buy { max-width: 440px; }
+  .pr-grid { grid-template-columns: 1fr; gap: 26px; }
+  .pr-stage { order: -2; min-height: 260px; }
+  .pr-buy { order: -1; max-width: 460px; }
+  .pr-info { order: 0; }
+  .pr-float { width: min(64%, 280px); }
+  .pr-word { font-size: clamp(74px, 21vw, 150px); }
+  .pr-headline { font-size: clamp(25px, 6vw, 34px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .pr-float { animation: none; }

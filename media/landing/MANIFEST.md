@@ -54,3 +54,4 @@ Notes
 
 - hermix-hero-v10 (+720, poster): v9 without the rings/debris around icons and without the music icon (9 icons). Same loop point (8.0 s). v9 unreferenced.
 - v11: hero adds Hermix wordmark and 'Your work and your life.' lockup after landing; stacked hero edges feathered (no box).
+- v3 feature demos: product names replaced with generic sources (from code, from chat).

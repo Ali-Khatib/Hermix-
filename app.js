@@ -125,12 +125,8 @@
     revealHero();
   } else {
     attach(heroVideo);
-    // Copy enters a moment after the film starts.
-    const fallback = setTimeout(revealHero, 3600);
-    heroVideo.addEventListener("timeupdate", function onT() {
-      if (heroVideo.currentTime >= 3.2) { clearTimeout(fallback); revealHero(); heroVideo.removeEventListener("timeupdate", onT); }
-    });
-    heroVideo.addEventListener("error", () => { clearTimeout(fallback); revealHero(); });
+    // The copy is the first thing to read, so it comes in right away.
+    setTimeout(revealHero, 160);
     // The film loops by itself (loop attribute), so it never rests on a frozen frame.
     const playBtn = document.createElement("button");
     playBtn.type = "button"; playBtn.className = "hero-play"; playBtn.setAttribute("aria-label", "Play the intro"); playBtn.innerHTML = "<span></span>";
