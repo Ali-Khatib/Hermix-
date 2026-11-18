@@ -35,3 +35,5 @@ Notes
 - `mascot/` are transparent WebP cutouts of the 10 outfits on a shared canvas (so they swap without jumping) plus `hero.webp`.
 - The startup and loader clips are delivered as assets only. The desktop app was not changed.
 - Demo data is the app’s sample day. Nothing in the clips shows sending, posting, or joining a live meeting.
+
+- 2026-11-18: `feature-email-v2` and `feature-meetings-v2` (with 720 copies and posters) replace the originals on the page. Email now says “Review & send” and “Sample preview · nothing is sent”. Meetings adds a dashed “Planned · not in this preview” after-meeting card. Originals are kept unreferenced. Scene source: `scripts/motion/scenes/features.js`.

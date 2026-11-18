@@ -20,20 +20,20 @@
 
   // ---------- Features / Use cases pop-ups ----------
   const FEATURES = [
-    ["s-today", "default", "Today", "Your day in one plain sentence."],
-    ["s-new", "curious", "What’s new", "Catch up on every app at once."],
-    ["s-tasks", "organizing", "Tasks", "A short list of what needs you."],
-    ["s-email", "inbox", "Email", "Replies drafted, waiting for you."],
-    ["s-meetings", "meeting", "Meetings", "Prep notes before every call."],
-    ["s-ask", "thinking", "Ask Hermix", "Ask anything about your day."],
+    ["s-today", "default", "Today", "A briefing in plain words."],
+    ["s-new", "curious", "What’s new", "Meaning, not every notification."],
+    ["s-tasks", "organizing", "Tasks", "What you owe, made clear."],
+    ["s-email", "inbox", "Email", "Know what needs a reply."],
+    ["s-meetings", "meeting", "Meetings", "Context before and after."],
+    ["s-ask", "thinking", "Ask Hermix", "Ask with context already there."],
   ];
   const CASES = [
-    ["s-today", "success", "Busy mornings", "Start with one sentence, not five apps."],
+    ["s-today", "success", "Busy mornings", "Start with a briefing, not five apps."],
     ["s-new", "detective", "Back from time off", "See what changed without the scroll."],
-    ["s-tasks", "creating", "Too many threads", "Turn mentions into a clear to-do list."],
-    ["s-email", "inbox", "A full inbox", "Know what needs a reply, and reply faster."],
-    ["s-meetings", "meeting", "Back-to-back calls", "Walk into each one already briefed."],
-    ["s-ask", "idle", "Quick questions", "Ask, get the answer, jump to the right place."],
+    ["s-tasks", "creating", "Too many threads", "Turn requests and promises into a plan."],
+    ["s-email", "inbox", "A full inbox", "Know what needs you first."],
+    ["s-meetings", "meeting", "Back-to-back calls", "Walk into each one with context."],
+    ["s-ask", "idle", "Quick questions", "Ask, then get a useful next step."],
   ];
   const item = ([id, mood, title, line]) =>
     `<button class="menu-item" type="button" data-go="${id}"><img src="media/landing/mascot/${mood}.webp" alt="" loading="lazy"><span><b>${title}</b><small>${line}</small></span></button>`;

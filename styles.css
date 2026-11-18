@@ -325,8 +325,6 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #9a3d3
   .nav-more { display: inline-flex; }
   .nav .btn-sm { margin-left: 4px; }
   .menu-grid { grid-template-columns: 1fr 1fr; }
-  .film { aspect-ratio: 4 / 3; }
-  .film video { object-position: 60% 50%; }
   .story { grid-template-columns: 1fr; padding-top: 72px; }
   .rail-inner { position: static; padding-bottom: 0; }
   .rail-list, .rail-mascot { display: none; }

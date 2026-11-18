@@ -32,8 +32,8 @@ export function header(base) {
 export function waitlist(base) {
   return `    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
       <img class="waitlist-bot" src="${base}media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
-      <h2 id="waitlist-title">Be the first to meet Hermix.</h2>
-      <p class="waitlist-lede">Get notified when Hermix is ready for your Windows PC. Leave your email and we’ll let you know when there’s something new to try.</p>
+      <h2 id="waitlist-title">Meet a clearer kind of workday.</h2>
+      <p class="waitlist-lede">Join the waitlist for Hermix on Windows 11. We’ll let you know when there’s a new experience to try.</p>
       <form class="wl-form" data-waitlist novalidate>
         <div class="wl-row">
           <label class="sr-only" for="wl-email">Email address</label>
@@ -58,10 +58,10 @@ export function footer(base) {
           ${markImg(base)}
           <span>Hermix</span>
         </a>
-        <p>An AI coworker for Windows. It connects the work across your apps and turns it into a clear plan for your day.</p>
+        <p>Hermix is an AI coworker for Windows, being built to turn scattered updates, commitments and meetings into clear plans and useful follow-through.</p>
         <div class="foot-ctas">
           <a class="btn btn-cream" href="${base}index.html#waitlist">Join the waitlist</a>
-          <a class="btn btn-dark-line" href="${base}index.html#how">See how it works</a>
+          <a class="btn btn-dark-line" href="${base}index.html#how">See a day with Hermix</a>
         </div>
       </div>
       <nav class="foot-col" aria-labelledby="foot-product">
