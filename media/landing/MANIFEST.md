@@ -53,3 +53,4 @@ Notes
 - hermix-hero-v9 (+720, poster): calmer pacing of v8 (10 icons, slower dashes, gentler camera, face change every second). 0-8.0 s intro, 8.0-14.0 s is a seamless 6 s cycle the page loops. v8 unreferenced.
 
 - hermix-hero-v10 (+720, poster): v9 without the rings/debris around icons and without the music icon (9 icons). Same loop point (8.0 s). v9 unreferenced.
+- v11: hero adds Hermix wordmark and 'Your work and your life.' lockup after landing; stacked hero edges feathered (no box).
