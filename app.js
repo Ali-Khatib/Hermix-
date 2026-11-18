@@ -129,27 +129,20 @@
   const focusHero = () => heroMedia && heroMedia.classList.add("focus");
   if (reduceMotion.matches || !heroVideo) focusHero();
   else {
-    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 9.4) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
+    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 9.0) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
     heroVideo.addEventListener("error", focusHero);
     heroVideo.addEventListener("ended", focusHero);
   }
 
-  // ---------- hero flight loop (stacked hero only; skipped for reduced motion and Safari, which can't show VP9 alpha) ----------
-  const fly = $("#hero-fly");
-  const stackedHero = matchMedia("(max-width: 1180px), (max-aspect-ratio: 4/3)");
-  const noAlpha = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
-  if (fly && !reduceMotion.matches && !noAlpha) {
-    const startFly = () => {
-      if (!stackedHero.matches || fly.dataset.loaded) return;
-      fly.dataset.loaded = "1";
-      fly.preload = "auto"; // the markup says "none" so nothing downloads until we want it
-      fly.addEventListener("canplay", () => { fly.classList.add("on"); safePlay(fly); }, { once: true });
-      fly.src = fly.dataset.src;
-      fly.load();
+  // ---------- hero loop: the story plays once, then his office keeps working (seamless cycle from 8.9s) ----------
+  if (heroVideo && !reduceMotion.matches) {
+    const LOOP_AT = 8.9;
+    const wrap = () => {
+      if (heroVideo.duration && heroVideo.currentTime >= heroVideo.duration - 0.05) { heroVideo.currentTime = LOOP_AT; safePlay(heroVideo); }
+      requestAnimationFrame(wrap);
     };
-    if (heroVideo) heroVideo.addEventListener("ended", startFly, { once: true });
-    setTimeout(startFly, 10500);
-    stackedHero.addEventListener("change", () => { if (!heroVideo || heroVideo.ended || heroVideo.currentTime > 8.5) startFly(); });
+    requestAnimationFrame(wrap);
+    heroVideo.addEventListener("ended", () => { heroVideo.currentTime = LOOP_AT; safePlay(heroVideo); });
   }
 
   // ---------- feature films: lazy load, play the most visible one, one at a time ----------

@@ -43,3 +43,5 @@ Notes
 - hermix-hero-v3 (+720, poster): Greek/anime hero, 120fps supersampled to 30 for motion blur, scene scripts/motion/scenes/hero3.js. v2 kept, unreferenced.
 
 - hermix-hero-v4 (+720, poster): story cut. Gmail 99+ cleared by a gold streak, 4 more apps, reveal of Hermix, lands in his Greek-tech office and sorts everything. Scene scripts/motion/scenes/hero4.js. v3 kept, unreferenced.
+
+- hermix-hero-v5 (+720, poster): 2D anime Hermix. Five giant app icons cleared by an unseen streak, reveal, dash through 12 more apps, then his Greek-tech office (portraits of Zeus, Hera, Athena, Poseidon, Apollo, outfit swaps, sorting rack, sync). Frames 8.9-14.0 are a seamless cycle; app.js loops from 8.9s. Scene scripts/motion/scenes/hero5.js. v4 kept, unreferenced; hermix-fly.webm no longer used.
