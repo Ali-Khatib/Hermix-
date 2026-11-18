@@ -41,3 +41,5 @@ Notes
 - 2026-11-18: `hermix-hero-v2` (+720 copy and poster) replaces the hero. 11 s: Hermix hops across six generic app tiles with red badges, drains them, lands at the Hermix window and says “Don’t worry. I’ll catch you up.” Tiles use invented glyphs, no real brand logos. Scene: `SCENES.hero2` in `scripts/motion/scenes/hero2.js`; render with `node render.js hero2 out/hermix-hero-v2.mp4`. The old hero clip is kept, unreferenced.
 
 - hermix-hero-v3 (+720, poster): Greek/anime hero, 120fps supersampled to 30 for motion blur, scene scripts/motion/scenes/hero3.js. v2 kept, unreferenced.
+
+- hermix-hero-v4 (+720, poster): story cut. Gmail 99+ cleared by a gold streak, 4 more apps, reveal of Hermix, lands in his Greek-tech office and sorts everything. Scene scripts/motion/scenes/hero4.js. v3 kept, unreferenced.

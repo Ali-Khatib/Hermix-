@@ -129,7 +129,7 @@
   const focusHero = () => heroMedia && heroMedia.classList.add("focus");
   if (reduceMotion.matches || !heroVideo) focusHero();
   else {
-    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 8.2) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
+    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 9.4) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
     heroVideo.addEventListener("error", focusHero);
     heroVideo.addEventListener("ended", focusHero);
   }
