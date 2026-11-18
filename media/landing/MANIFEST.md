@@ -37,3 +37,4 @@ Notes
 - Demo data is the app’s sample day. Nothing in the clips shows sending, posting, or joining a live meeting.
 
 - 2026-11-18: `feature-email-v2` and `feature-meetings-v2` (with 720 copies and posters) replace the originals on the page. Email now says “Review & send” and “Sample preview · nothing is sent”. Meetings adds a dashed “Planned · not in this preview” after-meeting card. Originals are kept unreferenced. Scene source: `scripts/motion/scenes/features.js`.
+- 2026-11-18: `video/hermix-fly.webm`, a 6 s seamless loop of Hermix flying a figure-eight (1600×1000, VP9 alpha, 0.5 MB). Plays over the stacked hero after the hero clip ends. Scene: `SCENES.fly` in `scripts/motion/scenes/brand.js`; render with `node render.js fly out/hermix-fly.webm --alpha --w 1600 --h 1000`.

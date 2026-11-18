@@ -18,6 +18,21 @@
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Glass-nav interactivity: a sheen that follows the pointer and a pill that glides between links.
+  if (!reduceMotion.matches && matchMedia("(hover: hover)").matches) {
+    nav.addEventListener("pointermove", (e) => nav.style.setProperty("--mx", e.clientX - nav.getBoundingClientRect().left + "px"));
+    const links = $(".nav-links", nav);
+    if (links) {
+      const pill = document.createElement("span");
+      pill.className = "nav-pill"; pill.setAttribute("aria-hidden", "true");
+      links.appendChild(pill); links.classList.add("has-pill");
+      const to = (b) => { links.style.setProperty("--px", b.offsetLeft + "px"); links.style.setProperty("--pw", b.offsetWidth + "px"); pill.classList.add("on"); };
+      $$(".nav-btn", links).forEach((b) => { b.addEventListener("pointerenter", () => to(b)); b.addEventListener("focus", () => to(b)); });
+      links.addEventListener("pointerleave", () => pill.classList.remove("on"));
+      links.addEventListener("focusout", () => pill.classList.remove("on"));
+    }
+  }
+
   // ---------- Features / Use cases pop-ups ----------
   const FEATURES = [
     ["s-today", "default", "Today", "A briefing in plain words."],
@@ -107,6 +122,22 @@
       if (heroVideo.currentTime >= 3.2) { clearTimeout(fallback); revealHero(); heroVideo.removeEventListener("timeupdate", onT); }
     });
     heroVideo.addEventListener("error", () => { clearTimeout(fallback); revealHero(); });
+  }
+
+  // ---------- hero flight loop (stacked hero only; skipped for reduced motion and Safari, which can't show VP9 alpha) ----------
+  const fly = $("#hero-fly");
+  const stackedHero = matchMedia("(max-width: 1180px), (max-aspect-ratio: 4/3)");
+  const noAlpha = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
+  if (fly && !reduceMotion.matches && !noAlpha) {
+    const startFly = () => {
+      if (!stackedHero.matches || fly.dataset.loaded) return;
+      fly.dataset.loaded = "1";
+      fly.src = fly.dataset.src;
+      fly.addEventListener("canplay", () => { fly.classList.add("on"); safePlay(fly); }, { once: true });
+    };
+    if (heroVideo) heroVideo.addEventListener("ended", startFly, { once: true });
+    setTimeout(startFly, 10500);
+    stackedHero.addEventListener("change", () => { if (!heroVideo || heroVideo.ended || heroVideo.currentTime > 8.5) startFly(); });
   }
 
   // ---------- feature films: lazy load, play the most visible one, one at a time ----------

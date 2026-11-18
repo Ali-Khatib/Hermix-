@@ -76,19 +76,30 @@ p { margin: 0; }
   position: fixed; z-index: 50; left: 50%; top: 14px; transform: translateX(-50%);
   display: flex; align-items: center; gap: 8px;
   height: var(--nav-h); padding: 0 12px 0 18px; width: min(920px, calc(100% - 24px));
-  border-radius: 20px; background: rgba(255, 253, 248, 0.9);
-  border: 1px solid rgba(26, 26, 26, 0.08);
+  border-radius: 20px; background: rgba(255, 253, 248, 0.5);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6); backdrop-filter: blur(22px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 28px rgba(40, 32, 22, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transform: translateX(-50%) translateZ(0);
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
-.nav.scrolled { background: rgba(255, 253, 248, 0.96); box-shadow: 0 12px 34px rgba(40, 32, 22, 0.1); }
+.nav.scrolled { background: rgba(255, 253, 248, 0.58); box-shadow: 0 14px 38px rgba(40, 32, 22, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .nav, .nav.scrolled { background: rgba(255, 253, 248, 0.94); } }
+/* Soft sheen that follows the pointer across the bar. */
+.nav::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(180px 70px at var(--mx, 50%) 50%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 70%);
+  transition: opacity 0.35s;
+}
+.nav:hover::before { opacity: 1; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; }
 .mark { width: 28px; height: 28px; fill: currentColor; flex: none; background: transparent; }
 .mark-art {
   display: block; object-fit: contain; background: transparent;
-  /* Knock out the black square behind the 3D cutouts. */
-  mix-blend-mode: lighten;
+  /* The WebP cutouts are already transparent; a blend mode would wash them out on cream. */
+  transition: transform 0.45s var(--ease);
 }
+.brand:hover .mark-art { transform: translateY(-2px) rotate(-8deg) scale(1.08); }
 .nav-links { display: flex; gap: 4px; margin: 0 auto; }
 .nav-btn {
   display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: transparent; cursor: pointer;
@@ -98,6 +109,18 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
 .nav-btn[aria-expanded="true"]::after { transform: rotate(-135deg); margin-top: 3px; }
 .nav-btn:hover, .nav-btn[aria-expanded="true"] { background: rgba(26, 26, 26, 0.06); color: var(--ink); }
 .nav-more { display: none; margin-left: auto; }
+.nav-links { position: relative; }
+.nav-pill {
+  position: absolute; left: 0; top: 50%; height: 40px; width: var(--pw, 0px); margin-top: -20px; border-radius: 10px;
+  background: rgba(26, 26, 26, 0.07); box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.04);
+  transform: translateX(var(--px, 0px)); opacity: 0; pointer-events: none;
+  transition: transform 0.35s var(--ease), width 0.35s var(--ease), opacity 0.2s;
+}
+.nav-links.has-pill .nav-pill.on { opacity: 1; }
+.nav-links.has-pill .nav-btn:hover:not([aria-expanded="true"]) { background: transparent; }
+.nav-btn { position: relative; }
+.nav-btn:active { transform: scale(0.97); }
+.nav-more:hover { background: rgba(26, 26, 26, 0.06); color: var(--ink); }
 
 /* ---------- pop-up menus ---------- */
 .menu {
@@ -131,6 +154,9 @@ button.nav-btn::after { content: ""; width: 7px; height: 7px; margin-top: -3px; 
 }
 .hero-media { position: absolute; inset: 0; }
 .hero-video { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+/* Looping flight overlay, only where the hero stacks and the frame has empty room. */
+.hero-fly { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 0.8s var(--ease); }
+.hero-fly.on { opacity: 1; }
 .hero-copy {
   position: relative; z-index: 2;
   min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
@@ -317,6 +343,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #9a3d3
   .hero { min-height: auto; display: flex; flex-direction: column; }
   .hero-media { position: relative; inset: auto; order: 2; aspect-ratio: 16 / 10; margin: 0 var(--gutter) 64px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(40, 32, 22, 0.4); }
   .hero-video { object-position: 82% 50%; }
+  .hero-fly { display: block; }
   .hero-copy { min-height: auto; padding: 130px var(--gutter) 40px; max-width: 760px; }
   .scroll-cue { display: none; }
 }
