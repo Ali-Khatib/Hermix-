@@ -49,3 +49,5 @@ Notes
 - hermix-hero-v6 (+720, poster): refined flat-vector Hermix (no cartoon outlines, slimmer proportions), two portraits only (Zeus, Athena), richer desk/rug/vase. Replaces v5 in the page.
 
 - hermix-hero-v8 (+720, poster): simple cut. Hermix dashes through 16 different app icons clearing badges, lands in the middle and says "Don't worry. I've got you." while hovering and changing faces. 0-6.8 s intro; 6.8-9.8 s is a seamless 3 s cycle that app.js loops. Scene scripts/motion/scenes/hero6.js. Office/portrait cuts (v5-v7) are unreferenced.
+
+- hermix-hero-v9 (+720, poster): calmer pacing of v8 (10 icons, slower dashes, gentler camera, face change every second). 0-8.0 s intro, 8.0-14.0 s is a seamless 6 s cycle the page loops. v8 unreferenced.
