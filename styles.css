@@ -344,6 +344,10 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #9a3d3
   .hero-media { position: relative; inset: auto; order: 2; aspect-ratio: 16 / 10; margin: 0 var(--gutter) 64px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(40, 32, 22, 0.4); }
   .hero-video { object-position: 82% 50%; }
   .hero-fly { display: block; }
+  /* The finished composition has the app window pushed to the right with empty space beside it (room for the
+     desktop headline). When the hero stacks, ease in on the window so it fills the frame. */
+  .hero-video { transform-origin: 70.4% 51%; transition: transform 1.4s var(--ease); }
+  .hero-media.focus .hero-video { transform: translateX(-18.8%) scale(1.4); }
   .hero-copy { min-height: auto; padding: 130px var(--gutter) 40px; max-width: 760px; }
   .scroll-cue { display: none; }
 }

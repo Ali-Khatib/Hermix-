@@ -124,6 +124,16 @@
     heroVideo.addEventListener("error", () => { clearTimeout(fallback); revealHero(); });
   }
 
+  // Stacked hero: once the intro has played and the composition has settled, zoom in on the app window (CSS decides if it applies).
+  const heroMedia = $(".hero-media");
+  const focusHero = () => heroMedia && heroMedia.classList.add("focus");
+  if (reduceMotion.matches || !heroVideo) focusHero();
+  else {
+    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 4.8) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
+    heroVideo.addEventListener("error", focusHero);
+    heroVideo.addEventListener("ended", focusHero);
+  }
+
   // ---------- hero flight loop (stacked hero only; skipped for reduced motion and Safari, which can't show VP9 alpha) ----------
   const fly = $("#hero-fly");
   const stackedHero = matchMedia("(max-width: 1180px), (max-aspect-ratio: 4/3)");
@@ -132,8 +142,10 @@
     const startFly = () => {
       if (!stackedHero.matches || fly.dataset.loaded) return;
       fly.dataset.loaded = "1";
-      fly.src = fly.dataset.src;
+      fly.preload = "auto"; // the markup says "none" so nothing downloads until we want it
       fly.addEventListener("canplay", () => { fly.classList.add("on"); safePlay(fly); }, { once: true });
+      fly.src = fly.dataset.src;
+      fly.load();
     };
     if (heroVideo) heroVideo.addEventListener("ended", startFly, { once: true });
     setTimeout(startFly, 10500);
