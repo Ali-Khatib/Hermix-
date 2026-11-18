@@ -45,23 +45,19 @@ SCENES.hero6 = {
       #au6{position:absolute;left:40px;top:55px;width:300px;height:300px;border-radius:50%;background:radial-gradient(closest-side,rgba(246,220,152,.85),rgba(246,220,152,0) 72%)}
       #q6{position:absolute;z-index:8;left:800px;top:236px;height:94px;padding:0 40px;border-radius:30px 30px 30px 8px;background:linear-gradient(#fffefa,#fbf6ea);border:1.5px solid rgba(212,169,76,.7);box-shadow:0 18px 44px rgba(40,32,22,.16),inset 0 0 0 5px rgba(255,255,255,.7);display:flex;align-items:center;font:800 38px "PJS";letter-spacing:-.035em;color:#1a1a1a;white-space:nowrap}
       #q6 .w{display:inline-block;margin-right:.26em}
-      #br6{position:absolute;z-index:7;left:0;top:838px;width:900px;margin-left:-450px;text-align:center;font-family:"PJS"}
+      #br6{position:absolute;z-index:7;left:0;top:838px;width:1100px;margin-left:-550px;text-align:center;font-family:"PJS"}
       #br6 b{display:block;font:800 92px/1 "PJS";letter-spacing:-.045em;color:#1a1a1a}
-      #br6 i{display:block;margin-top:14px;font:600 36px/1.1 "PJS";font-style:normal;letter-spacing:-.01em;color:#7a6a4c}
+      #br6 i{display:block;margin-top:14px;font:600 32px/1.1 "PJS";font-style:normal;letter-spacing:-.01em;color:#7a6a4c}
       #br6 u{display:block;width:120px;height:3px;margin:14px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,#d4a94c,transparent);text-decoration:none}
       #sh6{position:absolute;left:0;top:0;width:240px;height:40px;margin:-20px 0 0 -120px;border-radius:50%;background:radial-gradient(closest-side,rgba(40,30,15,.28),transparent);z-index:3}
     </style>
-    ${G3_MEANDER}
-    <div class="stage"></div><div class="marble6"></div><div class="grain"></div><div class="glow6"></div>
+    <div class="stage" style="background:#e9e2d5"></div>
     <div id="w6">
-      <div>${g3column(30, 120, 0.1)}${g3column(220, 96, 0.06)}</div>
-      <svg class="band6" style="top:10px" width="1920" height="44"><rect width="1920" height="44" fill="url(#mea)"/></svg>
-      <svg class="band6" style="bottom:10px" width="1920" height="44"><rect width="1920" height="44" fill="url(#mea)"/></svg>
       ${G6.tiles.map((tl, i) => `<div class="t6" id="t6${i}"><div class="sh"></div><div class="face"><svg viewBox="0 0 168 168"><defs><linearGradient id="b6${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${g6bg(tl.k)[0]}"/><stop offset="1" stop-color="${g6bg(tl.k)[1]}"/></linearGradient></defs><rect width="168" height="168" fill="url(#b6${i})"/>${g6glyph(tl.k)}</svg></div><div class="b6" id="d6${i}">${tl.label}</div></div>`).join("")}
       <canvas id="fx6" width="1920" height="1080"></canvas>
       <div id="sh6"></div>
       <div id="q6">${"Don’t worry. I’ve got you.".split(" ").map((w) => `<span class="w">${w}</span>`).join("")}</div>
-      <div id="br6"><b>Hermix</b><i>Your work and your life.</i><u></u></div>
+      <div id="br6"><b>Hermix</b><i>Your work understood, your life easier.</i><u></u></div>
       <div id="hx6"><div id="au6"></div>${g3wreath()}<img id="hi6" src="assets/default.png" alt=""></div>
     </div>
   </div>`,

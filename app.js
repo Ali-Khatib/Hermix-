@@ -116,6 +116,32 @@
     setTimeout(() => { if (!ok && v.paused) onBlocked(); }, 1800);
   }
 
+  // ---------- opening curtain ----------
+  // The sequence itself is CSS, so it still plays (and still clears) if this script never runs.
+  const intro = $("#intro");
+  const introPlays = intro && !document.documentElement.classList.contains("intro-seen") && !reduceMotion.matches;
+  let clearIntro = () => {};
+  if (introPlays) {
+    document.documentElement.classList.add("intro-on");
+    const scroller = window.hermixScroll;
+    if (scroller && scroller.stop) scroller.stop();
+    let cleared = false;
+    clearIntro = () => {
+      if (cleared) return;
+      cleared = true;
+      intro.classList.add("gone");
+      document.documentElement.classList.remove("intro-on");
+      if (scroller && scroller.start) scroller.start();
+      setTimeout(() => intro.remove(), 900);
+    };
+    setTimeout(clearIntro, 2850);
+    ["pointerdown", "keydown", "wheel", "touchstart"].forEach((e) =>
+      window.addEventListener(e, clearIntro, { once: true, passive: true })
+    );
+  } else if (intro) {
+    intro.remove();
+  }
+
   // ---------- hero ----------
   const heroVideo = $("#hero-video");
   const heroCopy = $("#hero-copy");
@@ -125,8 +151,8 @@
     revealHero();
   } else {
     attach(heroVideo);
-    // The copy is the first thing to read, so it comes in right away.
-    setTimeout(revealHero, 160);
+    // The copy lands as the curtain lifts; without the curtain it comes in at once.
+    setTimeout(revealHero, introPlays ? 1900 : 160);
     // The film loops by itself (loop attribute), so it never rests on a frozen frame.
     const playBtn = document.createElement("button");
     playBtn.type = "button"; playBtn.className = "hero-play"; playBtn.setAttribute("aria-label", "Play the intro"); playBtn.innerHTML = "<span></span>";

@@ -48,24 +48,45 @@ export function waitlist(base) {
     </section>`;
 }
 
+// Hermix as a flat little drawing: one head, two wings, a visor and whatever face the moment calls for.
+function toon(mood) {
+  const eyes = {
+    happy: `<path d="M57 61 Q62 52 67 61" /><path d="M73 61 Q78 52 83 61" stroke-linecap="round" />`,
+    wide: `<ellipse cx="62" cy="59" rx="6" ry="7" fill="#fffdf8" stroke="none" /><ellipse cx="79" cy="59" rx="6" ry="7" fill="#fffdf8" stroke="none" /><circle cx="64" cy="56.5" r="1.9" fill="#16130f" stroke="none" /><circle cx="81" cy="56.5" r="1.9" fill="#16130f" stroke="none" />`,
+    look: `<ellipse cx="63" cy="56" rx="5.6" ry="6.6" fill="#fffdf8" stroke="none" /><ellipse cx="80" cy="55" rx="4.6" ry="5.6" fill="#fffdf8" stroke="none" />`,
+  }[mood] || "";
+  return `<svg class="fw-toon" viewBox="0 0 140 108" width="140" height="108" aria-hidden="true" focusable="false">
+      <g class="t-wing">
+        <path d="M45 54 C34 43 20 39 8 44 C10 50 13 54 18 56 C16 51 16 48 15 45 C19 50 24 54 29 57 C27 53 27 50 26 47 C31 52 38 56 45 60 Z" />
+        <path d="M95 54 C106 43 120 39 132 44 C130 50 127 54 122 56 C124 51 124 48 125 45 C121 50 116 54 111 57 C113 53 113 50 114 47 C109 52 102 56 95 60 Z" />
+      </g>
+      <path class="t-sprig" d="M70 27 C70 19 74 12 81 9 C82 18 78 25 70 27 Z M70 27 C70 21 67 16 61 14 C60 20 63 25 70 27 Z" />
+      <circle class="t-head" cx="70" cy="60" r="31" />
+      <circle class="t-disc" cx="41" cy="63" r="7" /><circle class="t-disc" cx="99" cy="63" r="7" />
+      <circle class="t-pin" cx="41" cy="63" r="2.6" /><circle class="t-pin" cx="99" cy="63" r="2.6" />
+      <ellipse class="t-visor" cx="70" cy="60" rx="22" ry="19" />
+      <g class="t-eyes">${eyes}</g>
+    </svg>`;
+}
+
 // The sign-off: HERMIX stamped across the page with a few Hermix figures living on the letters.
 function footStage(base) {
   const WORD = "HERMIX";
   const CREW = {
-    0: ["top", "thinking", "Still reading. Nearly done."],
-    2: ["front", "success", "All of it is handled."],
-    4: ["behind", "curious", "Want to know what changed?"],
+    0: ["top", "look", "Still reading. Nearly done."],
+    2: ["front", "happy", "All of it is handled."],
+    4: ["behind", "wide", "Want to know what changed?"],
   };
   const letters = Array.from(WORD)
     .map((ch, i) => {
       const c = CREW[i];
       const crew = c
-        ? `<button type="button" class="fw-crew fw-${c[0]}" style="--d:${900 + i * 120}ms" data-says="${c[2]}" aria-label="Hermix says: ${c[2]}"><img src="${base}media/landing/mascot/${c[1]}.webp" alt="" width="300" height="240" loading="lazy" /></button>`
+        ? `<button type="button" class="fw-crew fw-${c[0]}" style="--d:${900 + i * 120}ms" data-says="${c[2]}" aria-label="Hermix says: ${c[2]}">${toon(c[1])}</button>`
         : "";
       return `<span class="fw-l" style="--i:${i}">${crew}<span class="fw-ch">${ch}</span></span>`;
     })
     .join("");
-  const tag = "Your work and your life."
+  const tag = "Your work understood, your life easier."
     .split(" ")
     .map((w, k) => `<span class="fw-w" style="--d:${1500 + k * 70}ms">${w} </span>`)
     .join("");
