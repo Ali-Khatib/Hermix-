@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FAQ | Hermix</title>
-  <meta name="description" content="Answers about Hermix: what it is, what it does, where your data lives, pricing, and how to get it." />
+  <meta name="description" content="Answers about Hermix: what it does, what it costs, which apps it connects to, where your data lives, and how to get it." />
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=20261118m" />
-  <link rel="stylesheet" href="page.css?v=20261118m" />
+  <link rel="stylesheet" href="styles.css?v=20261119a" />
+  <link rel="stylesheet" href="page.css?v=20261119a" />
 </head>
 <body class="subpage">
   <a class="skip" href="#content">Skip to content</a>
@@ -37,43 +37,43 @@
 <div class="faq">
   <details open>
     <summary><h2>What is Hermix?</h2></summary>
-    <p>Hermix is an AI coworker for Windows. It takes in the notifications and messages coming at you from all your apps, reads them for you, highlights what matters, and gives you a briefing in plain words. It then builds a task list and works through it with you. See <a href="index.html#how">a day with Hermix</a>.</p>
+    <p>Hermix is an AI coworker for Windows. It reads the notifications, messages and updates arriving from every app you use, then gives you one briefing in plain language, a task list ranked by what is late and who is waiting, and an agent that works through it with you. See <a href="index.html#how">a day with Hermix</a>.</p>
   </details>
   <details>
-    <summary><h2>Is Hermix available yet?</h2></summary>
-    <p>Not yet. Hermix is in development. Join the waitlist and we will tell you as soon as it is ready.</p>
+    <summary><h2>Is it available yet?</h2></summary>
+    <p>Not yet. Hermix is in development. Join the waitlist and you will get one email the day it is ready to download.</p>
   </details>
   <details>
-    <summary><h2>Which apps will it work with?</h2></summary>
-    <p>Hermix is being built to work with the apps you already use for email, calendars, chat, and code. We will share details as connections open. See what is <a href="index.html#soon">on the way</a>.</p>
+    <summary><h2>What does it cost?</h2></summary>
+    <p>There is a free plan. Pro is $20 a month and adds unlimited connected apps, 2,000 agent credits and an agent that drafts replies and works your task list on its own. Team is $60 a month for five people. See <a href="pricing.html">Pricing</a>.</p>
   </details>
   <details>
-    <summary><h2>Will Hermix send emails or post messages for me?</h2></summary>
-    <p>Only if you let it. Hermix is built around clear permissions, so you decide what it can do. Nothing is sent without your say.</p>
+    <summary><h2>What is an agent credit?</h2></summary>
+    <p>One credit covers one piece of work Hermix does for you: reading a thread and summarising it, drafting a reply, preparing for a meeting. Reading your notifications and keeping your briefing current does not spend credits.</p>
   </details>
   <details>
-    <summary><h2>Can Hermix join my meetings?</h2></summary>
-    <p>Hermix helps you prepare before a conversation and follow up after it. Joining calls is planned.</p>
+    <summary><h2>Which apps will it connect to?</h2></summary>
+    <p>The ones you already use for email, calendars, chat and code. Free connects three of them, Pro connects as many as you like. The full list goes up before launch.</p>
   </details>
   <details>
-    <summary><h2>Where is my data stored?</h2></summary>
-    <p>Right now, everything you save stays on your computer. Hermix doesn’t send it to us or to an AI service. Read the <a href="legal/privacy.html">Privacy Policy</a> for details.</p>
+    <summary><h2>Will it send things without asking?</h2></summary>
+    <p>No. Hermix drafts and waits. You decide what it is allowed to do, and anything that leaves your computer needs your approval first.</p>
+  </details>
+  <details>
+    <summary><h2>Where does my data live?</h2></summary>
+    <p>On your computer. Hermix keeps what it reads locally and does not upload it to us. Read the <a href="legal/privacy.html">Privacy Policy</a> for the detail.</p>
   </details>
   <details>
     <summary><h2>What do I need to run it?</h2></summary>
     <p>Windows 11. Hermix uses Microsoft Edge WebView2, which Windows 11 already includes.</p>
   </details>
   <details>
-    <summary><h2>How much does it cost?</h2></summary>
-    <p>Hermix is built to cost less than most AI assistants. There is a free plan, and Pro gives you more credits and an agent that does more for you. See <a href="pricing.html">Pricing</a>.</p>
+    <summary><h2>Can I turn the mascot off?</h2></summary>
+    <p>Yes. In Settings you can hide Hermix, turn off eye tracking and reduce motion. It also follows your system setting for reduced motion.</p>
   </details>
   <details>
-    <summary><h2>How do I get Hermix?</h2></summary>
-    <p>Join the <a href="#waitlist">waitlist</a> and we’ll email you when it’s ready to download.</p>
-  </details>
-  <details>
-    <summary><h2>Can I turn off the mascot or the animations?</h2></summary>
-    <p>Yes. In Settings you can hide Hermix, turn off eye tracking, and reduce motion. Hermix also follows your system’s reduced motion setting.</p>
+    <summary><h2>How do I get it?</h2></summary>
+    <p>Join the <a href="#waitlist">waitlist</a>. We will email you a download link when it ships.</p>
   </details>
   <details>
     <summary><h2>How do I leave the waitlist?</h2></summary>
@@ -117,8 +117,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#how">Features</a></li>
-          <li><a href="index.html#meet">Meet Hermix</a></li>
-          <li><a href="index.html#soon">Hermix Pro</a></li>
+          <li><a href="index.html#plans">Plans</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -144,7 +143,25 @@
         </ul>
       </nav>
     </div>
-    <div class="foot-bar">
+      <div class="foot-stage" id="foot-stage">
+      <div class="foot-sky" aria-hidden="true"></div>
+      <div class="foot-word" aria-hidden="true"><span class="fw-l" style="--i:0"><button type="button" class="fw-crew fw-top" style="--d:900ms" data-says="Still reading. Nearly done." aria-label="Hermix says: Still reading. Nearly done."><img src="media/landing/mascot/thinking.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">H</span></span><span class="fw-l" style="--i:1"><span class="fw-ch">E</span></span><span class="fw-l" style="--i:2"><button type="button" class="fw-crew fw-front" style="--d:1140ms" data-says="All of it is handled." aria-label="Hermix says: All of it is handled."><img src="media/landing/mascot/success.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">R</span></span><span class="fw-l" style="--i:3"><span class="fw-ch">M</span></span><span class="fw-l" style="--i:4"><button type="button" class="fw-crew fw-behind" style="--d:1380ms" data-says="Want to know what changed?" aria-label="Hermix says: Want to know what changed?"><img src="media/landing/mascot/curious.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">I</span></span><span class="fw-l" style="--i:5"><span class="fw-ch">X</span></span></div>
+      <h2 class="sr-only">Hermix</h2>
+      <svg class="foot-ground" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+        <defs><pattern id="foot-mea" width="48" height="26" patternUnits="userSpaceOnUse">
+          <path d="M6 20V6h30v10H16v-4h14" fill="none" stroke="currentColor" stroke-width="2.6" />
+        </pattern></defs>
+        <rect class="foot-mea-fill" width="1200" height="26" fill="url(#foot-mea)" />
+        <path class="foot-rule" d="M0 25h1200" pathLength="1" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <p class="foot-tag"><span class="fw-w" style="--d:1500ms">Your </span><span class="fw-w" style="--d:1570ms">work </span><span class="fw-w" style="--d:1640ms">and </span><span class="fw-w" style="--d:1710ms">your </span><span class="fw-w" style="--d:1780ms">life. </span></p>
+      <div class="foot-acts">
+        <a class="btn btn-cream fw-act" style="--d:1800ms" href="index.html#waitlist">Join the waitlist</a>
+        <a class="btn btn-dark-line fw-act" style="--d:1900ms" href="pricing.html">See the plans</a>
+      </div>
+      <div class="foot-bubbles" aria-live="polite"></div>
+    </div>
+  <div class="foot-bar">
       <p>© <span data-year>2026</span> Hermix. All rights reserved.</p>
       <nav aria-label="Legal shortcuts">
         <a href="legal/privacy.html">Privacy</a>
@@ -154,7 +171,9 @@
     </div>
   </footer>
   <script src="media/vendor/lenis.min.js"></script>
-  <script src="smooth.js?v=20261118m"></script>
-  <script src="forms.js?v=20261118m"></script>
+  <script src="smooth.js?v=20261119a"></script>
+  <script src="forms.js?v=20261119a"></script>
+  <script src="foot.js?v=20261119a"></script>
+  
 </body>
 </html>

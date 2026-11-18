@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="media/landing/posters/hermix-hero-poster-v11.webp" />
-  <link rel="stylesheet" href="styles.css?v=20261118n" />
+  <link rel="stylesheet" href="styles.css?v=20261119a" />
 </head>
 <body>
   <a class="skip" href="#how">Skip to how it works</a>
@@ -21,7 +21,7 @@
     <nav class="nav-links" aria-label="Main">
       <button class="nav-btn" type="button" data-menu="features" aria-expanded="false" aria-controls="menu-features">Features</button>
       <button class="nav-btn" type="button" data-menu="cases" aria-expanded="false" aria-controls="menu-cases">Use cases</button>
-      <a class="nav-btn" href="#soon">Pro</a>
+      <a class="nav-btn" href="pricing.html">Pricing</a>
     </nav>
     <button class="nav-btn nav-more" type="button" data-menu="all" aria-expanded="false" aria-controls="menu-all">Menu</button>
   </header>
@@ -33,22 +33,22 @@
   <main>
     <!-- HERO -->
     <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy" id="hero-copy">
+        <p class="eyebrow">AI coworker for Windows</p>
+        <h1 id="hero-title">Start caught up.<br />Move work forward.</h1>
+        <p class="lede">Hermix reads every notification, message and update you get, then gives you one briefing, a ranked task list, and an agent that starts working through it.</p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="#waitlist">Join the waitlist</a>
+          <a class="btn btn-line" href="#how">See a day with Hermix</a>
+        </div>
+        <p class="meta">Built for Windows 11</p>
+      </div>
       <div class="hero-media">
         <video id="hero-video" class="hero-video" muted loop autoplay playsinline webkit-playsinline preload="auto"
           poster="media/landing/posters/hermix-hero-poster-v11.webp"
           data-src="media/landing/video/hermix-hero-v11.mp4"
           data-src-sm="media/landing/video/720/hermix-hero-720-v11.mp4"
           aria-hidden="true"></video>
-      </div>
-      <div class="hero-copy" id="hero-copy">
-        <p class="eyebrow">Your AI coworker for Windows</p>
-        <h1 id="hero-title">Start caught up.<br />Move work forward.</h1>
-        <p class="lede">Hermix gathers the notifications coming at you from every app, reads them for you, and tells you what matters in plain words. Then it turns it all into a clear plan and works through it with you.</p>
-        <div class="hero-actions">
-          <a class="btn btn-ink" href="#waitlist">Join the waitlist</a>
-          <a class="btn btn-line" href="#how">See a day with Hermix</a>
-        </div>
-        <p class="meta">Built for Windows 11</p>
       </div>
       <a class="scroll-cue" href="#how" aria-label="Scroll to how it works"><span></span></a>
     </section>
@@ -83,13 +83,13 @@
         <article class="panel" id="s-today" data-step="today" data-outfit="default" data-mood="Listening">
           <header class="panel-copy">
             <p class="step"><span>01</span> Your day</p>
-            <h3>A briefing that tells you what matters.</h3>
-            <p>Hermix pulls in everything coming at you and reads it so you do not have to. You get a clear account of your day in language you understand: what changed, what needs you, and what can wait.</p>
+            <h3>One briefing instead of forty notifications.</h3>
+            <p>Hermix reads everything that arrived while you were away and writes it up: what changed, what needs an answer, what can wait. Two minutes, instead of twenty tabs.</p>
           </header>
           <div class="film">
             <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-today-poster.webp"
               data-src="media/landing/video/feature-today.mp4" data-src-sm="media/landing/video/720/feature-today-720.mp4"
-              aria-label="Demo of the daily briefing: a morning summary of what is on your day and what needs you."></video>
+              aria-label="Demo of the morning briefing."></video>
             <button class="replay" type="button" aria-label="Play the demo">Replay</button>
           </div>
         </article>
@@ -97,13 +97,13 @@
         <article class="panel" id="s-new" data-step="new" data-outfit="curious" data-mood="Exploring">
           <header class="panel-copy">
             <p class="step"><span>02</span> What changed</p>
-            <h3>Catch the meaning, not every notification.</h3>
-            <p>Requests, decisions and updates arrive from all around. Hermix brings the important ones forward and explains what happened, so you never have to rebuild the story across your apps.</p>
+            <h3>Catch up on a long thread in one read.</h3>
+            <p>Decisions get made, then reversed, in threads you were only copied on. Hermix follows them and tells you where things actually landed and what it changes for you.</p>
           </header>
           <div class="film">
             <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-whats-new-poster.webp"
               data-src="media/landing/video/feature-whats-new.mp4" data-src-sm="media/landing/video/720/feature-whats-new-720.mp4"
-              aria-label="Demo of updates being gathered and explained in one place."></video>
+              aria-label="Demo of updates gathered and explained in one place."></video>
             <button class="replay" type="button" aria-label="Play the demo">Replay</button>
           </div>
         </article>
@@ -111,13 +111,13 @@
         <article class="panel" id="s-tasks" data-step="tasks" data-outfit="organizing" data-mood="Sorting">
           <header class="panel-copy">
             <p class="step"><span>03</span> Your plan</p>
-            <h3>A plan for everything you owe.</h3>
-            <p>Requests, promises and follow ups become a task list you can trust. Hermix highlights what is urgent, puts things in order, and starts working through them with you.</p>
+            <h3>Every promise you made, in one list.</h3>
+            <p>Requests, commitments and follow ups become tasks, ordered by what is late and who is waiting on you. The list keeps itself current as new things come in.</p>
           </header>
           <div class="film">
             <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-tasks-poster.webp"
               data-src="media/landing/video/feature-tasks.mp4" data-src-sm="media/landing/video/720/feature-tasks-720.mp4"
-              aria-label="Demo of a task list: opening a task, reading its brief, and marking it done."></video>
+              aria-label="Demo of a task list: opening a task, reading its brief, marking it done."></video>
             <button class="replay" type="button" aria-label="Play the demo">Replay</button>
           </div>
         </article>
@@ -125,13 +125,13 @@
         <article class="panel" id="s-email" data-step="email" data-outfit="inbox" data-mood="Handling replies">
           <header class="panel-copy">
             <p class="step"><span>04</span> Replies</p>
-            <h3>Know what needs a reply. Start with one ready.</h3>
-            <p>Hermix separates the conversations that need you from the updates that do not, and prepares a reply you can read, change and approve.</p>
+            <h3>The reply is written before you open it.</h3>
+            <p>Hermix separates what needs you from what does not, drafts an answer in your own words, and waits. You read it, change what you want, and send it.</p>
           </header>
           <div class="film">
             <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-email-poster-v2.webp"
               data-src="media/landing/video/feature-email-v2.mp4" data-src-sm="media/landing/video/720/feature-email-720-v2.mp4"
-              aria-label="Demo of a reply being prepared for review before anything is sent."></video>
+              aria-label="Demo of a reply prepared for review before anything is sent."></video>
             <button class="replay" type="button" aria-label="Play the demo">Replay</button>
           </div>
         </article>
@@ -139,13 +139,13 @@
         <article class="panel" id="s-meetings" data-step="meetings" data-outfit="meeting" data-mood="Preparing">
           <header class="panel-copy">
             <p class="step"><span>05</span> Prep</p>
-            <h3>Know what led here. Leave knowing what’s next.</h3>
-            <p>Before a conversation, Hermix gathers the context, the open questions and the decisions made before. Afterwards it helps turn what was said into clear next steps.</p>
+            <h3>Walk in knowing what was decided last time.</h3>
+            <p>Before a meeting, Hermix pulls the history, the open questions and the decisions already made into one page. Afterwards it turns what was said into tasks.</p>
           </header>
           <div class="film">
             <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-meetings-poster-v2.webp"
               data-src="media/landing/video/feature-meetings-v2.mp4" data-src-sm="media/landing/video/720/feature-meetings-720-v2.mp4"
-              aria-label="Demo of meeting preparation with context, notes and next steps."></video>
+              aria-label="Demo of meeting prep with context, notes and next steps."></video>
             <button class="replay" type="button" aria-label="Play the demo">Replay</button>
           </div>
         </article>
@@ -153,8 +153,8 @@
         <article class="panel" id="s-ask" data-step="ask" data-outfit="thinking" data-mood="Thinking">
           <header class="panel-copy">
             <p class="step"><span>06</span> Ask</p>
-            <h3>Ask with the context already there.</h3>
-            <p>“What am I waiting on?” “Help me prepare for this call.” “What did I agree to do?” Hermix answers from everything it has read and turns the answer into a next step.</p>
+            <h3>Ask about your own work, not the internet.</h3>
+            <p>“What am I waiting on?” “What did I agree to this week?” “Who never answered?” Hermix answers from everything it has already read, and gives you the next step.</p>
           </header>
           <div class="film">
             <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-ask-hermix-poster.webp"
@@ -166,58 +166,49 @@
       </div>
     </section>
 
-    <!-- WARDROBE -->
-    <section class="wardrobe" id="meet" aria-labelledby="meet-title">
-      <div class="wardrobe-copy">
-        <p class="kicker">Meet Hermix</p>
-        <h2 id="meet-title">A coworker with<br />a little character.</h2>
-        <p>Checking updates, sorting your work or taking a moment to think, Hermix shows you what it is up to. Keep the company, or quiet it down whenever you want less on screen.</p>
+    <!-- PLANS -->
+    <section class="plans" id="plans" aria-labelledby="plans-title">
+      <div class="plans-head">
+        <p class="kicker">Plans</p>
+        <h2 id="plans-title">Free reads your day.<br />Pro works it.</h2>
+        <p>Every plan gives you the briefing, the task list and the ability to ask about anything Hermix has read. Pro lifts the limits and lets the agent act on its own.</p>
       </div>
-      <div class="wardrobe-stage">
-        <div class="wardrobe-glow" aria-hidden="true"></div>
-        <div class="wardrobe-fallback" id="wardrobe-fallback" aria-hidden="true">
-          <img src="media/landing/mascot/default.webp" alt="" class="on" />
-        </div>
-      </div>
-      <ul class="outfits" id="outfits" aria-label="Hermix states">
-        <li><button type="button" data-i="0"><span class="fill" aria-hidden="true"></span>Listening</button></li>
-        <li><button type="button" data-i="1"><span class="fill" aria-hidden="true"></span>Thinking</button></li>
-        <li><button type="button" data-i="2"><span class="fill" aria-hidden="true"></span>Checking</button></li>
-        <li><button type="button" data-i="3"><span class="fill" aria-hidden="true"></span>Organizing</button></li>
-        <li><button type="button" data-i="4"><span class="fill" aria-hidden="true"></span>Inbox</button></li>
-        <li><button type="button" data-i="5"><span class="fill" aria-hidden="true"></span>Meeting</button></li>
-        <li><button type="button" data-i="6"><span class="fill" aria-hidden="true"></span>Resting</button></li>
-      </ul>
-    </section>
-
-    <!-- PRO -->
-    <section class="preview" id="soon" aria-labelledby="soon-title">
-      <div class="preview-head">
-        <p class="kicker">Hermix Pro</p>
-        <h2 id="soon-title">More credits. An agent that does more for you.</h2>
-        <p>Hermix is built to take the weight off your day. Go Pro when you want it to take on even more, at a price that stays easy on you.</p>
-      </div>
-      <div class="preview-cols">
-        <div class="pcol">
-          <h3>What Hermix does for you</h3>
-          <ul class="ticks">
-            <li>Collects the notifications from all your apps in one place</li>
-            <li>Reads them and highlights what matters</li>
-            <li>Gives you a briefing in plain language</li>
-            <li>Builds a task list and works through it with you</li>
-            <li>Prepares replies and context for your conversations</li>
-            <li>Keeps working quietly so you can focus</li>
+      <div class="plan-cards">
+        <article class="plan-card">
+          <header>
+            <h3>Free</h3>
+            <p class="plan-price"><b>$0</b></p>
+            <p class="plan-for">For one person who wants the day in order.</p>
+          </header>
+          <ul class="plan-list">
+            <li>3 connected apps</li>
+            <li>One briefing each morning</li>
+            <li>Task list, ranked and kept current</li>
+            <li>Ask about anything it has read</li>
+            <li>100 agent credits a month</li>
+            <li>Everything stays on your computer</li>
           </ul>
-        </div>
-        <div class="pcol pcol-soon">
-          <h3>With Pro</h3>
-          <ul class="sparks">
-            <li><b>More credits</b> Your agent has more room to work for you every month</li>
-            <li><b>An agent that does more</b> It takes on bigger jobs, the way other AI assistants do on their paid plans</li>
-            <li><b>A lower price</b> Built to cost less than the assistants you use today</li>
+          <a class="btn btn-line" href="pricing.html">Compare plans</a>
+        </article>
+        <article class="plan-card plan-card-pro">
+          <p class="plan-flag">Most people want this</p>
+          <header>
+            <h3>Pro</h3>
+            <p class="plan-price"><b>$20</b><span>a month</span></p>
+            <p class="plan-for">For the days that do not fit in a day.</p>
+          </header>
+          <ul class="plan-list plan-list-pro">
+            <li>Unlimited connected apps</li>
+            <li>A new briefing whenever you want one</li>
+            <li>Replies drafted for your approval</li>
+            <li>The agent works your task list on its own</li>
+            <li>Meeting prep and follow ups</li>
+            <li>2,000 agent credits a month</li>
           </ul>
-        </div>
+          <a class="btn btn-ink" href="#waitlist">Join the waitlist</a>
+        </article>
       </div>
+      <p class="plans-note">Working as a group? Team is $60 a month for five people, with shared context and one bill. <a href="pricing.html">See all plans</a></p>
     </section>
 
     <!-- site:waitlist -->
@@ -244,7 +235,7 @@
       <div class="final-cta-panel">
         <p class="kicker">Hermix</p>
         <h2 id="final-cta-title">Start caught up.<br />Move work forward.</h2>
-        <p class="final-cta-lede">An AI coworker for the work between your apps.</p>
+        <p class="final-cta-lede">The reading, sorting and chasing, handled before you sit down.</p>
         <p class="final-cta-meta">Built for Windows 11</p>
       </div>
     </section>
@@ -269,8 +260,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#how">Features</a></li>
-          <li><a href="index.html#meet">Meet Hermix</a></li>
-          <li><a href="index.html#soon">Hermix Pro</a></li>
+          <li><a href="index.html#plans">Plans</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -296,7 +286,25 @@
         </ul>
       </nav>
     </div>
-    <div class="foot-bar">
+      <div class="foot-stage" id="foot-stage">
+      <div class="foot-sky" aria-hidden="true"></div>
+      <div class="foot-word" aria-hidden="true"><span class="fw-l" style="--i:0"><button type="button" class="fw-crew fw-top" style="--d:900ms" data-says="Still reading. Nearly done." aria-label="Hermix says: Still reading. Nearly done."><img src="media/landing/mascot/thinking.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">H</span></span><span class="fw-l" style="--i:1"><span class="fw-ch">E</span></span><span class="fw-l" style="--i:2"><button type="button" class="fw-crew fw-front" style="--d:1140ms" data-says="All of it is handled." aria-label="Hermix says: All of it is handled."><img src="media/landing/mascot/success.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">R</span></span><span class="fw-l" style="--i:3"><span class="fw-ch">M</span></span><span class="fw-l" style="--i:4"><button type="button" class="fw-crew fw-behind" style="--d:1380ms" data-says="Want to know what changed?" aria-label="Hermix says: Want to know what changed?"><img src="media/landing/mascot/curious.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">I</span></span><span class="fw-l" style="--i:5"><span class="fw-ch">X</span></span></div>
+      <h2 class="sr-only">Hermix</h2>
+      <svg class="foot-ground" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+        <defs><pattern id="foot-mea" width="48" height="26" patternUnits="userSpaceOnUse">
+          <path d="M6 20V6h30v10H16v-4h14" fill="none" stroke="currentColor" stroke-width="2.6" />
+        </pattern></defs>
+        <rect class="foot-mea-fill" width="1200" height="26" fill="url(#foot-mea)" />
+        <path class="foot-rule" d="M0 25h1200" pathLength="1" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <p class="foot-tag"><span class="fw-w" style="--d:1500ms">Your </span><span class="fw-w" style="--d:1570ms">work </span><span class="fw-w" style="--d:1640ms">and </span><span class="fw-w" style="--d:1710ms">your </span><span class="fw-w" style="--d:1780ms">life. </span></p>
+      <div class="foot-acts">
+        <a class="btn btn-cream fw-act" style="--d:1800ms" href="index.html#waitlist">Join the waitlist</a>
+        <a class="btn btn-dark-line fw-act" style="--d:1900ms" href="pricing.html">See the plans</a>
+      </div>
+      <div class="foot-bubbles" aria-live="polite"></div>
+    </div>
+  <div class="foot-bar">
       <p>© <span data-year>2026</span> Hermix. All rights reserved.</p>
       <nav aria-label="Legal shortcuts">
         <a href="legal/privacy.html">Privacy</a>
@@ -309,8 +317,9 @@
 
 
   <script src="media/vendor/lenis.min.js"></script>
-  <script src="smooth.js?v=20261028a"></script>
-  <script src="app.js?v=20261118n"></script>
-  <script src="forms.js?v=20261028a"></script>
+  <script src="smooth.js?v=20261119a"></script>
+  <script src="app.js?v=20261119a"></script>
+  <script src="forms.js?v=20261119a"></script>
+  <script src="foot.js?v=20261119a"></script>
 </body>
 </html>

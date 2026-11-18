@@ -48,6 +48,47 @@ export function waitlist(base) {
     </section>`;
 }
 
+// The sign-off: HERMIX stamped across the page with a few Hermix figures living on the letters.
+function footStage(base) {
+  const WORD = "HERMIX";
+  const CREW = {
+    0: ["top", "thinking", "Still reading. Nearly done."],
+    2: ["front", "success", "All of it is handled."],
+    4: ["behind", "curious", "Want to know what changed?"],
+  };
+  const letters = Array.from(WORD)
+    .map((ch, i) => {
+      const c = CREW[i];
+      const crew = c
+        ? `<button type="button" class="fw-crew fw-${c[0]}" style="--d:${900 + i * 120}ms" data-says="${c[2]}" aria-label="Hermix says: ${c[2]}"><img src="${base}media/landing/mascot/${c[1]}.webp" alt="" width="300" height="240" loading="lazy" /></button>`
+        : "";
+      return `<span class="fw-l" style="--i:${i}">${crew}<span class="fw-ch">${ch}</span></span>`;
+    })
+    .join("");
+  const tag = "Your work and your life."
+    .split(" ")
+    .map((w, k) => `<span class="fw-w" style="--d:${1500 + k * 70}ms">${w} </span>`)
+    .join("");
+  return `  <div class="foot-stage" id="foot-stage">
+      <div class="foot-sky" aria-hidden="true"></div>
+      <div class="foot-word" aria-hidden="true">${letters}</div>
+      <h2 class="sr-only">Hermix</h2>
+      <svg class="foot-ground" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+        <defs><pattern id="foot-mea" width="48" height="26" patternUnits="userSpaceOnUse">
+          <path d="M6 20V6h30v10H16v-4h14" fill="none" stroke="currentColor" stroke-width="2.6" />
+        </pattern></defs>
+        <rect class="foot-mea-fill" width="1200" height="26" fill="url(#foot-mea)" />
+        <path class="foot-rule" d="M0 25h1200" pathLength="1" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <p class="foot-tag">${tag}</p>
+      <div class="foot-acts">
+        <a class="btn btn-cream fw-act" style="--d:1800ms" href="${base}index.html#waitlist">Join the waitlist</a>
+        <a class="btn btn-dark-line fw-act" style="--d:1900ms" href="${base}pricing.html">See the plans</a>
+      </div>
+      <div class="foot-bubbles" aria-live="polite"></div>
+    </div>`;
+}
+
 export function footer(base) {
   const year = new Date().getFullYear();
   const li = (href, label, extra = "") => `<li><a href="${base}${href}"${extra}>${label}</a></li>`;
@@ -69,8 +110,7 @@ export function footer(base) {
         <ul>
           ${li("index.html", "Home")}
           ${li("index.html#how", "Features")}
-          ${li("index.html#meet", "Meet Hermix")}
-          ${li("index.html#soon", "Hermix Pro")}
+          ${li("index.html#plans", "Plans")}
           ${li("pricing.html", "Pricing")}
           ${li("faq.html", "FAQ")}
         </ul>
@@ -91,7 +131,8 @@ export function footer(base) {
         </ul>
       </nav>
     </div>
-    <div class="foot-bar">
+    ${footStage(base)}
+  <div class="foot-bar">
       <p>© <span data-year>${year}</span> Hermix. All rights reserved.</p>
       <nav aria-label="Legal shortcuts">
         <a href="${base}legal/privacy.html">Privacy</a>

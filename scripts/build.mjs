@@ -60,7 +60,7 @@ for (const p of pages) {
   <a class="skip" href="#content">Skip to content</a>
 ${header(base, cfg, p.waitlist !== false)}
   <main id="content">
-    <header class="page-head">
+    ${p.full ? "" : `<header class="page-head">
       <a class="back" href="${base}index.html">← Back to Hermix</a>
       <p class="kicker">${esc(p.kicker)}</p>
       <h1>${esc(p.heading || p.title)}</h1>
@@ -69,16 +69,18 @@ ${header(base, cfg, p.waitlist !== false)}
     </header>
     <div class="page-body${p.legal ? " with-nav" : ""}">
       ${legalNav}
-      <article class="prose">
+      <article class="prose">`}
 ${p.body(cfg, base)}
-      </article>
-    </div>
+    ${p.full ? "" : `  </article>
+    </div>`}
 ${p.waitlist === false ? "" : waitlist(base, cfg)}
   </main>
 ${footer(base, cfg)}
   <script src="${base}media/vendor/lenis.min.js"></script>
   <script src="${base}smooth.js?v=${cfg.assetVersion || 1}"></script>
   <script src="${base}forms.js?v=${cfg.assetVersion || 1}"></script>
+  <script src="${base}foot.js?v=${cfg.assetVersion || 1}"></script>
+  ${p.script ? `<script src="${base}${p.script}?v=${cfg.assetVersion || 1}"></script>` : ""}
 </body>
 </html>
 `;

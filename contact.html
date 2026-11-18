@@ -7,8 +7,8 @@
   <meta name="description" content="Send Hermix a question, a privacy request, a security report, or a copyright notice, or ask to leave the waitlist." />
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=20261118m" />
-  <link rel="stylesheet" href="page.css?v=20261118m" />
+  <link rel="stylesheet" href="styles.css?v=20261119a" />
+  <link rel="stylesheet" href="page.css?v=20261119a" />
 </head>
 <body class="subpage">
   <a class="skip" href="#content">Skip to content</a>
@@ -93,8 +93,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#how">Features</a></li>
-          <li><a href="index.html#meet">Meet Hermix</a></li>
-          <li><a href="index.html#soon">Hermix Pro</a></li>
+          <li><a href="index.html#plans">Plans</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -120,7 +119,25 @@
         </ul>
       </nav>
     </div>
-    <div class="foot-bar">
+      <div class="foot-stage" id="foot-stage">
+      <div class="foot-sky" aria-hidden="true"></div>
+      <div class="foot-word" aria-hidden="true"><span class="fw-l" style="--i:0"><button type="button" class="fw-crew fw-top" style="--d:900ms" data-says="Still reading. Nearly done." aria-label="Hermix says: Still reading. Nearly done."><img src="media/landing/mascot/thinking.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">H</span></span><span class="fw-l" style="--i:1"><span class="fw-ch">E</span></span><span class="fw-l" style="--i:2"><button type="button" class="fw-crew fw-front" style="--d:1140ms" data-says="All of it is handled." aria-label="Hermix says: All of it is handled."><img src="media/landing/mascot/success.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">R</span></span><span class="fw-l" style="--i:3"><span class="fw-ch">M</span></span><span class="fw-l" style="--i:4"><button type="button" class="fw-crew fw-behind" style="--d:1380ms" data-says="Want to know what changed?" aria-label="Hermix says: Want to know what changed?"><img src="media/landing/mascot/curious.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">I</span></span><span class="fw-l" style="--i:5"><span class="fw-ch">X</span></span></div>
+      <h2 class="sr-only">Hermix</h2>
+      <svg class="foot-ground" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+        <defs><pattern id="foot-mea" width="48" height="26" patternUnits="userSpaceOnUse">
+          <path d="M6 20V6h30v10H16v-4h14" fill="none" stroke="currentColor" stroke-width="2.6" />
+        </pattern></defs>
+        <rect class="foot-mea-fill" width="1200" height="26" fill="url(#foot-mea)" />
+        <path class="foot-rule" d="M0 25h1200" pathLength="1" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <p class="foot-tag"><span class="fw-w" style="--d:1500ms">Your </span><span class="fw-w" style="--d:1570ms">work </span><span class="fw-w" style="--d:1640ms">and </span><span class="fw-w" style="--d:1710ms">your </span><span class="fw-w" style="--d:1780ms">life. </span></p>
+      <div class="foot-acts">
+        <a class="btn btn-cream fw-act" style="--d:1800ms" href="index.html#waitlist">Join the waitlist</a>
+        <a class="btn btn-dark-line fw-act" style="--d:1900ms" href="pricing.html">See the plans</a>
+      </div>
+      <div class="foot-bubbles" aria-live="polite"></div>
+    </div>
+  <div class="foot-bar">
       <p>© <span data-year>2026</span> Hermix. All rights reserved.</p>
       <nav aria-label="Legal shortcuts">
         <a href="legal/privacy.html">Privacy</a>
@@ -130,7 +147,9 @@
     </div>
   </footer>
   <script src="media/vendor/lenis.min.js"></script>
-  <script src="smooth.js?v=20261118m"></script>
-  <script src="forms.js?v=20261118m"></script>
+  <script src="smooth.js?v=20261119a"></script>
+  <script src="forms.js?v=20261119a"></script>
+  <script src="foot.js?v=20261119a"></script>
+  
 </body>
 </html>

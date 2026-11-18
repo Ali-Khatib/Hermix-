@@ -1,4 +1,4 @@
-/* Hermix landing — video loading, scroll story, wardrobe sync. No dependencies. */
+/* Hermix landing: video loading, scroll story, menus. No dependencies. */
 (() => {
   "use strict";
 
@@ -35,20 +35,20 @@
 
   // ---------- Features / Use cases pop-ups ----------
   const FEATURES = [
-    ["s-today", "default", "Your day", "A briefing in plain words."],
-    ["s-new", "curious", "What changed", "The meaning, not every notification."],
-    ["s-tasks", "organizing", "Your plan", "What needs doing, made clear."],
-    ["s-email", "inbox", "Replies", "Know what needs an answer."],
-    ["s-meetings", "meeting", "Prep", "Context before you walk in."],
-    ["s-ask", "thinking", "Ask", "Answers with context built in."],
+    ["s-today", "default", "Your day", "One briefing, not forty notifications."],
+    ["s-new", "curious", "What changed", "Where a long thread actually landed."],
+    ["s-tasks", "organizing", "Your plan", "Every promise you made, in one list."],
+    ["s-email", "inbox", "Replies", "Drafted, waiting for your approval."],
+    ["s-meetings", "meeting", "Prep", "What was decided last time."],
+    ["s-ask", "thinking", "Ask", "Answers from your own work."],
   ];
   const CASES = [
-    ["s-today", "success", "Busy mornings", "Start with a briefing, not a pile of apps."],
-    ["s-new", "detective", "Back from time off", "See what changed without the scroll."],
+    ["s-today", "success", "Busy mornings", "Open one page instead of nine apps."],
+    ["s-new", "detective", "Back from time off", "Four hundred messages, one read."],
     ["s-tasks", "creating", "Too many threads", "Turn requests into a plan."],
     ["s-email", "inbox", "A full inbox", "Know what needs you first."],
-    ["s-meetings", "meeting", "Packed days", "Walk into each conversation prepared."],
-    ["s-ask", "idle", "Quick questions", "Ask, then get a useful next step."],
+    ["s-meetings", "meeting", "Packed days", "Prepared for every one of them."],
+    ["s-ask", "idle", "Quick questions", "Ask, then act on the answer."],
   ];
   const item = ([id, mood, title, line]) =>
     `<button class="menu-item" type="button" data-go="${id}"><img src="media/landing/mascot/${mood}.webp" alt="" loading="lazy"><span><b>${title}</b><small>${line}</small></span></button>`;
@@ -235,59 +235,6 @@
   );
   $$(".panel").forEach((p) => stepIO.observe(p));
   if ($(".panel")) setStep($(".panel"));
-
-  // ---------- wardrobe ----------
-  // Must match WARDROBE / HOLD / SWAP in scripts/motion/scenes/brand.js.
-  const SEG = 2.4;        // seconds per mood
-  const wardrobe = $("#meet");
-  const chips = $$("#outfits button");
-  const names = ["default", "thinking", "detective", "organizing", "inbox", "meeting", "idle"];
-  const N = names.length;
-  // Highlight follows what's actually on screen, and the bar fills at the same pace as the mood.
-  // Only touch the DOM when something visible changes (this runs every frame while playing).
-  let shownI = -1, shownF = -1;
-  const fills = chips.map((c) => $(".fill", c));
-  const show = (i, frac) => {
-    if (i !== shownI) {
-      chips.forEach((c, j) => c.classList.toggle("on", j === i));
-      if (fills[shownI]) fills[shownI].style.transform = "scaleX(0)";
-      shownI = i; shownF = -1;
-    }
-    const f = Math.round(frac * 200) / 200;
-    if (f !== shownF && fills[i]) { fills[i].style.transform = `scaleX(${f})`; shownF = f; }
-  };
-  show(0, 0);
-
-  // Outfit webm is opaque (cream/black plate) — it paints a square on this dark section.
-  // Transparent stills only.
-  const fb = $("#wardrobe-fallback");
-
-  function startFallback() {
-    // Always mount every outfit still — a single seed <img> in HTML must not block the rest.
-    if (fb) {
-      fb.innerHTML = names.map((n, i) => `<img src="media/landing/mascot/${n}.webp" alt="" class="${i === 0 ? "on" : ""}">`).join("");
-    }
-    let t0 = performance.now(), offset = 0, raf = 0, last = -1;
-    const frame = (now) => {
-      const t = offset + (now - t0) / 1000;
-      const i = Math.floor(t / SEG) % N;
-      if (i !== last) { $$("img", fb).forEach((im, j) => im.classList.toggle("on", j === i)); last = i; }
-      show(i, (t % SEG) / SEG);
-      raf = requestAnimationFrame(frame);
-    };
-    chips.forEach((c) => c.addEventListener("click", () => { offset = +c.dataset.i * SEG; t0 = performance.now(); last = -1; if (reduceMotion.matches) { $$("img", fb).forEach((im, j) => im.classList.toggle("on", j === +c.dataset.i)); show(+c.dataset.i, 1); } }));
-    return {
-      play() { if (reduceMotion.matches) return; cancelAnimationFrame(raf); t0 = performance.now() - 0; raf = requestAnimationFrame(frame); },
-      pause() { cancelAnimationFrame(raf); },
-    };
-  }
-
-  const wardrobeCtl = startFallback();
-
-  new IntersectionObserver(
-    (entries) => entries.forEach((e) => (e.isIntersecting ? wardrobeCtl.play() : wardrobeCtl.pause())),
-    { threshold: 0.35 }
-  ).observe(wardrobe);
 
   // ---------- rail links honour reduced motion ----------
   links.forEach((a) =>

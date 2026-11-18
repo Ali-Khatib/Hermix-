@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pricing | Hermix</title>
-  <meta name="description" content="Hermix has a free plan and a Pro plan with more credits and an agent that does more for you. Join the waitlist to hear prices first." />
+  <meta name="description" content="Hermix pricing: a free plan, Pro at $20 a month for an agent that does the work, and Team at $60 a month for five people." />
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=20261118m" />
-  <link rel="stylesheet" href="page.css?v=20261118m" />
+  <link rel="stylesheet" href="styles.css?v=20261119a" />
+  <link rel="stylesheet" href="page.css?v=20261119a" />
 </head>
 <body class="subpage">
   <a class="skip" href="#content">Skip to content</a>
@@ -24,45 +24,66 @@
     </nav>
   </header>
   <main id="content">
-    <header class="page-head">
-      <a class="back" href="index.html">← Back to Hermix</a>
-      <p class="kicker">Pricing</p>
-      <h1>Simple plans, built to cost less.</h1>
-      <p class="page-lede">Hermix is built to be easy on your wallet. Start free, and go Pro when you want your agent to do more.</p>
-      
-    </header>
-    <div class="page-body">
-      
-      <article class="prose">
+    
 
-<div class="price-cards">
-  <section class="price-card">
-    <p class="kicker">Start here</p>
-    <h2>Free</h2>
-    <p class="price">Free</p>
-    <p>Get your day in order: a briefing in plain words, a clear plan, and help with replies and preparation.</p>
-    <ul class="ticks">
-      <li>Notifications gathered in one place</li>
-      <li>A daily briefing you can understand</li>
-      <li>Built for Windows 11</li>
-    </ul>
-  </section>
-  <section class="price-card soon">
-    <p class="kicker">Hermix Pro</p>
-    <h2>Pro</h2>
-    <p class="price">Announced at launch</p>
-    <p>More credits and an agent that does more for you, the way the paid plans of other AI assistants do, at a lower price.</p>
-    <ul class="sparks">
-      <li><b>More credits</b> Your agent has more room to work for you</li>
-      <li><b>An agent that does more</b> Bigger jobs, handled for you</li>
-      <li><b>A lower price</b> Built to cost less than the assistants you use today</li>
-    </ul>
-  </section>
-</div>
-<h2>Questions about pricing?</h2>
-<p>See the <a href="faq.html">FAQ</a>, or <a href="contact.html">send us a message</a>.</p>
-      </article>
-    </div>
+    <section class="pr" id="pr" data-plan="free">
+      <span class="pr-bg pr-bg-free" aria-hidden="true"></span><span class="pr-bg pr-bg-pro" aria-hidden="true"></span><span class="pr-bg pr-bg-team" aria-hidden="true"></span>
+      <div class="pr-head">
+        <a class="back" href="index.html">← Back to Hermix</a>
+        <p class="kicker">Pricing</p>
+        <h1>Simple plans.<br />One of them is free.</h1>
+        <p class="pr-lede">Hermix is still being built. These are the plans it launches with, so you know what you are joining.</p>
+      </div>
+
+      <div class="pr-grid">
+        <div class="pr-info">
+          <p class="pr-plan-name" data-pr-name>Hermix Free</p>
+          <h2 class="pr-headline" data-pr-headline>Enough to put the day in order.</h2>
+          <p class="pr-desc" data-pr-desc>Hermix reads what came in, tells you what matters and keeps your list straight. You stay the one who acts on it.</p>
+          <ul class="pr-feat" data-pr-features><li>A briefing each morning, in plain language</li><li>Your task list, ranked and kept current</li><li>Ask about anything Hermix has read</li><li>Three connected apps</li><li>100 agent credits a month</li><li>Everything stays on your computer</li></ul>
+        </div>
+
+        <div class="pr-stage" aria-hidden="true">
+          <span class="pr-word" data-pr-word>FREE</span>
+          <span class="pr-glow"></span>
+          <div class="pr-float">
+            <img class="pr-mascot on" data-plan="free" src="media/landing/mascot/default.webp" alt="" width="560" height="449"  /><img class="pr-mascot" data-plan="pro" src="media/landing/mascot/success.webp" alt="" width="560" height="449" loading="lazy" /><img class="pr-mascot" data-plan="team" src="media/landing/mascot/meeting.webp" alt="" width="560" height="449" loading="lazy" />
+          </div>
+          <span class="pr-floor"></span>
+        </div>
+
+        <aside class="pr-buy">
+          <p class="pr-label" id="pr-plan-label">Plan</p>
+          <div class="pr-swatches" role="radiogroup" aria-labelledby="pr-plan-label">
+            <button type="button" class="pr-swatch" role="radio" data-pr-plan="free" aria-checked="true" tabindex="0"><span class="pr-chip pr-chip-free" aria-hidden="true"></span>Free</button><button type="button" class="pr-swatch" role="radio" data-pr-plan="pro" aria-checked="false" tabindex="-1"><span class="pr-chip pr-chip-pro" aria-hidden="true"></span>Pro</button><button type="button" class="pr-swatch" role="radio" data-pr-plan="team" aria-checked="false" tabindex="-1"><span class="pr-chip pr-chip-team" aria-hidden="true"></span>Team</button>
+          </div>
+          <div class="pr-price-row">
+            <p class="pr-label">Price</p>
+            <p class="pr-price"><b data-pr-price>$0</b><span data-pr-period>to use</span></p>
+          </div>
+          <dl class="pr-rows" data-pr-rows>
+            <div><dt>Agent credits</dt><dd>100 a month</dd></div><div><dt>Connected apps</dt><dd>3</dd></div><div><dt>People</dt><dd>1</dd></div>
+          </dl>
+          <a class="btn btn-ink pr-cta" href="index.html#waitlist" data-pr-cta>Join the waitlist</a>
+          <p class="pr-fine">No card now. Nothing is charged until Hermix ships and you choose a plan.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="pr-compare" aria-labelledby="pr-compare-title">
+      <h2 id="pr-compare-title">Side by side</h2>
+      <div class="pr-table-wrap">
+        <table class="pr-table">
+          <thead><tr><th scope="col">What you get</th><th scope="col">Free</th><th scope="col">Pro</th><th scope="col">Team</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Briefing of what came in</th><td>Each morning</td><td>Whenever you want one</td><td>Whenever you want one</td></tr><tr><th scope="row">Task list, ranked and current</th><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr><tr><th scope="row">Ask about anything it read</th><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr><tr><th scope="row">Connected apps</th><td>3</td><td>Unlimited</td><td>Unlimited</td></tr><tr><th scope="row">Replies drafted for approval</th><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr><tr><th scope="row">Agent works the list on its own</th><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr><tr><th scope="row">Meeting prep and follow ups</th><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr><tr><th scope="row">Agent credits a month</th><td>100</td><td>2,000</td><td>10,000 pooled</td></tr><tr><th scope="row">People included</th><td>1</td><td>1</td><td>5</td></tr><tr><th scope="row">Shared context and handovers</th><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr><tr><th scope="row">One bill and admin controls</th><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="no"><span class="pr-no" aria-label="Not included"></span></td><td data-v="yes"><span class="pr-yes" aria-label="Included"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pr-foot-note">Prices are in US dollars. Questions about a plan? <a href="faq.html">Read the FAQ</a> or <a href="contact.html">send us a message</a>.</p>
+    </section>
+  
+    
     <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
       <img class="waitlist-bot" src="media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
       <h2 id="waitlist-title">Meet a clearer kind of workday.</h2>
@@ -98,8 +119,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#how">Features</a></li>
-          <li><a href="index.html#meet">Meet Hermix</a></li>
-          <li><a href="index.html#soon">Hermix Pro</a></li>
+          <li><a href="index.html#plans">Plans</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -125,7 +145,25 @@
         </ul>
       </nav>
     </div>
-    <div class="foot-bar">
+      <div class="foot-stage" id="foot-stage">
+      <div class="foot-sky" aria-hidden="true"></div>
+      <div class="foot-word" aria-hidden="true"><span class="fw-l" style="--i:0"><button type="button" class="fw-crew fw-top" style="--d:900ms" data-says="Still reading. Nearly done." aria-label="Hermix says: Still reading. Nearly done."><img src="media/landing/mascot/thinking.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">H</span></span><span class="fw-l" style="--i:1"><span class="fw-ch">E</span></span><span class="fw-l" style="--i:2"><button type="button" class="fw-crew fw-front" style="--d:1140ms" data-says="All of it is handled." aria-label="Hermix says: All of it is handled."><img src="media/landing/mascot/success.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">R</span></span><span class="fw-l" style="--i:3"><span class="fw-ch">M</span></span><span class="fw-l" style="--i:4"><button type="button" class="fw-crew fw-behind" style="--d:1380ms" data-says="Want to know what changed?" aria-label="Hermix says: Want to know what changed?"><img src="media/landing/mascot/curious.webp" alt="" width="300" height="240" loading="lazy" /></button><span class="fw-ch">I</span></span><span class="fw-l" style="--i:5"><span class="fw-ch">X</span></span></div>
+      <h2 class="sr-only">Hermix</h2>
+      <svg class="foot-ground" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+        <defs><pattern id="foot-mea" width="48" height="26" patternUnits="userSpaceOnUse">
+          <path d="M6 20V6h30v10H16v-4h14" fill="none" stroke="currentColor" stroke-width="2.6" />
+        </pattern></defs>
+        <rect class="foot-mea-fill" width="1200" height="26" fill="url(#foot-mea)" />
+        <path class="foot-rule" d="M0 25h1200" pathLength="1" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <p class="foot-tag"><span class="fw-w" style="--d:1500ms">Your </span><span class="fw-w" style="--d:1570ms">work </span><span class="fw-w" style="--d:1640ms">and </span><span class="fw-w" style="--d:1710ms">your </span><span class="fw-w" style="--d:1780ms">life. </span></p>
+      <div class="foot-acts">
+        <a class="btn btn-cream fw-act" style="--d:1800ms" href="index.html#waitlist">Join the waitlist</a>
+        <a class="btn btn-dark-line fw-act" style="--d:1900ms" href="pricing.html">See the plans</a>
+      </div>
+      <div class="foot-bubbles" aria-live="polite"></div>
+    </div>
+  <div class="foot-bar">
       <p>© <span data-year>2026</span> Hermix. All rights reserved.</p>
       <nav aria-label="Legal shortcuts">
         <a href="legal/privacy.html">Privacy</a>
@@ -135,7 +173,9 @@
     </div>
   </footer>
   <script src="media/vendor/lenis.min.js"></script>
-  <script src="smooth.js?v=20261118m"></script>
-  <script src="forms.js?v=20261118m"></script>
+  <script src="smooth.js?v=20261119a"></script>
+  <script src="forms.js?v=20261119a"></script>
+  <script src="foot.js?v=20261119a"></script>
+  <script src="pricing.js?v=20261119a"></script>
 </body>
 </html>
