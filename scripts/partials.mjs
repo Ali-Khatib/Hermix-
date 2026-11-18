@@ -33,7 +33,7 @@ export function waitlist(base) {
   return `    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
       <img class="waitlist-bot" src="${base}media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
       <h2 id="waitlist-title">Meet a clearer kind of workday.</h2>
-      <p class="waitlist-lede">Join the waitlist for Hermix on Windows 11. We’ll let you know when there’s a new experience to try.</p>
+      <p class="waitlist-lede">Join the waitlist for Hermix on Windows 11. We’ll let you know as soon as it is ready for you.</p>
       <form class="wl-form" data-waitlist novalidate>
         <div class="wl-row">
           <label class="sr-only" for="wl-email">Email address</label>
@@ -58,7 +58,7 @@ export function footer(base) {
           ${markImg(base)}
           <span>Hermix</span>
         </a>
-        <p>Hermix is an AI coworker for Windows, being built to turn scattered updates, commitments and meetings into clear plans and useful follow-through.</p>
+        <p>Hermix is an AI coworker for Windows. It takes in the notifications from all your apps, reads them for you, and gives you a clear plan for your day.</p>
         <div class="foot-ctas">
           <a class="btn btn-cream" href="${base}index.html#waitlist">Join the waitlist</a>
           <a class="btn btn-dark-line" href="${base}index.html#how">See a day with Hermix</a>
@@ -70,7 +70,7 @@ export function footer(base) {
           ${li("index.html", "Home")}
           ${li("index.html#how", "Features")}
           ${li("index.html#meet", "Meet Hermix")}
-          ${li("index.html#soon", "Coming soon")}
+          ${li("index.html#soon", "Hermix Pro")}
           ${li("pricing.html", "Pricing")}
           ${li("faq.html", "FAQ")}
         </ul>

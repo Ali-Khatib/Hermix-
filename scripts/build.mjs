@@ -49,7 +49,7 @@ for (const p of pages) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${esc(p.title)} — Hermix</title>
+  <title>${esc(p.title)} | Hermix</title>
   <meta name="description" content="${esc(p.description)}" />${canonical}
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="${base}media/landing/favicon.svg" type="image/svg+xml" />

@@ -1,29 +1,31 @@
 export default {
   file: "pricing.html",
   title: "Pricing", kicker: "Pricing",
-  heading: "Pricing is coming soon.",
-  description: "Exploring the Hermix sample preview is free. Prices for the full release haven't been set yet. Join the waitlist to hear first.",
-  lede: "Exploring the sample preview on this site doesn’t cost anything. We haven’t set prices for the full release yet. When we do, they’ll be here first.",
+  heading: "Simple plans, built to cost less.",
+  description: "Hermix has a free plan and a Pro plan with more credits and an agent that does more for you. Join the waitlist to hear prices first.",
+  lede: "Hermix is built to be easy on your wallet. Start free, and go Pro when you want your agent to do more.",
   body: (cfg, b) => `
 <div class="price-cards">
   <section class="price-card">
-    <p class="kicker">Today</p>
-    <h2>Sample preview</h2>
+    <p class="kicker">Start here</p>
+    <h2>Free</h2>
     <p class="price">Free</p>
-    <p>A sample day showing the Hermix experience: Today, What’s new, Tasks, Email, Meetings, and Ask Hermix. Live connections and actions are in development.</p>
+    <p>Get your day in order: a briefing in plain words, a clear plan, and help with replies and preparation.</p>
     <ul class="ticks">
-      <li>No account needed to explore the sample</li>
-      <li>Being built for Windows 11</li>
+      <li>Notifications gathered in one place</li>
+      <li>A daily briefing you can understand</li>
+      <li>Built for Windows 11</li>
     </ul>
   </section>
   <section class="price-card soon">
-    <p class="kicker">Coming soon</p>
-    <h2>Hermix</h2>
-    <p class="price">To be announced</p>
-    <p>Hermix connected to your real work, with live briefings, prepared replies, and supported actions you control.</p>
+    <p class="kicker">Hermix Pro</p>
+    <h2>Pro</h2>
+    <p class="price">Announced at launch</p>
+    <p>More credits and an agent that does more for you, the way the paid plans of other AI assistants do, at a lower price.</p>
     <ul class="sparks">
-      <li><b>Clear prices, shown upfront</b> Before anyone is asked to pay</li>
-      <li><b>No surprise upgrades</b> Nobody is moved onto a paid plan without agreeing first</li>
+      <li><b>More credits</b> Your agent has more room to work for you</li>
+      <li><b>An agent that does more</b> Bigger jobs, handled for you</li>
+      <li><b>A lower price</b> Built to cost less than the assistants you use today</li>
     </ul>
   </section>
 </div>

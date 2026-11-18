@@ -35,19 +35,19 @@
 
   // ---------- Features / Use cases pop-ups ----------
   const FEATURES = [
-    ["s-today", "default", "Today", "A briefing in plain words."],
-    ["s-new", "curious", "What’s new", "Meaning, not every notification."],
-    ["s-tasks", "organizing", "Tasks", "What you owe, made clear."],
-    ["s-email", "inbox", "Email", "Know what needs a reply."],
-    ["s-meetings", "meeting", "Meetings", "Context before and after."],
-    ["s-ask", "thinking", "Ask Hermix", "Ask with context already there."],
+    ["s-today", "default", "Your day", "A briefing in plain words."],
+    ["s-new", "curious", "What changed", "The meaning, not every notification."],
+    ["s-tasks", "organizing", "Your plan", "What needs doing, made clear."],
+    ["s-email", "inbox", "Replies", "Know what needs an answer."],
+    ["s-meetings", "meeting", "Prep", "Context before you walk in."],
+    ["s-ask", "thinking", "Ask", "Answers with context built in."],
   ];
   const CASES = [
-    ["s-today", "success", "Busy mornings", "Start with a briefing, not five apps."],
+    ["s-today", "success", "Busy mornings", "Start with a briefing, not a pile of apps."],
     ["s-new", "detective", "Back from time off", "See what changed without the scroll."],
-    ["s-tasks", "creating", "Too many threads", "Turn requests and promises into a plan."],
+    ["s-tasks", "creating", "Too many threads", "Turn requests into a plan."],
     ["s-email", "inbox", "A full inbox", "Know what needs you first."],
-    ["s-meetings", "meeting", "Back-to-back calls", "Walk into each one with context."],
+    ["s-meetings", "meeting", "Packed days", "Walk into each conversation prepared."],
     ["s-ask", "idle", "Quick questions", "Ask, then get a useful next step."],
   ];
   const item = ([id, mood, title, line]) =>
@@ -106,43 +106,42 @@
     video.addEventListener("error", () => video.closest(".film")?.classList.add("failed"), { once: true });
   }
   const safePlay = (v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+  // Phones in Low Power Mode (and some data savers) refuse to autoplay. Instead of leaving a frozen frame,
+  // the caller shows a clear tap to play button, and a tap (a real gesture) always works.
+  function guardPlay(v, onBlocked, onOk) {
+    let ok = false;
+    v.addEventListener("playing", () => { ok = true; if (onOk) onOk(); }, { once: true });
+    const p = v.play();
+    if (p && p.catch) p.catch(() => onBlocked());
+    setTimeout(() => { if (!ok && v.paused) onBlocked(); }, 1800);
+  }
 
   // ---------- hero ----------
   const heroVideo = $("#hero-video");
   const heroCopy = $("#hero-copy");
+  const heroMedia = $(".hero-media");
   const revealHero = () => heroCopy.classList.add("in");
   if (reduceMotion.matches || !heroVideo) {
     revealHero();
   } else {
     attach(heroVideo);
-    safePlay(heroVideo);
-    // Copy enters as the product window settles into the frame.
+    // Copy enters a moment after the film starts.
     const fallback = setTimeout(revealHero, 3600);
     heroVideo.addEventListener("timeupdate", function onT() {
       if (heroVideo.currentTime >= 3.2) { clearTimeout(fallback); revealHero(); heroVideo.removeEventListener("timeupdate", onT); }
     });
     heroVideo.addEventListener("error", () => { clearTimeout(fallback); revealHero(); });
-  }
-
-  // Stacked hero: once the intro has played and the composition has settled, zoom in on the app window (CSS decides if it applies).
-  const heroMedia = $(".hero-media");
-  const focusHero = () => heroMedia && heroMedia.classList.add("focus");
-  if (reduceMotion.matches || !heroVideo) focusHero();
-  else {
-    heroVideo.addEventListener("timeupdate", function onF() { if (heroVideo.currentTime >= 8.0) { focusHero(); heroVideo.removeEventListener("timeupdate", onF); } });
-    heroVideo.addEventListener("error", focusHero);
-    heroVideo.addEventListener("ended", focusHero);
-  }
-
-  // ---------- hero loop: the story plays once, then his office keeps working (seamless cycle from 8.9s) ----------
-  if (heroVideo && !reduceMotion.matches) {
-    const LOOP_AT = 8.0;
-    const wrap = () => {
-      if (heroVideo.duration && heroVideo.currentTime >= heroVideo.duration - 0.05) { heroVideo.currentTime = LOOP_AT; safePlay(heroVideo); }
-      requestAnimationFrame(wrap);
-    };
-    requestAnimationFrame(wrap);
-    heroVideo.addEventListener("ended", () => { heroVideo.currentTime = LOOP_AT; safePlay(heroVideo); });
+    // The film loops by itself (loop attribute), so it never rests on a frozen frame.
+    const playBtn = document.createElement("button");
+    playBtn.type = "button"; playBtn.className = "hero-play"; playBtn.setAttribute("aria-label", "Play the intro"); playBtn.innerHTML = "<span></span>";
+    heroMedia.appendChild(playBtn);
+    const unblock = () => heroMedia.classList.remove("blocked");
+    playBtn.addEventListener("click", () => { const p = heroVideo.play(); if (p && p.then) p.then(unblock).catch(() => {}); });
+    heroVideo.addEventListener("playing", unblock);
+    guardPlay(heroVideo, () => { heroMedia.classList.add("blocked"); revealHero(); });
+    // Pause when off screen, and pick up again when it comes back.
+    new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { if (heroVideo.paused && !heroMedia.classList.contains("blocked")) safePlay(heroVideo); } else heroVideo.pause(); }), { threshold: 0.1 }).observe(heroMedia);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden && heroVideo.paused && !heroMedia.classList.contains("blocked")) safePlay(heroVideo); });
   }
 
   // ---------- feature films: lazy load, play the most visible one, one at a time ----------
@@ -167,7 +166,8 @@
     attach(v);
     if (reduceMotion.matches) { film.classList.add("paused-rm"); return; }
     if (v.ended || film.classList.contains("ended")) { v.currentTime = 0; film.classList.remove("ended"); }
-    safePlay(v);
+    const rb = $(".replay", film);
+    guardPlay(v, () => { film.classList.add("ended", "blocked"); rb.textContent = "Play demo"; }, () => { film.classList.remove("ended", "blocked"); rb.textContent = "Replay"; });
   }
 
   function choose() {
@@ -187,7 +187,7 @@
       if (current && current !== film) rest(current);
       current = film;
       attach(v);
-      film.classList.remove("ended", "paused-rm");
+      film.classList.remove("ended", "paused-rm", "blocked");
       v.currentTime = 0;
       safePlay(v);
     });

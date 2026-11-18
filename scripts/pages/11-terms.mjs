@@ -12,7 +12,7 @@ export default {
 <h2 id="preview">The Hermix preview</h2>
 <p>Hermix is early software. The current preview:</p>
 <ul>
-  <li>Runs on built-in sample data.</li>
+  <li>Does not connect to your accounts yet.</li>
   <li>Doesn’t connect to your real accounts.</li>
   <li>Doesn’t send email, post messages, or join meetings.</li>
 </ul>
@@ -46,7 +46,7 @@ export default {
 <p>The Hermix name, logo, mascot, software, and website content belong to Hermix or its licensors and are protected by intellectual property laws. These terms don’t give you any rights to them beyond the permission to use the preview described above.</p>
 
 <h2 id="third-party">Other companies’ products</h2>
-<p>Gmail, Google Calendar, Slack, GitHub, Windows, and other names mentioned on this site are trademarks of their owners. Hermix isn’t endorsed by them. When Hermix connects to those services in the future, their own terms will also apply to your use of them.</p>
+<p>Windows and other names mentioned on this site are trademarks of their owners. Hermix isn’t endorsed by them. When Hermix connects to those services in the future, their own terms will also apply to your use of them.</p>
 
 <h2 id="pricing">Pricing</h2>
 <p>Nothing is charged today. If we introduce paid plans, we’ll show the price and terms clearly before you’re asked to pay, and you won’t be moved onto a paid plan without agreeing first. See <a href="${b}pricing.html">Pricing</a>.</p>

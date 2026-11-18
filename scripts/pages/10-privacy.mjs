@@ -21,7 +21,7 @@ export default {
 <p>When you submit a form, our server briefly uses your IP address in memory to limit repeated submissions. We don’t store it with your signup or message.</p>
 
 <h2 id="app">The Hermix preview app</h2>
-<p>The current Windows preview runs on a built-in sample day. It does not connect to Gmail, Google Calendar, Slack, GitHub, or any other account, and it doesn’t send what you type to an AI service or to us.</p>
+<p>The current Windows preview does not connect to any email, calendar, chat, or developer account, and it doesn’t send what you type to an AI service or to us.</p>
 <p>Your settings and anything you save in the app, such as requests, meeting briefs, and reminders, are stored on your computer only. Clearing the app’s data or uninstalling Hermix removes them.</p>
 <p>Before Hermix connects to real accounts, we’ll update this policy to explain exactly what is read, why, and where it goes, and the app will ask for your permission first.</p>
 
