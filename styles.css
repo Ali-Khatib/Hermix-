@@ -347,7 +347,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #9a3d3
   /* The finished composition has the app window pushed to the right with empty space beside it (room for the
      desktop headline). When the hero stacks, ease in on the window so it fills the frame. */
   .hero-video { transform-origin: 70.4% 51%; transition: transform 1.4s var(--ease); }
-  .hero-media.focus .hero-video { transform: translateX(-18.8%) scale(1.4); }
+  .hero-media.focus .hero-video { transform: translateX(-18.8%) scale(1.22); }
   .hero-copy { min-height: auto; padding: 130px var(--gutter) 40px; max-width: 760px; }
   .scroll-cue { display: none; }
 }
