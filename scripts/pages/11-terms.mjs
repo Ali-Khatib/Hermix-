@@ -13,7 +13,6 @@ export default {
 <p>Hermix is early software. The current preview:</p>
 <ul>
   <li>Does not connect to your accounts yet.</li>
-  <li>Doesn’t connect to your real accounts.</li>
   <li>Doesn’t send email, post messages, or join meetings.</li>
 </ul>
 <p>Features may change, appear, or disappear, and the preview may contain bugs. Please don’t rely on it for anything important.</p>

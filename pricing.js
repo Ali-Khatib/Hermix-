@@ -1,4 +1,5 @@
-/* Pricing page: switching a plan swaps the stage, the copy and the numbers. No dependencies. */
+/* Pricing page: switching a plan swaps the stage, the copy and the numbers. No dependencies.
+   The plan data mirrors scripts/pages/20-pricing.mjs, which renders the same markup server side. */
 (() => {
   const root = document.getElementById("pr");
   if (!root) return;
@@ -8,72 +9,123 @@
 
   const PLANS = {
     free: {
-      name: "Hermix Free", word: "FREE", price: "$0", period: "to use", cta: "Join the waitlist", href: "index.html#waitlist",
-      headline: "Enough to put the day in order.",
-      desc: "Hermix reads what came in, tells you what matters and keeps your list straight. You stay the one who acts on it.",
-      rows: [["Agent credits", "100 a month"], ["Connected apps", "3"], ["People", "1"]],
+      name: "Hermix Free", word: "FREE", price: "$0", unit: "per person / month", note: "",
+      cta: "Join the waitlist", href: "index.html#waitlist",
+      headline: "Start with work of your own.",
+      desc: "Try briefings, questions and supported tasks with a small monthly allowance. Get a feel for Hermix before choosing a paid plan.",
+      rows: [["Workspace", "One, personal"], ["Usage allowance", "To be confirmed"], ["People", "1"]],
       features: [
-        "A briefing each morning, in plain language",
-        "Your task list, ranked and kept current",
-        "Ask about anything Hermix has read",
-        "Three connected apps",
-        "100 agent credits a month",
-        "Everything stays on your computer",
+        "One personal workspace",
+        "Briefings and questions from connected sources",
+        "Supported tasks within your allowance",
+        "Review and approval controls",
+        "Monthly usage allowance",
+      ],
+    },
+    plus: {
+      name: "Hermix Plus", word: "PLUS", price: "$12", unit: "per person / month", note: "",
+      cta: "Join the waitlist", href: "index.html#waitlist",
+      headline: "A little more room to hand things over.",
+      desc: "Keep using the same coworker with a larger allowance for questions, preparation and supported tasks.",
+      rows: [["Workspace", "One, personal"], ["Usage allowance", "To be confirmed"], ["People", "1"]],
+      features: [
+        "Everything in Free",
+        "A larger monthly usage allowance",
+        "More capacity for connected work",
+        "Usage and spending controls",
       ],
     },
     pro: {
-      name: "Hermix Pro", word: "PRO", price: "$20", period: "a month", cta: "Join the waitlist", href: "index.html#waitlist",
-      headline: "The agent starts doing the work.",
-      desc: "Connect everything, ask for a briefing whenever you want one, and let Hermix work through the list instead of handing it to you.",
-      rows: [["Agent credits", "2,000 a month"], ["Connected apps", "Unlimited"], ["People", "1"]],
+      name: "Hermix Pro", word: "PRO", price: "$24", unit: "per person / month", note: "",
+      cta: "Join the waitlist", href: "index.html#waitlist",
+      headline: "For the work you return to every day.",
+      desc: "Make Hermix part of regular work, with more capacity to investigate questions, prepare material and carry tasks through connected tools.",
+      rows: [["Workspace", "One, personal"], ["Usage allowance", "To be confirmed"], ["People", "1"]],
       features: [
-        "Everything in Free",
-        "Unlimited connected apps",
-        "A new briefing whenever you want one",
-        "Replies drafted and waiting for your approval",
-        "Hermix works your task list on its own",
-        "Meeting prep and follow ups",
-        "2,000 agent credits a month",
-        "New features before anyone else",
+        "Everything in Plus",
+        "Higher monthly usage",
+        "More room for multi-step tasks",
+        "Meeting workflows where supported",
+        "Usage and spending controls",
+      ],
+    },
+    max: {
+      name: "Hermix Max", word: "MAX", price: "$59", unit: "per person / month", note: "",
+      cta: "Join the waitlist", href: "index.html#waitlist",
+      headline: "More capacity for longer work.",
+      desc: "For frequent use and more demanding tasks. A larger individual allowance without the shared-workspace features you may not need.",
+      rows: [["Workspace", "One, personal"], ["Usage allowance", "To be confirmed"], ["People", "1"]],
+      features: [
+        "Everything in Pro",
+        "The highest individual usage allowance",
+        "More capacity for longer tasks",
+        "One personal workspace",
       ],
     },
     team: {
-      name: "Hermix Team", word: "TEAM", price: "$60", period: "a month", cta: "Talk to us", href: "contact.html",
-      headline: "One shared picture for five people.",
-      desc: "Everything in Pro for your whole group, with shared context so nobody asks the same question twice, and one bill at the end of it.",
-      rows: [["Agent credits", "10,000 pooled"], ["Connected apps", "Unlimited"], ["People", "5 included"]],
+      name: "Hermix Team", word: "TEAM", price: "$30", unit: "per person / month",
+      note: "Minimum 2 people ($60 / month).",
+      cta: "Join the waitlist", href: "index.html#waitlist",
+      headline: "Keep the work connected between people.",
+      desc: "Share relevant context and hand over tasks in a workspace with managed access. Each person’s private sources stay separate unless they choose to share.",
+      rows: [["Workspace", "Shared"], ["Usage allowance", "Pooled, to be confirmed"], ["People", "From 2"]],
       features: [
-        "Everything in Pro, for five people",
-        "Shared context across the group",
-        "See who is waiting on whom",
-        "Hand a task to someone else with its history",
-        "10,000 agent credits, pooled",
-        "One bill and admin controls",
-        "Extra seats at $12 a month",
+        "Shared workspaces",
+        "Context attached to task handovers",
+        "Usage pooled across paid seats",
+        "Workspace access controls",
+        "Central billing",
+        "From two people",
+      ],
+    },
+    enterprise: {
+      name: "Hermix Enterprise", word: "ENTERPRISE", price: "Custom", unit: "by agreement", note: "",
+      cta: "Discuss your requirements", href: "contact.html",
+      headline: "Plan a rollout around your requirements.",
+      desc: "Discuss expected usage, access requirements and deployment needs before agreeing a plan.",
+      rows: [["Workspace", "Shared"], ["Usage allowance", "By agreement"], ["People", "By agreement"]],
+      features: [
+        "Agreed usage and seat requirements",
+        "Rollout planning",
+        "Review of access and data requirements",
+        "Commercial terms by agreement",
       ],
     },
   };
-  const order = ["free", "pro", "team"];
+  const order = ["free", "plus", "pro", "max", "team", "enterprise"];
 
   const info = $(".pr-info"), stage = $(".pr-stage");
   const nameEl = $("[data-pr-name]"), headEl = $("[data-pr-headline]"), descEl = $("[data-pr-desc]");
   const featEl = $("[data-pr-features]"), wordEl = $("[data-pr-word]"), priceEl = $(".pr-price");
-  const priceB = $("[data-pr-price]"), periodEl = $("[data-pr-period]"), rowsEl = $("[data-pr-rows]"), cta = $("[data-pr-cta]");
+  const priceB = $("[data-pr-price]"), periodEl = $("[data-pr-period]"), noteEl = $("[data-pr-note]");
+  const rowsEl = $("[data-pr-rows]"), cta = $("[data-pr-cta]");
   const swatches = $$("[data-pr-plan]"), mascots = $$(".pr-mascot");
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const base = (cta && cta.getAttribute("href") || "").replace(/index\.html#waitlist$/, "");
+  // The page may sit at a sub path, so keep whatever prefix the server rendered.
+  const base = (cta.getAttribute("href") || "").replace(/index\.html#waitlist$/, "");
 
   let current = root.dataset.plan || "free";
   let timer = 0;
+  let leaveTimers = [];
 
-  const paintFeatures = (p) => {
+  function paint(p) {
+    wordEl.textContent = p.word;
+    nameEl.textContent = p.name;
+    headEl.textContent = p.headline;
+    descEl.textContent = p.desc;
+    priceB.textContent = p.price;
+    periodEl.textContent = p.unit;
+    noteEl.textContent = p.note || "";
+    noteEl.hidden = !p.note;
+    cta.textContent = p.cta;
+    cta.setAttribute("href", base + p.href);
     featEl.innerHTML = p.features.map((f, i) => `<li style="--i:${i}">${esc(f)}</li>`).join("");
     rowsEl.innerHTML = p.rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
-  };
+  }
 
   function select(id, focus) {
-    if (!PLANS[id] || id === current) return;
     const p = PLANS[id];
+    if (!p || id === current) return;
     current = id;
     root.dataset.plan = id;
     swatches.forEach((b) => {
@@ -83,31 +135,33 @@
       if (on && focus) b.focus();
     });
 
-    // stage: the one on show lifts away, the new one rises in
+    // the one on show lifts away, the new one rises in
+    leaveTimers.forEach(clearTimeout);
+    leaveTimers = [];
     mascots.forEach((m) => {
-      if (m.dataset.plan === id) { m.classList.remove("leaving"); m.classList.add("on"); }
-      else if (m.classList.contains("on")) { m.classList.remove("on"); m.classList.add("leaving"); setTimeout(() => m.classList.remove("leaving"), 600); }
+      if (m.dataset.plan === id) {
+        m.classList.remove("leaving");
+        m.classList.add("on");
+      } else if (m.classList.contains("on")) {
+        m.classList.remove("on");
+        m.classList.add("leaving");
+        leaveTimers.push(setTimeout(() => m.classList.remove("leaving"), 600));
+      }
     });
 
+    // a quick second click must not let an older swap land after the newer one
+    clearTimeout(timer);
     if (reduce.matches) {
-      wordEl.textContent = p.word;
-      nameEl.textContent = p.name; headEl.textContent = p.headline; descEl.textContent = p.desc;
-      priceB.textContent = p.price; periodEl.textContent = p.period;
-      cta.textContent = p.cta; cta.setAttribute("href", base + p.href);
-      paintFeatures(p);
+      stage.classList.remove("out");
+      info.classList.remove("swap");
+      paint(p);
       return;
     }
-
     stage.classList.add("out");
     info.classList.add("swap");
     priceEl.classList.remove("roll");
-    clearTimeout(timer);
     timer = setTimeout(() => {
-      wordEl.textContent = p.word;
-      nameEl.textContent = p.name; headEl.textContent = p.headline; descEl.textContent = p.desc;
-      priceB.textContent = p.price; periodEl.textContent = p.period;
-      cta.textContent = p.cta; cta.setAttribute("href", base + p.href);
-      paintFeatures(p);
+      paint(PLANS[current]);
       stage.classList.remove("out");
       info.classList.remove("swap");
       void priceEl.offsetWidth;
@@ -125,8 +179,7 @@
     });
   });
 
-  // ?plan=pro opens on that plan
+  // ?plan=max opens on that plan
   const want = new URLSearchParams(location.search).get("plan");
   if (want && PLANS[want]) select(want);
-  paintFeatures(PLANS[current]);
 })();

@@ -3,7 +3,7 @@ export default {
   file: "legal/acceptable-use.html", legal: true, short: "Acceptable Use",
   title: "Acceptable Use Policy", kicker: "Legal",
   description: "What you can't do with Hermix, its website, waitlist, and contact form, and how to report misuse.",
-  lede: "Hermix is meant to make work calmer. These rules keep it that way for everyone, and they apply alongside our Terms of Service.",
+  lede: "These rules apply to the Hermix app, website and forms, alongside the Terms of Service.",
   body: (cfg, b) => `
 <h2 id="dont">Please don’t use Hermix, this website, or our forms to:</h2>
 <ul>

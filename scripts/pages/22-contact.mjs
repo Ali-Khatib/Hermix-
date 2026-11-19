@@ -3,7 +3,7 @@ export default {
   file: "contact.html", waitlist: false,
   title: "Contact", kicker: "Contact", heading: "Get in touch.",
   description: "Send Hermix a question, a privacy request, a security report, or a copyright notice, or ask to leave the waitlist.",
-  lede: "Questions, privacy requests, security reports, copyright notices, or leaving the waitlist all come here, and a person reads every message.",
+  lede: "For questions about Hermix, privacy requests, security reports or the waitlist, use the form below.",
   body: (cfg, b) => `
 <form class="contact-form" data-contact novalidate>
   <div class="field">

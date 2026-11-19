@@ -35,20 +35,20 @@
 
   // ---------- Features / Use cases pop-ups ----------
   const FEATURES = [
-    ["s-today", "default", "Your day", "One briefing, not forty notifications."],
-    ["s-new", "curious", "What changed", "Where a long thread actually landed."],
-    ["s-tasks", "organizing", "Your plan", "Every promise you made, in one list."],
-    ["s-email", "inbox", "Replies", "Drafted, waiting for your approval."],
-    ["s-meetings", "meeting", "Prep", "What was decided last time."],
-    ["s-ask", "thinking", "Ask", "Answers from your own work."],
+    ["s-today", "default", "Briefings", "Pick up where things stand."],
+    ["s-new", "curious", "Updates", "See what changed and what it affects."],
+    ["s-tasks", "organizing", "Tasks", "Keep the background with the next step."],
+    ["s-email", "inbox", "Replies", "Prepare an answer with the context attached."],
+    ["s-meetings", "meeting", "Meetings", "Carry decisions into the next conversation."],
+    ["s-ask", "thinking", "Ask Hermix", "Ask a question or hand over a task."],
   ];
   const CASES = [
-    ["s-today", "success", "Busy mornings", "Open one page instead of nine apps."],
-    ["s-new", "detective", "Back from time off", "Four hundred messages, one read."],
-    ["s-tasks", "creating", "Too many threads", "Turn requests into a plan."],
-    ["s-email", "inbox", "A full inbox", "Know what needs you first."],
-    ["s-meetings", "meeting", "Packed days", "Prepared for every one of them."],
-    ["s-ask", "idle", "Quick questions", "Ask, then act on the answer."],
+    ["s-today", "success", "Picking things up", "Get the background before you begin."],
+    ["s-new", "detective", "A change of direction", "See which decisions affect the work ahead."],
+    ["s-tasks", "creating", "Taking something forward", "Turn a request into a task with context."],
+    ["s-email", "inbox", "Keeping a conversation moving", "Prepare the reply without starting from scratch."],
+    ["s-meetings", "meeting", "Continuing the discussion", "Return to the decisions and open questions."],
+    ["s-ask", "idle", "Following a question", "Investigate it, then work on the next step."],
   ];
   const item = ([id, mood, title, line]) =>
     `<button class="menu-item" type="button" data-go="${id}"><img src="media/landing/mascot/${mood}.webp" alt="" loading="lazy"><span><b>${title}</b><small>${line}</small></span></button>`;

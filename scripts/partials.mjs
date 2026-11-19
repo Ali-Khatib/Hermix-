@@ -32,8 +32,8 @@ export function header(base) {
 export function waitlist(base) {
   return `    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
       <img class="waitlist-bot" src="${base}media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
-      <h2 id="waitlist-title">Meet a clearer kind of workday.</h2>
-      <p class="waitlist-lede">Join the waitlist for Hermix on Windows 11. We’ll let you know as soon as it is ready for you.</p>
+      <h2 id="waitlist-title">Bring Hermix into your work.</h2>
+      <p class="waitlist-lede">Join the waitlist for Windows 11. We’ll email you when you can try it.</p>
       <form class="wl-form" data-waitlist novalidate>
         <div class="wl-row">
           <label class="sr-only" for="wl-email">Email address</label>
@@ -43,7 +43,7 @@ export function waitlist(base) {
         </div>
         <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
         <p class="form-status" id="wl-status" role="status" aria-live="polite"></p>
-        <p class="wl-note" id="wl-note">Only updates about Hermix. You can ask to be removed at any time. <a href="${base}legal/privacy.html">Privacy Policy</a></p>
+        <p class="wl-note" id="wl-note">Updates about Hermix only. Ask to leave at any time. <a href="${base}legal/privacy.html">Privacy Policy</a></p>
       </form>
     </section>`;
 }
@@ -74,7 +74,7 @@ function footStage(base) {
   const WORD = "HERMIX";
   const CREW = {
     0: ["top", "look", "Still reading. Nearly done."],
-    2: ["front", "happy", "All of it is handled."],
+    2: ["front", "happy", "Ready for the next step."],
     4: ["behind", "wide", "Want to know what changed?"],
   };
   const letters = Array.from(WORD)
@@ -120,10 +120,10 @@ export function footer(base) {
           ${markImg(base)}
           <span>Hermix</span>
         </a>
-        <p>Hermix is an AI coworker for Windows. It takes in the notifications from all your apps, reads them for you, and gives you a clear plan for your day.</p>
+        <p>An AI coworker for Windows, built to keep track of the context and help carry the work through.</p>
         <div class="foot-ctas">
           <a class="btn btn-cream" href="${base}index.html#waitlist">Join the waitlist</a>
-          <a class="btn btn-dark-line" href="${base}index.html#how">See a day with Hermix</a>
+          <a class="btn btn-dark-line" href="${base}index.html#how">See how it works</a>
         </div>
       </div>
       <nav class="foot-col" aria-labelledby="foot-product">

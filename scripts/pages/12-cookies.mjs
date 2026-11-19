@@ -12,7 +12,7 @@ export default {
     <tr><td>Cookies</td><td>No</td><td>No first-party or third-party cookies are set by this website.</td></tr>
     <tr><td>Analytics</td><td>No</td><td>No analytics or session recording.</td></tr>
     <tr><td>Advertising</td><td>No</td><td>No advertising pixels or trackers.</td></tr>
-    <tr><td>Browser storage</td><td>No</td><td>The website doesn’t use local storage, session storage, or similar.</td></tr>
+    <tr><td>Session storage</td><td>Yes</td><td>Remembers whether the opening animation has played in this browser tab. It is not used for advertising or analytics.</td></tr>
     <tr><td>Third-party content</td><td>No</td><td>Fonts, images, and videos are served from this website, not from other companies.</td></tr>
   </tbody>
 </table>
