@@ -56,3 +56,4 @@ Notes
 - v11: hero adds Hermix wordmark and 'Your work and your life.' lockup after landing; stacked hero edges feathered (no box).
 - v3 feature demos: product names replaced with generic sources (from code, from chat).
 - v12 hero: flat background to match the page, no frame bands or columns, slogan now 'Your work understood, your life easier.'
+- v13 hero: Hermix hovers at ~1.7x its previous size after landing (was 1.25x). The dash-through-apps intro now plays once per page load — app.js no longer loops the whole clip; instead it seeks back to the 8.0s cycle point on "ended" and replays only the seamless hover loop, so the apps-dashing sequence never repeats.

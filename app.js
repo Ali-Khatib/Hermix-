@@ -153,7 +153,10 @@
     attach(heroVideo);
     // The copy lands as the curtain lifts; without the curtain it comes in at once.
     setTimeout(revealHero, introPlays ? 1900 : 160);
-    // The film loops by itself (loop attribute), so it never rests on a frozen frame.
+    // The dash across apps plays once. After that, only the 8.0-14.0s hover sits in the loop,
+    // so Hermix settles into hovering in place instead of redoing the whole entrance.
+    const HERO_CYCLE_START = 8.0;
+    heroVideo.addEventListener("ended", () => { heroVideo.currentTime = HERO_CYCLE_START; safePlay(heroVideo); });
     const playBtn = document.createElement("button");
     playBtn.type = "button"; playBtn.className = "hero-play"; playBtn.setAttribute("aria-label", "Play the intro"); playBtn.innerHTML = "<span></span>";
     heroMedia.appendChild(playBtn);

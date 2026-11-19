@@ -77,9 +77,9 @@ SCENES.hero6 = {
       if (t < a + (G6.STEP - G6.HOP)) { const d = t - a; return { x: to.x, y: to.y + Math.sin(d * 22) * 3 * Math.exp(-d * 7), sc: 1 }; }
     }
     const last = this.tgt(T.length - 1), L = G6.L;
-    if (t < G6.landEnd) { const u = eIO(prog(t, G6.land, G6.landEnd)); const p = g3quad(last, { x: 520, y: 760 }, L, u); return { ...p, sc: lerp(1, 1.25, u) }; }
+    if (t < G6.landEnd) { const u = eIO(prog(t, G6.land, G6.landEnd)); const p = g3quad(last, { x: 520, y: 760 }, L, u); return { ...p, sc: lerp(1, 1.7, u) }; }
     const tc = this.cyc(t) >= 0 ? this.cyc(t) : t - G6.CY0 + G6.CYP, w = (tc / G6.CYP) * Math.PI * 2;
-    return { x: L.x + Math.sin(w * 2) * 14, y: L.y + Math.sin(w) * 16 + Math.sin(w * 3) * 4, sc: 1.25 + 0.03 * Math.sin(w * 2) };
+    return { x: L.x + Math.sin(w * 2) * 14, y: L.y + Math.sin(w) * 16 + Math.sin(w * 3) * 4, sc: 1.7 + 0.04 * Math.sin(w * 2) };
   },
   render(t) {
     const T = G6.tiles, hp = this.hpos(t), h1 = this.hpos(t + 0.02), h0 = this.hpos(t - 0.02);
