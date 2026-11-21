@@ -25,7 +25,7 @@ function welcomeCopy(email) {
 <html><body style="margin:0;padding:32px;background:#f6f1e8;color:#1a1714;font-family:Georgia,'Times New Roman',serif;line-height:1.5">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:520px;margin:0 auto;background:#fffdf8;border:1px solid #e4ddd2;border-radius:12px">
     <tr><td style="padding:28px 28px 8px;font-size:22px;font-weight:700">You're on the Hermix waitlist</td></tr>
-    <tr><td style="padding:8px 28px 8px;font-size:16px;color:#4a453f">Thanks for joining. We'll email you when there's something new to try on your Windows PC.</td></tr>
+    <tr><td style="padding:8px 28px 8px;font-size:16px;color:#4a453f">Thanks for joining. We'll email you when there's something new to try on your PC.</td></tr>
     <tr><td style="padding:8px 28px 28px;font-size:14px;color:#7a736a">If this wasn't you, reply to this message and we'll remove you.<br/><br/>— Hermix</td></tr>
   </table>
 </body></html>`;
