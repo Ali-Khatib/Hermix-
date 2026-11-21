@@ -212,14 +212,6 @@
     poke.style.setProperty("--look", Math.max(-2, Math.min(2, (e.clientX-r.left-r.width/2)/r.width*4)) + "deg");
   });
   poke?.addEventListener("pointerleave", () => poke.style.setProperty("--look", "0deg"));
-  const buddy = $(".outfit-buddy");
-  if (buddy) {
-    const fits = [...buddy.querySelectorAll("img")]; let cur = 0, timer;
-    const show = (n) => { fits[cur].classList.remove("on"); cur = (n + fits.length) % fits.length; fits[cur].classList.add("on"); };
-    const start = () => { clearInterval(timer); if (!restrained()) timer = setInterval(() => { if (!document.hidden) show(cur + 1); }, 5000); };
-    buddy.addEventListener("click", () => { show(cur + 1); buddy.classList.remove("hop"); void buddy.offsetWidth; buddy.classList.add("hop"); start(); });
-    start();
-  }
   const waitlist = $("#waitlist"), email = $("#wl-email");
   email?.addEventListener("focus", () => waitlist.classList.add("email-focused"));
   email?.addEventListener("blur", () => waitlist.classList.remove("email-focused"));

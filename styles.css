@@ -669,12 +669,4 @@ html.intro-on, html.intro-on body { overflow: hidden; }
  mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent),linear-gradient(to bottom,transparent,#000 9%,#000 91%,transparent); mask-composite:intersect;
 }
 
-/* hero outfit buddy */
-.hero-media { position: relative; }
-.outfit-buddy { position: absolute; right: clamp(8px,3vw,40px); bottom: clamp(8px,3vw,36px); width: clamp(72px,9vw,120px); aspect-ratio: 1; padding: 0; border: 0; background: none; cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent; }
-.outfit-buddy img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: scale(.92) translateY(6px); transition: opacity .6s ease, transform .6s var(--ease, ease); filter: drop-shadow(0 10px 14px rgba(60,45,30,.22)); pointer-events: none; }
-.outfit-buddy img.on { opacity: 1; transform: none; animation: buddy-bob 4.2s ease-in-out infinite; }
-.outfit-buddy.hop { animation: buddy-hop .45s ease; }
-@keyframes buddy-bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -6px; } }
-@keyframes buddy-hop { 30% { transform: translateY(-14px) scale(1.06); } 60% { transform: translateY(0) scale(.97); } }
-@media (prefers-reduced-motion: reduce) { .outfit-buddy img, .outfit-buddy img.on, .outfit-buddy.hop { animation: none; transition: none; } }
+
