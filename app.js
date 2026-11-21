@@ -145,32 +145,18 @@
     v.muted = true; v.playsInline = true; v.preload = "none";
     const hero = v.id === "hero-video";
     v.loop = !hero;
-    const host = v.closest(hero ? ".hero-media" : ".film");
-    let btn = $(".demo-toggle", host);
-    if (!btn) { btn = document.createElement("button"); btn.type = "button"; btn.className = "demo-toggle hero-demo-toggle"; host.append(btn); }
-    btn.textContent = hero ? "Play intro" : "Play demo";
-    btn.setAttribute("aria-label", (hero ? "Play intro" : "Play demo") + (hero ? "" : ": " + v.getAttribute("aria-label")));
-    buttons.set(v, btn);
-    const label = (playing) => { btn.textContent = (playing ? "Pause" : "Play") + (hero ? " intro" : " demo"); btn.setAttribute("aria-label", btn.textContent + (hero ? "" : ": " + v.getAttribute("aria-label"))); };
-    v.addEventListener("playing", () => { if (document.hidden || current !== v || (visibility.get(v) || 0) < .35) v.pause(); else { blocked.delete(v); label(true); } });
-    v.addEventListener("pause", () => label(false));
-    v.addEventListener("error", () => { label(false); host.classList.add("failed"); });
+    v.addEventListener("playing", () => { if (document.hidden || current !== v || (visibility.get(v) || 0) < .2) v.pause(); else blocked.delete(v); });
+    v.addEventListener("error", () => { (v.closest(hero ? ".hero-media" : ".film"))?.classList.add("failed"); });
     if (hero) v.addEventListener("ended", () => { if (current === v && !document.hidden) { v.currentTime = Math.min(8, Math.max(0, v.duration - 1)); play(v); } });
-    btn.addEventListener("click", () => {
-      if (!v.paused) { userPaused.add(v); v.pause(); return; }
-      approved.add(v); userPaused.delete(v); blocked.delete(v);
-      media.forEach(other => { if (other !== v) other.pause(); });
-      current = v; play(v);
-    });
   });
   function play(v) {
     attach(v);
-    v.play().catch(() => { blocked.add(v); buttons.get(v).textContent = v.id === "hero-video" ? "Play intro" : "Play demo"; });
+    v.play().catch(() => { blocked.add(v); setTimeout(() => { blocked.delete(v); chooseVideo(); }, 1500); });
   }
   function chooseVideo() {
-    let best = null, ratio = .35;
+    let best = null, ratio = .2;
     if (!document.hidden) visibility.forEach((r, v) => {
-      if (r >= ratio && !userPaused.has(v) && !blocked.has(v) && (!restrained() || approved.has(v))) { best = v; ratio = r; }
+      if (r >= ratio && !blocked.has(v) && !restrained()) { best = v; ratio = r; }
     });
     media.forEach(v => { if (v !== best) v.pause(); });
     current = best;

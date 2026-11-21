@@ -692,3 +692,18 @@ html.intro-on, html.intro-on body { overflow: hidden; }
   .foot-stage .fw-l, .foot-stage .fw-ch, .foot-sky::before, .foot-sky::after { animation: none !important; transition: none !important; }
   .fw-ch { background-position: -40% 0; }
 }
+
+/* Continuous demos: no manual controls. */
+.demo-toggle,.hero-demo-toggle,.replay{display:none!important}
+/* Living glass background */
+body.landing-page{background:linear-gradient(180deg,#f6f1e8 0%,#f1e9dc 45%,#f6f1e8 100%)}
+body.landing-page::before,body.landing-page::after{content:"";position:fixed;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(70px);opacity:.55;will-change:transform}
+body.landing-page::before{width:46vw;height:46vw;left:-10vw;top:8vh;background:radial-gradient(circle at 35% 35%,rgba(226,196,150,.65),rgba(226,196,150,0) 68%);animation:bg-drift-a 26s ease-in-out infinite alternate}
+body.landing-page::after{width:42vw;height:42vw;right:-8vw;top:46vh;background:radial-gradient(circle at 60% 40%,rgba(255,255,255,.9),rgba(196,179,154,.35) 45%,rgba(196,179,154,0) 70%);animation:bg-drift-b 32s ease-in-out infinite alternate}
+@keyframes bg-drift-a{to{transform:translate3d(14vw,18vh,0) scale(1.15)}}
+@keyframes bg-drift-b{to{transform:translate3d(-16vw,-14vh,0) scale(1.2)}}
+.story,.plans,.waitlist{position:relative}
+.film{background:rgba(233,226,213,.55);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);box-shadow:0 20px 50px rgba(60,45,25,.12),inset 0 1px 0 rgba(255,255,255,.6)}
+.plans{background:rgba(255,253,248,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+@media(prefers-reduced-motion:reduce){body.landing-page::before,body.landing-page::after{animation:none}}
+@media(max-width:700px){body.landing-page::before,body.landing-page::after{filter:blur(50px);opacity:.45}}
