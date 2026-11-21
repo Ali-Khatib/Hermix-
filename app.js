@@ -105,17 +105,6 @@
     video.dataset.loaded = "1";
     video.addEventListener("error", () => video.closest(".film")?.classList.add("failed"), { once: true });
   }
-  const safePlay = (v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
-  // Phones in Low Power Mode (and some data savers) refuse to autoplay. Instead of leaving a frozen frame,
-  // the caller shows a clear tap to play button, and a tap (a real gesture) always works.
-  function guardPlay(v, onBlocked, onOk) {
-    let ok = false;
-    v.addEventListener("playing", () => { ok = true; if (onOk) onOk(); }, { once: true });
-    const p = v.play();
-    if (p && p.catch) p.catch(() => onBlocked());
-    setTimeout(() => { if (!ok && v.paused) onBlocked(); }, 1800);
-  }
-
   // ---------- opening curtain ----------
   // The sequence itself is CSS, so it still plays (and still clears) if this script never runs.
   const intro = $("#intro");
@@ -142,107 +131,90 @@
     intro.remove();
   }
 
-  // ---------- hero ----------
-  const heroVideo = $("#hero-video");
+  // One visible video decoder at a time; no prefetch in reduced-motion/data-saving mode.
+  const connection = navigator.connection;
+  const restrained = () => reduceMotion.matches || !!connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || "");
   const heroCopy = $("#hero-copy");
-  const heroMedia = $(".hero-media");
-  const revealHero = () => heroCopy.classList.add("in");
-  if (reduceMotion.matches || !heroVideo) {
-    revealHero();
-  } else {
-    attach(heroVideo);
-    // The copy lands as the curtain lifts; without the curtain it comes in at once.
-    setTimeout(revealHero, introPlays ? 1900 : 160);
-    // The dash across apps plays once. After that, only the 8.0-14.0s hover sits in the loop,
-    // so Hermix settles into hovering in place instead of redoing the whole entrance.
-    const HERO_CYCLE_START = 8.0;
-    heroVideo.addEventListener("ended", () => { heroVideo.currentTime = HERO_CYCLE_START; safePlay(heroVideo); });
-    const playBtn = document.createElement("button");
-    playBtn.type = "button"; playBtn.className = "hero-play"; playBtn.setAttribute("aria-label", "Play the intro"); playBtn.innerHTML = "<span></span>";
-    heroMedia.appendChild(playBtn);
-    const unblock = () => heroMedia.classList.remove("blocked");
-    playBtn.addEventListener("click", () => { const p = heroVideo.play(); if (p && p.then) p.then(unblock).catch(() => {}); });
-    heroVideo.addEventListener("playing", unblock);
-    guardPlay(heroVideo, () => { heroMedia.classList.add("blocked"); revealHero(); });
-    // Pause when off screen, and pick up again when it comes back.
-    new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { if (heroVideo.paused && !heroMedia.classList.contains("blocked")) safePlay(heroVideo); } else heroVideo.pause(); }), { threshold: 0.1 }).observe(heroMedia);
-    document.addEventListener("visibilitychange", () => { if (!document.hidden && heroVideo.paused && !heroMedia.classList.contains("blocked")) safePlay(heroVideo); });
-  }
-
-  // ---------- feature films: lazy load, play the most visible one, one at a time ----------
-  const films = $$(".panel .film");
-  const ratios = new Map();
-  let current = null; // the film element currently allowed to play
-
-  // A film that stops before its end rests on its finished frame (never a blank
-  // opening frame) and replays from the top on the next visit.
-  function rest(film) {
-    const v = $("video", film);
-    v.pause();
-    if (v.currentTime > 0 && !v.ended && v.duration) {
-      v.currentTime = Math.max(0, v.duration - 0.05);
-      film.classList.add("ended");
-    }
-  }
-
-  function start(film) {
-    const v = $("video", film);
-    film.closest(".panel").classList.add("seen");
-    attach(v);
-    if (reduceMotion.matches) { film.classList.add("paused-rm"); return; }
-    if (v.ended || film.classList.contains("ended")) { v.currentTime = 0; film.classList.remove("ended"); }
-    const rb = $(".replay", film);
-    guardPlay(v, () => { film.classList.add("ended", "blocked"); rb.textContent = "Play demo"; }, () => { film.classList.remove("ended", "blocked"); rb.textContent = "Replay"; });
-  }
-
-  function choose() {
-    let best = null, bestR = 0.5;
-    ratios.forEach((r, film) => { if (r >= bestR) { best = film; bestR = r; } });
-    if (best === current) return;
-    if (current) rest(current);
-    current = best;
-    if (best) start(best);
-  }
-
-  films.forEach((film) => {
-    const v = $("video", film);
-    if (reduceMotion.matches) $(".replay", film).textContent = "Play demo";
-    v.addEventListener("ended", () => film.classList.add("ended"));
-    $(".replay", film).addEventListener("click", () => {
-      if (current && current !== film) rest(current);
-      current = film;
-      attach(v);
-      film.classList.remove("ended", "paused-rm", "blocked");
-      v.currentTime = 0;
-      safePlay(v);
+  setTimeout(() => heroCopy?.classList.add("in"), introPlays ? 1900 : 100);
+  const media = [$("#hero-video"), ...$$(".panel .film video")].filter(Boolean);
+  const visibility = new Map();
+  const approved = new Set(), userPaused = new Set(), blocked = new Set();
+  let current = null;
+  const buttons = new Map();
+  media.forEach((v) => {
+    v.muted = true; v.playsInline = true; v.preload = "none";
+    const hero = v.id === "hero-video";
+    v.loop = !hero;
+    const host = v.closest(hero ? ".hero-media" : ".film");
+    let btn = $(".demo-toggle", host);
+    if (!btn) { btn = document.createElement("button"); btn.type = "button"; btn.className = "demo-toggle hero-demo-toggle"; host.append(btn); }
+    btn.textContent = hero ? "Play intro" : "Play demo";
+    btn.setAttribute("aria-label", (hero ? "Play intro" : "Play demo") + (hero ? "" : ": " + v.getAttribute("aria-label")));
+    buttons.set(v, btn);
+    const label = (playing) => { btn.textContent = (playing ? "Pause" : "Play") + (hero ? " intro" : " demo"); btn.setAttribute("aria-label", btn.textContent + (hero ? "" : ": " + v.getAttribute("aria-label"))); };
+    v.addEventListener("playing", () => { if (document.hidden || current !== v || (visibility.get(v) || 0) < .35) v.pause(); else { blocked.delete(v); label(true); } });
+    v.addEventListener("pause", () => label(false));
+    v.addEventListener("error", () => { label(false); host.classList.add("failed"); });
+    if (hero) v.addEventListener("ended", () => { if (current === v && !document.hidden) { v.currentTime = Math.min(8, Math.max(0, v.duration - 1)); play(v); } });
+    btn.addEventListener("click", () => {
+      if (!v.paused) { userPaused.add(v); v.pause(); return; }
+      approved.add(v); userPaused.delete(v); blocked.delete(v);
+      media.forEach(other => { if (other !== v) other.pause(); });
+      current = v; play(v);
     });
   });
+  function play(v) {
+    attach(v);
+    v.play().catch(() => { blocked.add(v); buttons.get(v).textContent = v.id === "hero-video" ? "Play intro" : "Play demo"; });
+  }
+  function chooseVideo() {
+    let best = null, ratio = .35;
+    if (!document.hidden) visibility.forEach((r, v) => {
+      if (r >= ratio && !userPaused.has(v) && !blocked.has(v) && (!restrained() || approved.has(v))) { best = v; ratio = r; }
+    });
+    media.forEach(v => { if (v !== best) v.pause(); });
+    current = best;
+    if (best && best.paused) play(best);
+  }
+  const videoIO = new IntersectionObserver(entries => {
+    entries.forEach(e => { const v = e.target; visibility.set(v, e.isIntersecting ? e.intersectionRatio : 0); v.closest(".panel")?.classList.add("seen"); });
+    chooseVideo();
+  }, {threshold: [0, .15, .35, .5, .7, .9, 1]});
+  media.forEach(v => videoIO.observe(v));
+  document.addEventListener("visibilitychange", () => { document.body.classList.toggle("motion-idle", document.hidden); chooseVideo(); });
+  function preferenceChanged() { approved.clear(); document.body.classList.toggle("save-data", restrained()); chooseVideo(); }
+  reduceMotion.addEventListener("change", preferenceChanged);
+  connection?.addEventListener("change", preferenceChanged);
+  preferenceChanged();
+  const seenIO = new IntersectionObserver(entries => entries.forEach(e => {
+    e.target.classList.toggle("motion-visible", e.isIntersecting);
+    if (e.isIntersecting) e.target.classList.add("seen");
+  }), {rootMargin: "0px", threshold: 0});
+  $$("main > section").forEach(s => seenIO.observe(s));
+  $$(".panel").forEach(s => seenIO.observe(s));
+  $("#foot-stage")?.classList.add("play");
 
-  // Load a little before a film arrives; preload="none" keeps first load light.
-  const nearIO = new IntersectionObserver(
-    (entries) => entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      const v = $("video", e.target);
-      attach(v);
-      if (!reduceMotion.matches) v.preload = "auto";
-      nearIO.unobserve(e.target);
-    }),
-    { rootMargin: "600px 0px" }
-  );
-  films.forEach((f) => nearIO.observe(f));
-
-  const playIO = new IntersectionObserver(
-    (entries) => { entries.forEach((e) => ratios.set(e.target, e.isIntersecting ? e.intersectionRatio : 0)); choose(); },
-    { threshold: [0, 0.25, 0.5, 0.6, 0.75, 0.9, 1] }
-  );
-  films.forEach((f) => playIO.observe(f));
-
-  // Panels fade their film in a bit earlier than playback starts.
-  const seenIO = new IntersectionObserver(
-    (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("seen"); seenIO.unobserve(e.target); } }),
-    { rootMargin: "0px 0px -15% 0px" }
-  );
-  $$(".panel").forEach((p) => seenIO.observe(p));
+  // Native button gives touch, Enter and Space the same gentle greeting.
+  const poke = $(".hero-poke"), reaction = $(".hero-reaction");
+  let reactionTimer;
+  poke?.addEventListener("click", () => {
+    poke.classList.remove("poked"); void poke.offsetWidth; poke.classList.add("poked");
+    reaction.textContent = "Right here with you.";
+    clearTimeout(reactionTimer);
+    reactionTimer = setTimeout(() => { poke.classList.remove("poked"); reaction.textContent = ""; }, 2200);
+  });
+  poke?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (!e.repeat) poke.click(); }
+  });
+  poke?.addEventListener("pointermove", e => {
+    if (restrained() || e.pointerType !== "mouse" || !matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+    const r = poke.getBoundingClientRect();
+    poke.style.setProperty("--look", Math.max(-2, Math.min(2, (e.clientX-r.left-r.width/2)/r.width*4)) + "deg");
+  });
+  poke?.addEventListener("pointerleave", () => poke.style.setProperty("--look", "0deg"));
+  const waitlist = $("#waitlist"), email = $("#wl-email");
+  email?.addEventListener("focus", () => waitlist.classList.add("email-focused"));
+  email?.addEventListener("blur", () => waitlist.classList.remove("email-focused"));
 
   // ---------- story rail: active step + mascot outfit ----------
   const links = $$("#rail-list a");

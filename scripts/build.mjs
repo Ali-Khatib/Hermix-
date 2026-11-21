@@ -26,8 +26,8 @@ const stamp = (html, name, content) => {
 // index.html
 const indexPath = join(root, "index.html");
 let index = readFileSync(indexPath, "utf8");
-index = stamp(index, "waitlist", waitlist("", cfg));
-index = stamp(index, "footer", footer("", cfg));
+index = stamp(index, "waitlist", waitlist("", cfg, { landing: true }));
+index = stamp(index, "footer", footer("", cfg, { landing: true }));
 writeFileSync(indexPath, index);
 
 // sub-pages

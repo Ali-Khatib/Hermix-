@@ -29,12 +29,14 @@ export function header(base) {
   </header>`;
 }
 
-export function waitlist(base) {
+export function waitlist(base, cfg, { landing = false } = {}) {
   return `    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
-      <img class="waitlist-bot" src="${base}media/landing/mascot/hero.webp" alt="" width="900" height="721" loading="lazy" />
+      ${landing ? '<div class="landing-air" aria-hidden="true"><span></span><span></span></div>' : ""}
+      ${landing ? "" : `<img class="waitlist-bot" src="${base}media/landing/mascot/${landing ? "default" : "hero"}.webp" alt="" width="${landing ? 420 : 900}" height="${landing ? 336 : 721}" loading="lazy" />`}
       <h2 id="waitlist-title">Bring Hermix into your work.</h2>
       <p class="waitlist-lede">Join the waitlist for Windows 11. We’ll email you when you can try it.</p>
       <form class="wl-form" data-waitlist novalidate>
+        ${landing ? `<img class="waitlist-bot" src="${base}media/landing/mascot/courier.webp" alt="" width="603" height="553" loading="lazy" />` : ""}
         <div class="wl-row">
           <label class="sr-only" for="wl-email">Email address</label>
           <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254"
@@ -70,9 +72,9 @@ function toon(mood) {
 }
 
 // The sign-off: HERMIX stamped across the page with a few Hermix figures living on the letters.
-function footStage(base) {
+function footStage(base, landing = false) {
   const WORD = "HERMIX";
-  const CREW = {
+  const CREW = landing ? {} : {
     0: ["top", "look", "Still reading. Nearly done."],
     2: ["front", "happy", "Ready for the next step."],
     4: ["behind", "wide", "Want to know what changed?"],
@@ -110,7 +112,7 @@ function footStage(base) {
     </div>`;
 }
 
-export function footer(base) {
+export function footer(base, cfg, { landing = false } = {}) {
   const year = new Date().getFullYear();
   const li = (href, label, extra = "") => `<li><a href="${base}${href}"${extra}>${label}</a></li>`;
   return `  <footer class="site-foot">
@@ -152,7 +154,7 @@ export function footer(base) {
         </ul>
       </nav>
     </div>
-    ${footStage(base)}
+    ${footStage(base, landing)}
   <div class="foot-bar">
       <p>© <span data-year>${year}</span> Hermix. All rights reserved.</p>
       <nav aria-label="Legal shortcuts">
