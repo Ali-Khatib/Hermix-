@@ -707,3 +707,10 @@ body.landing-page::after{width:42vw;height:42vw;right:-8vw;top:46vh;background:r
 .plans{background:rgba(255,253,248,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 @media(prefers-reduced-motion:reduce){body.landing-page::before,body.landing-page::after{animation:none}}
 @media(max-width:700px){body.landing-page::before,body.landing-page::after{filter:blur(50px);opacity:.45}}
+
+/* hero: one shared center axis when stacked */
+@media (max-width: 1180px), (max-aspect-ratio: 4/3) {
+  .hero-copy { margin-left: auto; margin-right: auto; text-align: center; }
+  .hero-actions { justify-content: center; }
+  .hero-copy .lede, .hero-copy p { margin-left: auto; margin-right: auto; }
+}
