@@ -9,6 +9,6 @@
     "start": "node scripts/serve.mjs"
   },
   "dependencies": {
-    "nodemailer": "^6.10.1"
+    "nodemailer": "^10.6.1"
   }
 }
