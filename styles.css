@@ -714,3 +714,12 @@ body.landing-page::after{width:42vw;height:42vw;right:-8vw;top:46vh;background:r
   .hero-actions { justify-content: center; }
   .hero-copy .lede, .hero-copy p { margin-left: auto; margin-right: auto; }
 }
+
+/* plans: six cards, one centered axis */
+.plans-head{max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
+.plans-head p:not(.kicker){margin-left:auto;margin-right:auto}
+.plan-cards{max-width:1280px;margin-left:auto;margin-right:auto}
+.plan-cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.plans-foot{justify-content:center;text-align:left;max-width:1280px;margin-left:auto;margin-right:auto}
+@media (max-width:1080px){.plan-cards-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.plan-cards-3{grid-template-columns:minmax(0,1fr)}.plans-foot{flex-direction:column;align-items:stretch;text-align:center}.plans-foot .plans-note{max-width:none}}
