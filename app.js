@@ -193,6 +193,45 @@
   $$("main > section").forEach(s => seenIO.observe(s));
   $$(".panel").forEach(s => seenIO.observe(s));
   $("#foot-stage")?.classList.add("play");
+  // The footer wordmark: letters rise and lean toward the cursor, ripple on tap, and ripple now and then on their own.
+  (() => {
+    const stage = $("#foot-stage"); if (!stage) return;
+    const word = stage.querySelector(".foot-word"), letters = [...stage.querySelectorAll(".fw-l")];
+    if (!word || !letters.length) return;
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+    let raf = 0, px = 0, py = 0, inView = false;
+    const apply = () => {
+      raf = 0; const wr = word.getBoundingClientRect();
+      const vy = clamp(1 - Math.abs(py - (wr.top + wr.height / 2)) / (wr.height * 1.1), 0, 1);
+      letters.forEach((l) => {
+        const r = l.getBoundingClientRect(); const d = (px - (r.left + r.width / 2)) / (r.width * 1.7);
+        const near = clamp(1 - Math.abs(d), 0, 1) * vy;
+        l.style.setProperty("--py", (-near * 20).toFixed(1));
+        l.style.setProperty("--pr", (clamp(d, -1, 1) * near * 5).toFixed(2));
+        l.style.setProperty("--ps", (1 + near * 0.05).toFixed(3));
+      });
+    };
+    const reset = () => letters.forEach((l) => { l.style.setProperty("--py", 0); l.style.setProperty("--pr", 0); l.style.setProperty("--ps", 1); });
+    stage.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse" || restrained()) return;
+      px = e.clientX; py = e.clientY; if (!raf) raf = requestAnimationFrame(apply);
+    });
+    stage.addEventListener("pointerleave", reset);
+    function footWave(from = 0) {
+      if (restrained()) return;
+      letters.forEach((l, i) => l.animate(
+        { scale: ["1 1", "1.07 .93", ".97 1.05", "1 1"], rotate: ["0deg", (i % 2 ? 3 : -3) + "deg", (i % 2 ? -2 : 2) + "deg", "0deg"] },
+        { duration: 700, delay: Math.abs(i - from) * 80, easing: "cubic-bezier(.3,1.4,.5,1)" }
+      ));
+    }
+    stage.addEventListener("pointerdown", (e) => {
+      const hit = e.target.closest?.(".fw-l"); if (!hit) return;
+      footWave(letters.indexOf(hit));
+    });
+    new IntersectionObserver((en) => { inView = en[0].isIntersecting; }, { threshold: 0.3 }).observe(stage);
+    setInterval(() => { if (inView && !document.hidden) footWave(Math.floor(Math.random() * letters.length)); }, 9000);
+    if (restrained()) stage.querySelectorAll("svg").forEach((s) => s.pauseAnimations?.());
+  })();
 
   // Native button gives touch, Enter and Space the same gentle greeting.
   const poke = $(".hero-poke"), reaction = $(".hero-reaction");

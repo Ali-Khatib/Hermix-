@@ -461,8 +461,6 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #9a3d3
 }
 @keyframes fw-pop { 0% { opacity: 0; transform: translateY(40%) scale(0.6); } 60% { opacity: 1; } 100% { opacity: 1; transform: none; } }
 @keyframes fw-word { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-.fw-l:hover .fw-ch { animation: fw-jiggle 0.6s cubic-bezier(0.3, 1.5, 0.5, 1); }
-@keyframes fw-jiggle { 25% { transform: rotate(-3.5deg) scale(1.02, 0.98); } 50% { transform: rotate(2.5deg) translateY(-3%); } 75% { transform: rotate(-1deg); } }
 
 .fw-crew { position: absolute; z-index: 3; left: 50%; width: clamp(62px, 8.4vw, 124px); padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .fw-crew img, .fw-toon { width: 100%; height: auto; display: block; overflow: visible; }
@@ -670,3 +668,27 @@ html.intro-on, html.intro-on body { overflow: hidden; }
 }
 
 
+
+/* footer life */
+.fw-l { transform: translate3d(0, calc(var(--py, 0) * 1px), 0) rotate(calc(var(--pr, 0) * 1deg)) scale(var(--ps, 1)); transition: transform .55s cubic-bezier(.2,.9,.3,1.25); will-change: transform; cursor: default; }
+.foot-stage.play .fw-l { animation: fw-idle 7s ease-in-out infinite; animation-delay: calc(var(--i) * -1.1s); }
+@keyframes fw-idle { 0%,100% { translate: 0 0; } 50% { translate: 0 -2.6%; } }
+.foot-stage.play .fw-ch { animation: fw-stamp .62s cubic-bezier(.2,.8,.25,1.15) calc(var(--i) * 90ms + 120ms) both; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .fw-ch {
+    background-image: linear-gradient(105deg, #f5f0e8 0%, #f5f0e8 38%, #fff4d6 46%, #e3be6b 50%, #fff4d6 54%, #f5f0e8 62%, #f5f0e8 100%);
+    background-size: 320% 100%; background-position: 120% 0;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .foot-stage.play .fw-ch { animation: fw-stamp .62s cubic-bezier(.2,.8,.25,1.15) calc(var(--i) * 90ms + 120ms) both, fw-sheen 9s ease-in-out calc(var(--i) * 140ms + 2.2s) infinite; }
+}
+@keyframes fw-sheen { 0% { background-position: 120% 0; } 38%,100% { background-position: -40% 0; } }
+.foot-word { filter: drop-shadow(0 18px 40px rgba(212,169,76,.12)); }
+.foot-sky::before { content: ""; position: absolute; left: 50%; top: 18%; width: min(92%, 1100px); aspect-ratio: 2.4; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(212,169,76,.20), rgba(212,169,76,0)); filter: blur(24px); animation: foot-glow 8s ease-in-out infinite; }
+.foot-sky::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(245,240,232,.55) 0 1.4px, transparent 2px), radial-gradient(circle, rgba(212,169,76,.6) 0 1.6px, transparent 2.4px), radial-gradient(circle, rgba(245,240,232,.35) 0 1px, transparent 1.8px); background-size: 220px 190px, 310px 260px, 170px 150px; background-position: 0 0, 90px 60px, 40px 110px; opacity: .5; animation: foot-motes 40s linear infinite; -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); }
+@keyframes foot-glow { 0%,100% { opacity: .75; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.06); } }
+@keyframes foot-motes { to { background-position: 0 -190px, 90px -200px, 40px -150px; } }
+@media (prefers-reduced-motion: reduce) {
+  .foot-stage .fw-l, .foot-stage .fw-ch, .foot-sky::before, .foot-sky::after { animation: none !important; transition: none !important; }
+  .fw-ch { background-position: -40% 0; }
+}
