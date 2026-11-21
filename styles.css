@@ -784,3 +784,13 @@ html{background:#f4eee4}
 .plans{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:0!important;box-shadow:none!important}
 .waitlist{border-top:0!important}
 .waitlist::before,.waitlist::after{background-image:none!important}
+
+/* Background v4: page colour equals the hero video's own backdrop (234,226,212), so there is no box and no fog. */
+.hero-video{-webkit-mask-image:none!important;mask-image:none!important}
+html{background:#eae2d4}
+html::before{background:
+  linear-gradient(180deg,rgba(255,255,255,.45) 0,rgba(255,255,255,0) 96px),
+  #eae2d4!important}
+html::after{opacity:.25}
+
+html::after{display:none!important}
