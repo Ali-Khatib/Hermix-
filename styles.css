@@ -775,3 +775,7 @@ html{background:#f4eee4}
 .plan-card:not(.plan-card-pro){background:rgba(250,246,239,.7)}
 
 .hero-video{-webkit-mask-image:radial-gradient(ellipse 46% 48% at 50% 50%,#000 30%,transparent 100%)!important;mask-image:radial-gradient(ellipse 46% 48% at 50% 50%,#000 30%,transparent 100%)!important}
+
+/* no section paints its own fill: one continuous background from hero to footer */
+.story,.story.seen,.story.motion-visible,.hero,.waitlist{background:transparent!important}
+.story::before,.story::after,.hero::before,.hero::after{background-image:none!important}
