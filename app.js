@@ -222,22 +222,30 @@
   // Native button gives touch, Enter and Space the same gentle greeting.
   const poke = $(".hero-poke"), reaction = $(".hero-reaction");
   let reactionTimer;
+  const lines = [
+    "Right here with you.",
+    "Inbox, calendar and tasks: one calm place.",
+    "I only read what you connect.",
+    "Hand me the busywork.",
+    "Ask me what changed while you were away.",
+    "Tell me the deadline. I'll watch it.",
+    "Meeting in five? I'll have the context ready.",
+    "Nothing leaves without your approval.",
+    "Hermes carried messages. I carry context.",
+    "Start caught up."
+  ];
+  let lineIx = Math.floor(Math.random() * lines.length);
   poke?.addEventListener("click", () => {
     poke.classList.remove("poked"); void poke.offsetWidth; poke.classList.add("poked");
-    reaction.textContent = "Right here with you.";
+    lineIx = (lineIx + 1 + Math.floor(Math.random() * (lines.length - 1))) % lines.length;
+    reaction.classList.remove("show"); void reaction.offsetWidth;
+    reaction.textContent = lines[lineIx]; reaction.classList.add("show");
     clearTimeout(reactionTimer);
-    reactionTimer = setTimeout(() => { poke.classList.remove("poked"); reaction.textContent = ""; }, 2200);
+    reactionTimer = setTimeout(() => { poke.classList.remove("poked"); reaction.classList.remove("show"); }, 3200);
   });
   poke?.addEventListener("keydown", e => {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (!e.repeat) poke.click(); }
-  });
-  poke?.addEventListener("pointermove", e => {
-    if (restrained() || e.pointerType !== "mouse" || !matchMedia("(hover:hover) and (pointer:fine)").matches) return;
-    const r = poke.getBoundingClientRect();
-    poke.style.setProperty("--look", Math.max(-2, Math.min(2, (e.clientX-r.left-r.width/2)/r.width*4)) + "deg");
-  });
-  poke?.addEventListener("pointerleave", () => poke.style.setProperty("--look", "0deg"));
-  const waitlist = $("#waitlist"), email = $("#wl-email");
+  });  const waitlist = $("#waitlist"), email = $("#wl-email");
   email?.addEventListener("focus", () => waitlist.classList.add("email-focused"));
   email?.addEventListener("blur", () => waitlist.classList.remove("email-focused"));
 
