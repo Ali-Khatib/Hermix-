@@ -794,3 +794,8 @@ html::before{background:
 html::after{opacity:.25}
 
 html::after{display:none!important}
+
+/* Hero edge fix: crop the video's compressed edge pixels, feather the border, and breathe without scaling so no frame lines flicker. */
+.hero-poke{overflow:hidden;background:transparent}
+.hero-poke .hero-video{clip-path:inset(6px);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%),linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%)!important;-webkit-mask-composite:source-in!important;mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%),linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%)!important;mask-composite:intersect!important;border-radius:0;backface-visibility:hidden}
+@keyframes mascot-breathe{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-4px,0)}}
