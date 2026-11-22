@@ -21,17 +21,17 @@
     e.length <= 254 && /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\.(?:[a-z]{2,63}|xn--[a-z0-9-]+)$/.test(e) && !/\.\./.test(e) && !/^\.|\.@/.test(e);
 
   const MESSAGES = {
-    invalid_email: "That doesn’t look like a full email address. Check it looks like name@example.com.",
+    invalid_email: "That doesnâ€™t look like a full email address. Check it looks like name@example.com.",
     rate_limited: "Too many tries from this connection. Please wait a few minutes and try again.",
-    unavailable: "This form isn’t switched on yet. Please try again a little later.",
+    unavailable: "This form isnâ€™t switched on yet. Please try again a little later.",
     server_error: "Something went wrong on our side. Your details are still here, so please try again.",
-    network: "We couldn’t reach Hermix. Check your connection and try again. Your details are still here.",
+    network: "We couldnâ€™t reach Hermix. Check your connection and try again. Your details are still here.",
   };
 
   async function post(url, data) {
     let r;
     try {
-      r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data), credentials: "omit" });
+      r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data), credentials: "omit", signal: AbortSignal.timeout(15000) });
     } catch {
       return { ok: false, code: "network" };
     }
@@ -87,8 +87,8 @@
       }
       input.removeAttribute("aria-invalid");
       inFlight = true;
-      busy(btn, true, "Joining…");
-      setStatus(status, "Adding you to the list…", "pending");
+      busy(btn, true, "Joiningâ€¦");
+      setStatus(status, "Adding you to the listâ€¦", "pending");
       const res = await post(apiUrl("waitlist"), { email, website: $("input[name=website]", form).value, elapsedMs: Date.now() - started });
       inFlight = false;
       busy(btn, false);
@@ -97,7 +97,7 @@
         input.value = "";
         input.disabled = true;
         btn.disabled = true;
-        setStatus(status, "You’re on the list. We’ll email you when there’s news.", "success");
+        setStatus(status, "Youâ€™re on the list. Weâ€™ll email you when thereâ€™s news.", "success");
         return;
       }
       if (res.code === "invalid_email") { input.setAttribute("aria-invalid", "true"); input.focus(); }
@@ -110,9 +110,9 @@
   // ---------- contact ----------
   const HINTS = {
     general: "Tell us what you need.",
-    privacy: "Tell us what you’d like: a copy of your data, a correction, or deletion. Use the email address you signed up with.",
-    remove_waitlist: "Use the email address you signed up with. A short note is enough, like “Please remove me”.",
-    security: "What you found, where, steps to reproduce, and the impact. Please don’t include other people’s data.",
+    privacy: "Tell us what youâ€™d like: a copy of your data, a correction, or deletion. Use the email address you signed up with.",
+    remove_waitlist: "Use the email address you signed up with. A short note is enough, like â€œPlease remove meâ€.",
+    security: "What you found, where, steps to reproduce, and the impact. Please donâ€™t include other peopleâ€™s data.",
     copyright: "The work, where our copy is, your contact details, and the statements listed in our Copyright Policy.",
     misuse: "What happened, where, and when.",
   };
@@ -150,15 +150,15 @@
         return;
       }
       inFlight = true;
-      busy(btn, true, "Sending…");
-      setStatus(status, "Sending your message…", "pending");
+      busy(btn, true, "Sendingâ€¦");
+      setStatus(status, "Sending your messageâ€¦", "pending");
       const res = await post(apiUrl("contact"), { topic: topic.value, email: e, name: name.value.trim(), message: m, website: $("input[name=website]", form).value, elapsedMs: Date.now() - started });
       inFlight = false;
       busy(btn, false);
       if (res.ok) {
         form.reset();
         syncHint();
-        setStatus(status, "Thanks, your message is with us. We’ll reply to the email you gave.", "success");
+        setStatus(status, "Thanks, your message is with us. Weâ€™ll reply to the email you gave.", "success");
         return;
       }
       if (res.code === "invalid") {
