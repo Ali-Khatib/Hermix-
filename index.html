@@ -88,7 +88,7 @@
       <h2 id="first-setup-title">Meet your new coworker.</h2>
       <div class="meet-stage">
         <img class="meet-character" src="media/landing/mascot/default.webp" width="200" height="200" alt="Hermix, your winged AI coworker" />
-        <div class="meet-bubble" id="meet-message" role="status" aria-live="polite" aria-atomic="true">Hey! I’m Hermix. Nice to finally meet you.</div>
+        <div class="meet-bubble" id="meet-message" role="status" aria-live="polite" aria-atomic="true">Hey! I’m Hermix. Nice to meet you. Want to say hi or see what I can do?</div>
       </div>
       <div class="meet-controls" id="meet-controls" aria-label="Reply to Hermix">
         <button type="button" class="meet-choice" data-meet="hello">Hello!</button>
@@ -117,8 +117,7 @@
             <li><a href="#s-email" data-step="email"><span class="n">04</span><span class="t">Replies</span></a></li>
             <li><a href="#s-meetings" data-step="meetings"><span class="n">05</span><span class="t">Meetings</span></a></li>
             <li><a href="#s-ask" data-step="ask"><span class="n">06</span><span class="t">Ask Hermix</span></a></li>
-            <li><a href="#s-context" data-step="context"><span class="n">07</span><span class="t">AI models</span></a></li>
-            <li><a href="#s-browser" data-step="browser"><span class="n">08</span><span class="t">Browser extension</span></a></li>
+            <li><a href="#s-browser" data-step="browser"><span class="n">07</span><span class="t">Browser assistant</span></a></li>
           </ol>
           <div class="rail-mascot" aria-hidden="true">
             <img data-outfit="default" src="media/landing/mascot/default.webp" alt="" class="on" />
@@ -213,28 +212,9 @@
             </div>
         </article>
 
-        <article class="panel" id="s-context" data-step="context" data-outfit="archivist" data-mood="Connecting models">
-          <header class="panel-copy">
-            <p class="step"><span>07</span> AI models</p>
-            <h3>Your models. Your limits.</h3>
-            <p>Connect Groq or Anthropic with your own API key and manage your usage limits in Hermix. Model connections are separate from the conversation that starts your setup.</p>
-          </header>
-          <figure class="context-preview">
-            <div class="context-preview-intro">
-              <img class="context-preview-mascot" src="media/landing/mascot/archivist.webp" alt="" width="140" height="140" loading="lazy" />
-              <p>Choose the model behind the work.<br /><span>Bring your own API key.</span></p>
-            </div>
-            <div class="model-connections" aria-label="Supported model connections">
-              <div><h4>Groq</h4><p>Your API key</p></div>
-              <div><h4>Anthropic</h4><p>Your API key</p></div>
-            </div>
-            <figcaption>Provider API billing is separate. Connecting a model does not import your chat history or use a ChatGPT Plus allowance.</figcaption>
-          </figure>
-        </article>
-
         <article class="panel" id="s-browser" data-step="browser" data-outfit="explorer" data-mood="Following your research">
           <header class="panel-copy">
-            <p class="step"><span>08</span> Browser extension</p>
+            <p class="step"><span>07</span> Browser assistant</p>
             <h3>Call Hermix into the page you are working on.</h3>
             <p>Keep the article in view. This concept shows a compact Hermix panel explaining the page beside it, with useful next steps and the source close at hand.</p>
           </header>

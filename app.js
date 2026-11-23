@@ -283,23 +283,20 @@
       // Keep focus at the new choices after replacing the activated control.
       (controls.querySelector("button") || (prompt ? input : section.querySelector(".meet-continue"))).focus({preventScroll:true});
     };
-    const invitation = () => say("I can help you catch up before a meeting, work through a task or prepare a reply. Want to try a tiny getting-to-know-you interview? One question at a time.", [["interview", "Let’s try it"], ["demo", "Show me an example"]], "invite");
+    const invitation = () => say("I bring your work together, help you get oriented, and can take on supported tasks with your say-so. Just exploring? No need to tell me anything personal.", [["demo", "Show me an example"], ["chat", "Let’s chat"]], "invite");
     controls.addEventListener("click", ev => {
       const action = ev.target.closest("[data-meet]")?.dataset.meet;
-      if (action === "hello") say("Hello! What’s taking up most of your day? Tell me below, or I can show you around.", [["explain", "Show me around"]], "daily", "What’s keeping you busy?");
+      if (action === "hello") say("Hey! Glad you stopped by. You can ask me something, or I can show you around.", [["explain", "What can you do?"], ["demo", "Show me an example"]], "daily", "Say anything, or ask a question");
       if (action === "explain") invitation();
-      if (action === "demo") say("Imagine a meeting in ten minutes. Instead of hunting through notes, you ask: ‘What did we decide last time?’ That’s the kind of daily work Hermix is built for. Explore the features below to see more.", [["interview", "Try the short interview"]], "demo");
-      if (action === "interview") say("Let’s start with you. What kind of work do you do?", [["skip", "Skip this question"]], "role", "What kind of work do you do?");
-      if (action === "skip") say("No problem. What’s one repetitive task you’d like off your plate?", [["finish", "That’s enough for now"]], "task", "What task would you hand over?");
-      if (action === "finish") say("That’s the idea: a little context, then useful work. This was just a preview; nothing was saved. Let’s explore Hermix.", [["restart", "Start again"]], "done");
-      if (action === "restart") say("Hey! I’m Hermix. Nice to finally meet you.", [["hello", "Hello!"], ["explain", "What’s this?"]], "intro");
+      if (action === "demo") say("Say you have a meeting coming up. I can help you find what was decided last time, what’s still open, and what may need your attention—so you can walk in ready.", [["chat", "Ask me something"], ["explore", "Explore the features"]], "demo");
+      if (action === "chat") { form.hidden = false; label.textContent = "Your message (optional)"; input.placeholder = "Anything you like…"; input.value = ""; step = "chat"; input.focus(); }
+      if (action === "explore") { section.querySelector(".meet-continue").click(); }
+      if (action === "restart") say("Hey! I’m Hermix. Nice to meet you. Want to say hi or see what I can do?", [["hello", "Hello!"], ["explain", "What can you do?"]], "intro");
     });
     form.addEventListener("submit", ev => {
       ev.preventDefault(); if (!input.value.trim()) { input.focus(); return; }
-      // Treat replies as text only. This preview deliberately makes no AI/persistence claim.
-      if (step === "daily") invitation();
-      else if (step === "role") say("Thanks for the introduction. What’s one repetitive task you’d like off your plate?", [["finish", "Skip and explore"]], "task", "What task would you hand over?");
-      else say("That’s a useful starting point. In Hermix, your context helps shape the work you ask for. This preview hasn’t saved your reply or started a task. Take a look at the features below.", [["restart", "Start again"]], "done");
+      // This is a playful website preview, not an AI conversation; never retain the message.
+      say("Thanks for sharing. In the real Hermix, you can bring questions like that to your connected work. This little preview doesn’t save your message. Have a look around?", [["explore", "Explore the features"], ["restart", "Start again"]], "done");
     });
     new IntersectionObserver((entries, observer) => {
       if (entries.some(e => e.isIntersecting)) { section.classList.add("greeted"); observer.disconnect(); }
