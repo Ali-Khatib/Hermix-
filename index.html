@@ -68,7 +68,7 @@
         <p class="lede">Hermix brings understanding and action to the same place. It remembers the background, helps you think things through and takes on the work you hand over.</p>
         <div class="hero-actions">
           <a class="btn btn-ink" href="#waitlist">Join the waitlist</a>
-          <a class="btn btn-line" href="#how">See how it works</a>
+          <a class="btn btn-line" href="#first-setup">See how it works</a>
         </div>
       </div>
       <div class="hero-media">
@@ -79,7 +79,25 @@
           aria-hidden="true"></video></button>
         <p class="hero-reaction" role="status" aria-live="polite"></p>
       </div>
-      <a class="scroll-cue" href="#how" aria-label="Scroll to how it works"><span></span></a>
+      <a class="scroll-cue" href="#first-setup" aria-label="Scroll to initial setup"><span></span></a>
+    </section>
+
+    <!-- INITIAL SETUP -->
+    <section class="first-setup" id="first-setup" aria-labelledby="first-setup-title">
+      <div class="first-setup-copy">
+        <p class="kicker">Start here</p>
+        <h2 id="first-setup-title">First, get to know<br />each other.</h2>
+        <p class="first-setup-lede">Hermix starts a conversation during your initial setup. Tell it about your work and preferences, then connect the apps and models you want to use.</p>
+        <p class="first-setup-note">Answer at your own pace. Skip a question or change your answers later.</p>
+      </div>
+      <div class="first-setup-details">
+        <img class="first-setup-mascot" src="media/landing/mascot/default.webp" alt="" width="210" height="168" loading="lazy" />
+        <ol class="first-setup-steps">
+          <li><span class="first-setup-number">01</span><div><h3>A conversation, not a blank slate.</h3><p>One question at a time about your role, your work and how you like things done.</p></div></li>
+          <li><span class="first-setup-number">02</span><div><h3>Choose what to connect.</h3><p>Add the apps you need and your model API keys. You control what Hermix can access.</p></div></li>
+          <li><span class="first-setup-number">03</span><div><h3>Then, get on with your work.</h3><p>Bring that background into briefings, tasks, meetings and the browser context you allow.</p></div></li>
+        </ol>
+      </div>
     </section>
 
     <!-- STORY -->
@@ -96,7 +114,7 @@
             <li><a href="#s-email" data-step="email"><span class="n">04</span><span class="t">Replies</span></a></li>
             <li><a href="#s-meetings" data-step="meetings"><span class="n">05</span><span class="t">Meetings</span></a></li>
             <li><a href="#s-ask" data-step="ask"><span class="n">06</span><span class="t">Ask Hermix</span></a></li>
-            <li><a href="#s-context" data-step="context"><span class="n">07</span><span class="t">AI context</span></a></li>
+            <li><a href="#s-context" data-step="context"><span class="n">07</span><span class="t">AI models</span></a></li>
             <li><a href="#s-browser" data-step="browser"><span class="n">08</span><span class="t">Browser notes</span></a></li>
           </ol>
           <div class="rail-mascot" aria-hidden="true">
@@ -192,30 +210,39 @@
             </div>
         </article>
 
-        <article class="panel" id="s-context" data-step="context" data-outfit="archivist" data-mood="Keeping the thread">
+        <article class="panel" id="s-context" data-step="context" data-outfit="archivist" data-mood="Connecting models">
           <header class="panel-copy">
-            <p class="step"><span>07</span> AI context</p>
-            <h3>Bring your AI conversations with you.</h3>
-            <p>Import selected conversations or paste the background from another AI tool. Review what you keep, then ask Hermix to pick up the thread without explaining everything again. Your imports stay on your computer; using them in an AI answer follows your model consent settings.</p>
+            <p class="step"><span>07</span> AI models</p>
+            <h3>Your models. Your limits.</h3>
+            <p>Connect Groq or Anthropic with your own API key and manage your usage limits in Hermix. Model connections are separate from the conversation that starts your setup.</p>
           </header>
-          <div class="film">
-            <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-context-poster-v1.webp"
-              data-src="media/landing/video/feature-context-v1.mp4" data-src-sm="media/landing/video/720/feature-context-720-v1.mp4"
-              aria-label="Demonstration of reviewing an imported AI conversation and using its context in Hermix."></video>
-          </div>
+          <figure class="context-preview">
+            <div class="context-preview-intro">
+              <img class="context-preview-mascot" src="media/landing/mascot/archivist.webp" alt="" width="140" height="140" loading="lazy" />
+              <p>Choose the model behind the work.<br /><span>Bring your own API key.</span></p>
+            </div>
+            <div class="model-connections" aria-label="Supported model connections">
+              <div><h4>Groq</h4><p>Your API key</p></div>
+              <div><h4>Anthropic</h4><p>Your API key</p></div>
+            </div>
+            <figcaption>Provider API billing is separate. Connecting a model does not import your chat history or use a ChatGPT Plus allowance.</figcaption>
+          </figure>
         </article>
 
         <article class="panel" id="s-browser" data-step="browser" data-outfit="explorer" data-mood="Following your research">
           <header class="panel-copy">
             <p class="step"><span>08</span> Browser notes</p>
-            <h3>Keep a page worth coming back to.</h3>
-            <p>Choose a page in your browser, review its text and send it to Hermix with the browser helper. Keep the source beside your notes and bring that context into your next question. You choose each capture: no silent browsing history collection.</p>
+            <h3>Your browser, on your terms.</h3>
+            <p>Enable the sites you choose to bring context from opened, supported ChatGPT and Claude conversations into Hermix. For other pages, click the page-side button to capture the visible view as text. No background screen recording or full account history.</p>
           </header>
-          <div class="film">
-            <video muted playsinline webkit-playsinline preload="none" poster="media/landing/posters/feature-browser-poster-v1.webp"
-              data-src="media/landing/video/feature-browser-v1.mp4" data-src-sm="media/landing/video/720/feature-browser-720-v1.mp4"
-              aria-label="Demonstration of capturing a chosen browser page and reviewing the saved note in Hermix."></video>
-          </div>
+          <figure class="context-preview">
+            <div class="context-preview-intro">
+              <img class="context-preview-mascot" src="media/landing/mascot/explorer.webp" alt="" width="140" height="140" loading="lazy" />
+              <p>Browser helper <span class="context-preview-label">Developer preview</span><br /><span>Pair it, then explicitly allow each supported site.</span></p>
+            </div>
+            <img class="context-preview-screen" src="media/landing/browser-connection-v2.webp" alt="The built app’s browser connection panel, showing that the receiver is off and explaining manual installation and one-time pairing." width="1208" height="335" loading="lazy" />
+            <figcaption>Manual installation and one-time pairing required. Not in browser stores yet; live-site compatibility is still being tested.</figcaption>
+          </figure>
         </article>
       </div>
     </section>
