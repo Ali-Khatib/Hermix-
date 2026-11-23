@@ -41,6 +41,8 @@
     ["s-email", "inbox", "Replies", "Prepare an answer with the context attached."],
     ["s-meetings", "meeting", "Meetings", "Carry decisions into the next conversation."],
     ["s-ask", "thinking", "Ask Hermix", "Ask a question or hand over a task."],
+    ["s-context", "archivist", "AI context", "Bring selected AI conversations into your work."],
+    ["s-browser", "explorer", "Browser notes", "Keep the pages you choose, with their sources."],
   ];
   const CASES = [
     ["s-today", "success", "Picking things up", "Get the background before you begin."],
