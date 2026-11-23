@@ -7,6 +7,7 @@ export default {
     const qa = [
       ["What is Hermix?", `Hermix is an AI coworker for your computer, built to understand the context behind your work and help carry it out. That includes briefings, research, replies, meeting follow-ups and tasks across supported tools. It is currently in development. See <a href="${b}index.html#how">how it works</a>.`],
       ["Is it available yet?", "Hermix is in development. Join the waitlist and we’ll email you when you can try it."],
+      ["How does the browser extension work today?", "The browser helper is a separate, on-demand extension that currently requires manual installation and pairing with Hermix. On sites you allow, it can sync supported ChatGPT or Claude conversation context, or capture visible-page text through click-to-capture OCR. General tab control and broader browser actions are not currently supported. The browser film on the homepage is a scripted product concept with fictional sample data, not a recording of browser control or executed work.", "browser-help"],
       ["What does it cost?", `A free plan is planned alongside Plus, Pro and Max for individual use, Team for shared workspaces, and Enterprise for agreed requirements. The <a href="${b}pricing.html">pricing page</a> shows the proposed launch structure; final prices and allowances will be confirmed before paid plans become available.`],
       ["How is usage measured?", "Usage depends on the work involved. Longer tasks and larger inputs can use more of your allowance. We’ll publish the allowances and how they’re measured before paid plans become available."],
       ["Which apps will it connect to?", "We’ll publish the supported connections before launch. Hermix will only access sources you connect and authorise; it won’t automatically have access to every app on your computer."],
@@ -17,8 +18,8 @@ export default {
       ["How do I get it?", `Join the <a href="#waitlist">waitlist</a>. We’ll email you a download link when you can try it.`],
       ["How do I leave the waitlist?", `Use the <a href="${b}contact.html?topic=remove_waitlist">contact form</a> and choose “Remove me from the waitlist”.`],
     ];
-    return `<div class="faq">${qa.map(([q, a], i) => `
-  <details${i === 0 ? " open" : ""}>
+    return `<div class="faq">${qa.map(([q, a, id], i) => `
+  <details${id ? ` id="${id}"` : ""}${i === 0 || id === "browser-help" ? " open" : ""}>
     <summary><h2>${q}</h2></summary>
     <p>${a}</p>
   </details>`).join("")}

@@ -101,12 +101,15 @@
   // ---------- video helpers ----------
   function attach(video) {
     if (video.dataset.loaded) return;
-    const src = (small() && video.dataset.srcSm) || video.dataset.src;
+    const compact = video.id === "browser-preview-video" ? window.innerWidth < 900 : small();
+    const src = (compact && video.dataset.srcSm) || video.dataset.src;
     if (!src) return;
     video.src = src;
     video.dataset.loaded = "1";
     video.addEventListener("error", () => video.closest(".film")?.classList.add("failed"), { once: true });
   }
+  // Match the concept poster to its re-composed small-screen film before playback.
+  document.querySelectorAll("video[data-poster-sm]").forEach(v => { if (window.innerWidth < 900) v.poster = v.dataset.posterSm; });
   // ---------- opening curtain ----------
   // The sequence itself is CSS, so it still plays (and still clears) if this script never runs.
   const intro = $("#intro");

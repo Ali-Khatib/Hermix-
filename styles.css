@@ -854,3 +854,10 @@ html::after{display:none!important}
 .screen-preview-meta button:focus-visible { outline:2px solid var(--bronze-d); outline-offset:4px; }
 .screen-preview figcaption { margin-top:12px; max-width:42em; font-size:13px; line-height:1.65; color:var(--ink-2); }
 @media(max-width:600px) { .screen-film.film { border-radius:14px; } .screen-preview-meta { font-size:11px; } }
+
+/* Browser concept film: re-composed, rather than cropped, for smaller screens. */
+.browser-concept { margin:0; min-width:0; }
+.browser-concept figcaption { margin-top:12px; font-size:13px; color:var(--ink-2); line-height:1.65; max-width:48em; }
+.browser-concept figcaption a { text-underline-offset:3px; }
+.browser-concept-film video { display:block; object-fit:contain; }
+@media(max-width:899px) { .browser-concept-film { aspect-ratio:8 / 9; } }
