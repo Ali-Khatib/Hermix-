@@ -138,7 +138,7 @@
   const restrained = () => reduceMotion.matches || !!connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || "");
   const heroCopy = $("#hero-copy");
   setTimeout(() => heroCopy?.classList.add("in"), introPlays ? 1900 : 100);
-  const media = [$("#hero-video"), ...$$(".panel .film video")].filter(Boolean);
+  const media = [$("#hero-video"), ...$$(".panel .film video, .first-setup .film video")].filter(Boolean);
   const visibility = new Map();
   const approved = new Set(), userPaused = new Set(), blocked = new Set();
   let current = null;
@@ -158,12 +158,26 @@
   function chooseVideo() {
     let best = null, ratio = .2;
     if (!document.hidden) visibility.forEach((r, v) => {
-      if (r >= ratio && !blocked.has(v) && !restrained()) { best = v; ratio = r; }
+      if (r >= ratio && !blocked.has(v) && !userPaused.has(v) && (!restrained() || approved.has(v))) { best = v; ratio = r; }
     });
     media.forEach(v => { if (v !== best) v.pause(); });
     current = best;
     if (best && best.paused) play(best);
   }
+  // Screenshot previews use the same visibility budget, with an accessible pause control.
+  $$("[data-preview-toggle]").forEach(button => {
+    const v = document.getElementById(button.dataset.previewToggle);
+    if (!v) return;
+    const label = () => { button.textContent = v.paused ? "Play preview" : "Pause preview"; };
+    v.addEventListener("play", label);
+    v.addEventListener("pause", label);
+    button.addEventListener("click", () => {
+      if (v.paused) { userPaused.delete(v); approved.add(v); }
+      else { userPaused.add(v); approved.delete(v); }
+      chooseVideo(); label();
+    });
+    label();
+  });
   const videoIO = new IntersectionObserver(entries => {
     entries.forEach(e => { const v = e.target; visibility.set(v, e.isIntersecting ? e.intersectionRatio : 0); v.closest(".panel")?.classList.add("seen"); });
     chooseVideo();
