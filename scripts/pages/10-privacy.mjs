@@ -2,11 +2,11 @@ import { reach } from "../partials.mjs";
 export default {
   file: "legal/privacy.html", legal: true, short: "Privacy Policy",
   title: "Privacy Policy", kicker: "Legal",
-  description: "What information Hermix collects through its website, waitlist, contact form, and Windows preview, why, and the choices you have.",
+  description: "What information Hermix collects through its website, waitlist, contact form, and desktop preview, why, and the choices you have.",
   lede: "The short version: the Hermix preview keeps your data on your computer, the website doesn’t track you, and we only keep the email you give us for the waitlist or a message you send.",
   body: (cfg, b) => `
 <h2 id="scope">What this policy covers</h2>
-<p>This policy explains how Hermix (“Hermix”, “we”, “us”) handles personal information when you visit this website, join the waitlist, use the contact form, or use the Hermix preview app for Windows.</p>
+<p>This policy explains how Hermix (“Hermix”, “we”, “us”) handles personal information when you visit this website, join the waitlist, use the contact form, or use the Hermix desktop preview app.</p>
 
 <h2 id="you-give">Information you give us</h2>
 <ul>
@@ -21,7 +21,7 @@ export default {
 <p>When you submit a form, our server briefly uses your IP address in memory to limit repeated submissions. We don’t store it with your signup or message.</p>
 
 <h2 id="app">The Hermix preview app</h2>
-<p>The current Windows preview does not connect to any email, calendar, chat, or developer account, and it doesn’t send what you type to an AI service or to us.</p>
+<p>The current desktop preview does not connect to any email, calendar, chat, or developer account, and it doesn’t send what you type to an AI service or to us.</p>
 <p>Your settings and anything you save in the app, such as requests, meeting briefs, and reminders, are stored on your computer only. Clearing the app’s data or uninstalling Hermix removes them.</p>
 <p>Before Hermix connects to real accounts, we’ll update this policy to explain exactly what is read, why, and where it goes, and the app will ask for your permission first.</p>
 

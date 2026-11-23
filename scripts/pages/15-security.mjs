@@ -18,7 +18,7 @@ export default {
 <ul>
   <li>Hermix doesn’t have accounts today, so we will never ask for your password. Treat any message claiming otherwise as suspicious.</li>
   <li>When Hermix is released, download it only from this website.</li>
-  <li>Keep Windows and WebView2 up to date.</li>
+  <li>Keep your operating system and the Hermix app up to date.</li>
   <li>Be careful with emails that use the Hermix name but link to other websites.</li>
 </ul>
 

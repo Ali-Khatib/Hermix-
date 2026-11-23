@@ -34,7 +34,7 @@ export function waitlist(base, cfg, { landing = false } = {}) {
       ${landing ? '<div class="landing-air" aria-hidden="true"><span></span><span></span></div>' : ""}
       ${landing ? "" : `<img class="waitlist-bot" src="${base}media/landing/mascot/${landing ? "default" : "hero"}.webp" alt="" width="${landing ? 420 : 900}" height="${landing ? 336 : 721}" loading="lazy" />`}
       <h2 id="waitlist-title">Bring Hermix into your work.</h2>
-      <p class="waitlist-lede">Join the waitlist for Hermix. We’ll email you when you can try it.</p>
+      <p class="waitlist-lede">Join the waitlist. We’ll email you when you can try it.</p>
       <form class="wl-form" data-waitlist novalidate>
         ${landing ? `<img class="waitlist-bot" src="${base}media/landing/mascot/courier.webp" alt="" width="603" height="553" loading="lazy" />` : ""}
         <div class="wl-row">
@@ -123,7 +123,7 @@ export function footer(base, cfg, { landing = false } = {}) {
           ${markImg(base)}
           <span>Hermix</span>
         </a>
-        <p>An AI coworker for your computer, built to keep track of the context and help carry the work through.</p>
+        <p>An AI coworker${landing ? "" : " for your computer"}, built to keep track of the context and help carry the work through.</p>
         <div class="foot-ctas">
           <a class="btn btn-cream" href="${base}index.html#waitlist">Join the waitlist</a>
           <a class="btn btn-dark-line" href="${base}index.html#how">See how it works</a>

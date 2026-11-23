@@ -2,7 +2,7 @@ import { reach } from "../partials.mjs";
 export default {
   file: "legal/terms.html", legal: true, short: "Terms of Service",
   title: "Terms of Service", kicker: "Legal",
-  description: "The terms for using the Hermix website, waitlist, and Windows preview.",
+  description: "The terms for using the Hermix website, waitlist, and desktop preview.",
   lede: "These terms apply when you use the Hermix website, join the waitlist, or use the Hermix preview app.",
   body: (cfg, b) => `
 <h2 id="agreement">Agreeing to these terms</h2>
@@ -45,7 +45,7 @@ export default {
 <p>The Hermix name, logo, mascot, software, and website content belong to Hermix or its licensors and are protected by intellectual property laws. These terms don’t give you any rights to them beyond the permission to use the preview described above.</p>
 
 <h2 id="third-party">Other companies’ products</h2>
-<p>Windows and other names mentioned on this site are trademarks of their owners. Hermix isn’t endorsed by them. When Hermix connects to those services in the future, their own terms will also apply to your use of them.</p>
+<p>Other names mentioned on this site are trademarks of their owners. Hermix isn’t endorsed by them. When Hermix connects to those services in the future, their own terms will also apply to your use of them.</p>
 
 <h2 id="pricing">Pricing</h2>
 <p>Nothing is charged today. If we introduce paid plans, we’ll show the price and terms clearly before you’re asked to pay, and you won’t be moved onto a paid plan without agreeing first. See <a href="${b}pricing.html">Pricing</a>.</p>

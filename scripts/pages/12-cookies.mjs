@@ -19,7 +19,7 @@ export default {
 <p>When you submit a form, your browser sends the details to our own server. That request doesn’t create a cookie. See the <a href="${b}legal/privacy.html#automatic">Privacy Policy</a> for what servers receive with every request.</p>
 
 <h2 id="app">In the Hermix preview app</h2>
-<p>The Windows app stores your settings and saved items on your computer so they’re there next time. This storage never leaves your device and isn’t used for tracking. Clearing the app’s data or uninstalling Hermix removes it.</p>
+<p>The desktop app stores your settings and saved items on your computer so they’re there next time. This storage never leaves your device and isn’t used for tracking. Clearing the app’s data or uninstalling Hermix removes it.</p>
 <table>
   <thead><tr><th scope="col">Name</th><th scope="col">Purpose</th><th scope="col">Kept</th></tr></thead>
   <tbody>

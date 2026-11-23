@@ -7,9 +7,13 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+import { socialMeta } from "./social-meta.mjs";
+
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const cfg = JSON.parse(readFileSync(join(root, "site.config.json"), "utf8"));
 const { header, footer, waitlist, esc } = await import(pathToFileURL(join(root, "scripts/partials.mjs")));
+
+const publicOrigin = (cfg.siteUrl || "https://hermix-site-beige.vercel.app").replace(/\/$/, "");
 
 const pagesDir = join(root, "scripts/pages");
 const pages = [];
@@ -28,6 +32,9 @@ const indexPath = join(root, "index.html");
 let index = readFileSync(indexPath, "utf8");
 index = stamp(index, "waitlist", waitlist("", cfg, { landing: true }));
 index = stamp(index, "footer", footer("", cfg, { landing: true }));
+const indexSocial = socialMeta({title: "Hermix | Start caught up. Move work forward.", description: index.match(/<meta name="description" content="([^"]+)"/)[1], url: publicOrigin + "/index.html", origin: publicOrigin});
+const socialBlock = "<!-- site:social -->\n" + indexSocial + "\n  <!-- /site:social -->";
+index = /<!-- site:social -->/.test(index) ? index.replace(/<!-- site:social -->[\s\S]*?<!-- \/site:social -->/, socialBlock) : index.replace('  <meta name="theme-color"', '  ' + socialBlock + '\n  <meta name="theme-color"');
 writeFileSync(indexPath, index);
 
 // sub-pages
@@ -51,6 +58,7 @@ for (const p of pages) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${esc(p.title)} | Hermix</title>
   <meta name="description" content="${esc(p.description)}" />${canonical}
+${socialMeta({title: p.title + " | Hermix", description: p.description, url: publicOrigin + "/" + p.file, origin: publicOrigin})}
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="${base}media/landing/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="${base}styles.css?v=${cfg.assetVersion || 1}" />
