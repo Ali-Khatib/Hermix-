@@ -268,6 +268,48 @@
   email?.addEventListener("focus", () => waitlist.classList.add("email-focused"));
   email?.addEventListener("blur", () => waitlist.classList.remove("email-focused"));
 
+  // ---------- optional embedded introduction; no storage or network ----------
+  (() => {
+    const section = $(".meet-hermix"), bubble = $("#meet-message"), controls = $("#meet-controls");
+    if (!section) return;
+    const form = $("#meet-form"), input = $("#meet-input"), label = $("#meet-label");
+    let step = "intro";
+    const choices = (items) => { controls.replaceChildren(...items.map(([key, text]) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "meet-choice"; b.dataset.meet = key; b.textContent = text; return b;
+    })); };
+    const say = (text, items, next, prompt = "") => {
+      bubble.textContent = text; step = next; choices(items); form.hidden = !prompt;
+      if (prompt) { label.textContent = prompt; input.value = ""; }
+      // Keep focus at the new choices after replacing the activated control.
+      (controls.querySelector("button") || (prompt ? input : section.querySelector(".meet-continue"))).focus({preventScroll:true});
+    };
+    const invitation = () => say("I can help you catch up before a meeting, work through a task or prepare a reply. Want to try a tiny getting-to-know-you interview? One question at a time.", [["interview", "Let’s try it"], ["demo", "Show me an example"]], "invite");
+    controls.addEventListener("click", ev => {
+      const action = ev.target.closest("[data-meet]")?.dataset.meet;
+      if (action === "hello") say("Hello! What’s taking up most of your day? Tell me below, or I can show you around.", [["explain", "Show me around"]], "daily", "What’s keeping you busy?");
+      if (action === "explain") invitation();
+      if (action === "demo") say("Imagine a meeting in ten minutes. Instead of hunting through notes, you ask: ‘What did we decide last time?’ That’s the kind of daily work Hermix is built for. Explore the features below to see more.", [["interview", "Try the short interview"]], "demo");
+      if (action === "interview") say("Let’s start with you. What kind of work do you do?", [["skip", "Skip this question"]], "role", "What kind of work do you do?");
+      if (action === "skip") say("No problem. What’s one repetitive task you’d like off your plate?", [["finish", "That’s enough for now"]], "task", "What task would you hand over?");
+      if (action === "finish") say("That’s the idea: a little context, then useful work. This was just a preview; nothing was saved. Let’s explore Hermix.", [["restart", "Start again"]], "done");
+      if (action === "restart") say("Hey! I’m Hermix. Nice to finally meet you.", [["hello", "Hello!"], ["explain", "What’s this?"]], "intro");
+    });
+    form.addEventListener("submit", ev => {
+      ev.preventDefault(); if (!input.value.trim()) { input.focus(); return; }
+      // Treat replies as text only. This preview deliberately makes no AI/persistence claim.
+      if (step === "daily") invitation();
+      else if (step === "role") say("Thanks for the introduction. What’s one repetitive task you’d like off your plate?", [["finish", "Skip and explore"]], "task", "What task would you hand over?");
+      else say("That’s a useful starting point. In Hermix, your context helps shape the work you ask for. This preview hasn’t saved your reply or started a task. Take a look at the features below.", [["restart", "Start again"]], "done");
+    });
+    new IntersectionObserver((entries, observer) => {
+      if (entries.some(e => e.isIntersecting)) { section.classList.add("greeted"); observer.disconnect(); }
+    }, {threshold:.18}).observe(section);
+    section.querySelector(".meet-continue").addEventListener("click", ev => {
+      const target = $("#how"); ev.preventDefault(); scrollToEl(target);
+      target.setAttribute("tabindex", "-1"); target.focus({preventScroll:true}); history.replaceState(null,"","#how");
+    });
+  })();
+
   // ---------- story rail: active step + mascot outfit ----------
   const links = $$("#rail-list a");
   const outfits = $$(".rail-mascot img");

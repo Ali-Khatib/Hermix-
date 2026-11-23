@@ -26,7 +26,7 @@
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="media/landing/posters/hermix-hero-poster-v13.webp" />
-  <link rel="stylesheet" href="styles.css?v=20261123browserconcept2" />
+  <link rel="stylesheet" href="styles.css?v=20261123meet3" />
 </head>
 <body class="landing-page">
 
@@ -79,35 +79,28 @@
           aria-hidden="true"></video></button>
         <p class="hero-reaction" role="status" aria-live="polite"></p>
       </div>
-      <a class="scroll-cue" href="#first-setup" aria-label="Scroll to initial setup"><span></span></a>
+      <a class="scroll-cue" href="#first-setup" aria-label="Meet Hermix"><span></span></a>
     </section>
 
-    <!-- INITIAL SETUP -->
-    <section class="first-setup" id="first-setup" aria-labelledby="first-setup-title">
-      <div class="first-setup-copy">
-        <p class="kicker">Start here</p>
-        <h2 id="first-setup-title">First, get to know<br />each other.</h2>
-        <p class="first-setup-lede">When you create your account, Hermix starts with a short conversation about your work and preferences. It happens once during setup, so Hermix has useful context from day one.</p>
-        <p class="first-setup-note">Answer at your own pace. Skip a question or change your answers later.</p>
-        <ol class="first-setup-steps">
-          <li><span class="first-setup-number">01</span><div><h3>A conversation, not a blank slate.</h3><p>One question at a time about your role, your work and how you like things done.</p></div></li>
-          <li><span class="first-setup-number">02</span><div><h3>Choose what to connect.</h3><p>Add the apps you need and your model API keys. You control what Hermix can access.</p></div></li>
-          <li><span class="first-setup-number">03</span><div><h3>Then, get on with your work.</h3><p>Bring that background into briefings, tasks, meetings and the browser context you allow.</p></div></li>
-        </ol>
+    <!-- MEET HERMIX: optional, local-only conversation -->
+    <section class="first-setup meet-hermix" id="first-setup" aria-labelledby="first-setup-title">
+      <p class="kicker">A little introduction</p>
+      <h2 id="first-setup-title">Meet your new coworker.</h2>
+      <div class="meet-stage">
+        <img class="meet-character" src="media/landing/mascot/default.webp" width="200" height="200" alt="Hermix, your winged AI coworker" />
+        <div class="meet-bubble" id="meet-message" role="status" aria-live="polite" aria-atomic="true">Hey! I’m Hermix. Nice to finally meet you.</div>
       </div>
-      <div class="first-setup-details">
-        <figure class="screen-preview setup-preview">
-          <div class="film screen-film">
-            <video id="setup-preview-video" muted loop playsinline webkit-playsinline preload="none" width="1080" height="900"
-              poster="media/landing/posters/setup-interview-preview-v1.webp"
-              data-src="media/landing/video/setup-interview-preview-v1.webm" data-src-sm="media/landing/video/720/setup-interview-720-preview-v1.webm"
-              aria-label="First-account setup preview: the real app’s starter question about your work and role. No answers are entered." aria-describedby="setup-preview-caption"></video>
-          </div>
-          <div class="screen-preview-meta"><span>Actual app screen · Setup preview</span><button type="button" data-preview-toggle="setup-preview-video" aria-controls="setup-preview-video">Pause preview</button></div>
-          <figcaption id="setup-preview-caption">The first-account interview, shown with gentle camera movement. Questions are optional and editable; this is not a recording of an answer being saved.</figcaption>
-        </figure>
-
+      <div class="meet-controls" id="meet-controls" aria-label="Reply to Hermix">
+        <button type="button" class="meet-choice" data-meet="hello">Hello!</button>
+        <button type="button" class="meet-choice" data-meet="explain">What’s this?</button>
       </div>
+      <form class="meet-form" id="meet-form" hidden>
+        <label for="meet-input" id="meet-label">Your reply</label>
+        <div class="meet-input-row"><input id="meet-input" name="reply" type="text" maxlength="240" autocomplete="off" placeholder="A few words is plenty…" /><button class="meet-choice" type="submit">Reply</button></div>
+      </form>
+      <p class="meet-note">A short, scripted introduction. Replies stay on this page and disappear when you leave. No account or connected apps.</p>
+      <a class="meet-continue" href="#how">Continue to Hermix features <span aria-hidden="true">↓</span></a>
+      <noscript><p>Hermix brings briefings, tasks and replies into one place. Continue below to explore.</p></noscript>
     </section>
 
     <!-- STORY -->
@@ -243,14 +236,14 @@
           <header class="panel-copy">
             <p class="step"><span>08</span> Browser extension</p>
             <h3>Call Hermix into the page you are working on.</h3>
-            <p>Keep the article in view. This concept shows a small, resizable Hermix panel explaining the page beside it, with the source close at hand.</p>
+            <p>Keep the article in view. This concept shows a compact Hermix panel explaining the page beside it, with useful next steps and the source close at hand.</p>
           </header>
           <figure class="browser-concept">
             <div class="film browser-concept-film">
               <video id="browser-preview-video" muted loop playsinline webkit-playsinline preload="none" width="1920" height="1080"
-                poster="media/landing/posters/feature-browser-concept-poster-v2.webp" data-poster-sm="media/landing/posters/feature-browser-compact-concept-poster-v2.webp"
-                data-src="media/landing/video/feature-browser-concept-v2.mp4" data-src-sm="media/landing/video/720/feature-browser-720-concept-v2.mp4"
-                aria-label="Product concept with fictional sample data: a toolbar click opens a compact Hermix panel in the article’s empty margin. The panel is resized, the user asks Explain this article, and a concise answer streams in with its page source. The article stays visible." aria-describedby="browser-preview-caption"></video>
+                poster="media/landing/posters/feature-browser-concept-poster-v3.webp" data-poster-sm="media/landing/posters/feature-browser-compact-concept-poster-v3.webp"
+                data-src="media/landing/video/feature-browser-concept-v3.mp4" data-src-sm="media/landing/video/720/feature-browser-720-concept-v3.mp4"
+                aria-label="Product concept with fictional sample data: a toolbar click opens a compact Hermix panel in the article’s empty margin. The visitor asks What’s this? A concise sample summary streams in with its page source and suggested next steps. The article stays visible." aria-describedby="browser-preview-caption"></video>
             </div>
             <div class="screen-preview-meta"><span>Product concept · sample data</span><button type="button" data-preview-toggle="browser-preview-video" aria-controls="browser-preview-video">Play preview</button></div>
             <figcaption id="browser-preview-caption">A fictional article, explained beside the page. The panel interaction is a product concept, not a shipped-feature recording. <a href="faq.html#browser-help">Browser setup and current capabilities</a></figcaption>
@@ -460,7 +453,7 @@
 
   <script src="media/vendor/lenis.min.js"></script>
   <script src="smooth.js?v=20261119g"></script>
-  <script src="app.js?v=20261123browserconcept2"></script>
+  <script src="app.js?v=20261123meet3"></script>
   <script src="forms.js?v=20261119g"></script>
 </body>
 </html>
