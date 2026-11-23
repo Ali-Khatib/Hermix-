@@ -860,4 +860,4 @@ html::after{display:none!important}
 .browser-concept figcaption { margin-top:12px; font-size:13px; color:var(--ink-2); line-height:1.65; max-width:48em; }
 .browser-concept figcaption a { text-underline-offset:3px; }
 .browser-concept-film video { display:block; object-fit:contain; }
-@media(max-width:899px) { .browser-concept-film { aspect-ratio:8 / 9; } }
+@media(max-width:899px) { .browser-concept-film { aspect-ratio:18 / 25; } }
