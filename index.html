@@ -83,19 +83,16 @@
     </section>
 
     <!-- MEET HERMIX: a local, scripted first encounter -->
-    <section class="first-setup meet-hermix" id="first-setup" aria-labelledby="first-setup-title">
-      <div class="meet-heading"><p class="kicker">A little introduction</p><h2 id="first-setup-title">Meet your new coworker.</h2></div>
-      <div class="meet-layout">
-        <div class="meet-character-wrap"><img class="meet-character" src="media/landing/mascot/default.webp" width="200" height="200" alt="Hermix" /><span class="meet-status">Here when you need me</span></div>
-        <div class="meet-conversation" aria-label="A short conversation with Hermix">
-          <div class="meet-thread" id="meet-thread" aria-live="polite" aria-relevant="additions text">
-            <div class="meet-row hermix-row"><img src="media/landing/mascot/default.webp" alt=""/><p class="meet-bubble">Hey! Finally, we get to meet. I'm Hermix.</p></div>
-          </div>
-          <div class="meet-controls" id="meet-controls" aria-label="Reply to Hermix"><button type="button" class="meet-choice" data-meet="hello">Hello!</button><button type="button" class="meet-choice" data-meet="explain">What do you actually do?</button><button type="button" class="meet-choice" data-meet="how">How does this work?</button></div>
-          <form class="meet-form" id="meet-form"><label class="meet-sr-only" for="meet-input">Write a reply</label><div class="meet-input-row"><input id="meet-input" name="reply" type="text" maxlength="240" autocomplete="off" placeholder="Or say it your way..."/><button class="meet-send" type="submit" aria-label="Send reply">&#8593;</button></div></form>
-          <p class="meet-note">A little scripted preview. Replies stay on this page and aren't saved.</p>
-          <a class="meet-continue" href="#how">Explore what I can do <span aria-hidden="true">&#8595;</span></a>
+    <section class="first-setup meet-hermix" id="first-setup" aria-label="Meet Hermix">
+      <video class="meet-flight" muted playsinline preload="none" aria-hidden="true"><source src="media/landing/video/hermix-fly.webm" type="video/webm" /></video>
+      <div class="meet-conversation" aria-label="A short conversation with Hermix">
+        <div class="meet-thread" id="meet-thread" aria-live="polite" aria-relevant="additions text">
+          <div class="meet-row hermix-row meet-greeting"><img class="meet-avatar meet-first-avatar" src="media/landing/mascot/default.webp" alt="Hermix"/><p class="meet-bubble">Hey! Finally, we get to meet. I'm Hermix.</p></div>
         </div>
+        <div class="meet-controls" id="meet-controls" aria-label="Reply to Hermix"><button type="button" class="meet-choice" data-meet="explain">What exactly do you do?</button><button type="button" class="meet-choice" data-meet="how">How do you work?</button><button type="button" class="meet-choice" data-meet="access">What can you access?</button><button type="button" class="meet-choice" data-meet="casual">Just talk to me.</button></div>
+        <form class="meet-form" id="meet-form"><label class="meet-sr-only" for="meet-input">Write a reply</label><div class="meet-input-row"><input id="meet-input" name="reply" type="text" maxlength="240" autocomplete="off" placeholder="Or say it your way..."/><button class="meet-send" type="submit" aria-label="Send reply">&#8593;</button></div></form>
+        <p class="meet-note">A tiny local preview. Messages stay here and disappear when you leave.</p>
+        <a class="meet-continue" href="#how">See what I can do <span aria-hidden="true">&#8595;</span></a>
       </div>
       <noscript><p>Hermix brings briefings, tasks and replies into one place. Continue below to explore.</p></noscript>
     </section>

@@ -1,4 +1,4 @@
-/* Hermix landing: video loading, scroll story, menus. No dependencies. */
+﻿/* Hermix landing: video loading, scroll story, menus. No dependencies. */
 (() => {
   "use strict";
 
@@ -268,15 +268,32 @@
   email?.addEventListener("focus", () => waitlist.classList.add("email-focused"));
   email?.addEventListener("blur", () => waitlist.classList.remove("email-focused"));
 
-  // ---------- character-led scripted first encounter; replies are never saved ----------
+  // ---------- Hermix first encounter: private, scripted preview; no messages leave this page ----------
   (() => {
-    const section=$(".meet-hermix"), thread=$("#meet-thread"), controls=$("#meet-controls"), form=$("#meet-form"), input=$("#meet-input"); if(!section||!thread||!controls||!form)return; let busy=false;
-    const add=(who,text)=>{const row=document.createElement("div");row.className=`meet-row ${who}-row`;if(who==="hermix"){const img=document.createElement("img");img.src="media/landing/mascot/default.webp";img.alt="";row.append(img);}const bubble=document.createElement("p");bubble.className="meet-bubble";bubble.textContent=text;row.append(bubble);thread.append(row);row.scrollIntoView({behavior:reduceMotion.matches?"auto":"smooth",block:"nearest"});section.dataset.mood=who==="hermix"?"speaking":"listening";setTimeout(()=>section.dataset.mood="idle",1000);};
-    const show=items=>controls.replaceChildren(...items.map(([key,text])=>{const b=document.createElement("button");b.type="button";b.className="meet-choice";b.dataset.meet=key;b.textContent=text;return b;}));
-    const respond=async(text,action)=>{if(busy)return;busy=true;input.disabled=true;controls.replaceChildren();if(text)add("visitor",text);await new Promise(r=>setTimeout(r,reduceMotion.matches?0:420));let answer=action==="hello"?"A pleasure. I keep the background in mind, so you can spend less time piecing things together.":action==="explain"?"I bring conversations, meetings, tasks and email into context, then help you see what matters and what comes next.":action==="custom"?"Got it. I can use the work context you choose to help with the next step. This preview doesn't save your reply.":"Only what you choose to connect. I use that context to help you get oriented and move work forward, with your say-so.";if(action==="setup")answer="A few questions, no awkward interview room. What would feel most useful: a calmer start, or help keeping your focus?"; if(action==="calmer")answer="Then start with a briefing: what changed, what needs you, and what can wait. No wall of unread messages."; if(action==="focus")answer="Then let’s keep the next step clear, with its background close by. You decide what deserves your attention."; add("hermix",answer);show(action === "setup" ? [["calmer","A calmer start"],["focus","Help staying focused"],["explore","Show me around"]] : [["setup","What would you ask me first?"],["how","What can you see?"],["explore","Show me around"]]);busy=false; input.disabled=false;};
-    controls.addEventListener("click",e=>{const b=e.target.closest("[data-meet]");if(!b)return;if(b.dataset.meet==="explore"){section.querySelector(".meet-continue").click();return;}respond(b.textContent,b.dataset.meet);});form.addEventListener("submit",e=>{e.preventDefault();const v=input.value.trim();if(v){input.value="";respond(v,"custom");}});
-    new IntersectionObserver((entries,observer)=>{if(entries.some(e=>e.isIntersecting)){section.classList.add("greeted");observer.disconnect();}},{threshold:.18}).observe(section);
-    section.querySelector(".meet-continue").addEventListener("click",ev=>{const target=$("#how");ev.preventDefault();scrollToEl(target);target.setAttribute("tabindex","-1");target.focus({preventScroll:true});history.replaceState(null,"","#how");});
+    const section=$(".meet-hermix"),thread=$("#meet-thread"),controls=$("#meet-controls"),form=$("#meet-form"),input=$("#meet-input");if(!section||!thread||!controls||!form)return;let busy=false;
+    const pause=ms=>new Promise(resolve=>setTimeout(resolve,reduceMotion.matches?0:ms));
+    const add=(who,text)=>{const row=document.createElement("div");row.className=`meet-row ${who}-row`;if(who==="hermix"){const img=document.createElement("img");img.src="media/landing/mascot/default.webp";img.alt="";img.className="meet-avatar";row.append(img);}const bubble=document.createElement("p");bubble.className="meet-bubble";bubble.textContent=text;row.append(bubble);thread.append(row);row.scrollIntoView({behavior:reduceMotion.matches?"auto":"smooth",block:"nearest"});section.dataset.mood=who==="hermix"?"speaking":"listening";setTimeout(()=>section.dataset.mood="idle",950);};
+    const choices=items=>controls.replaceChildren(...items.map(([key,label])=>{const b=document.createElement("button");b.type="button";b.className="meet-choice";b.dataset.meet=key;b.textContent=label;return b;}));
+    const showInput=()=>{form.hidden=false;input.disabled=false;input.placeholder="Or say it your way...";input.focus({preventScroll:true});};
+    const reply=(action,text)=>{
+      if(action==="explain")return ["I bring your conversations, meetings, messages and tasks together, then help you see what matters and move the next step along.",[["how","How do you work?"],["access","What can you access?"],["casual","Just talk to me."]]];
+      if(action==="how")return ["I keep useful context close to the work, help you get oriented, and can carry out supported steps when you ask me to.",[["access","What can you access?"],["privacy","And my privacy?"],["casual","Just talk to me."]]];
+      if(action==="access")return ["Only the sources and permissions you choose. I don't get a secret all-access pass; you stay in control.",[["privacy","How is my data handled?"],["casual","Just talk to me."],["explore","Show me around."]]];
+      if(action==="privacy")return ["You decide what to connect. Messages in this little preview stay in your browser page and aren't saved.",[["explain","What can you do again?"],["casual","Just talk to me."],["explore","Show me around."]]];
+      if(action==="casual")return ["Of course. No quiz, no awkward onboarding interview. What are you curious about?",[["access","What can you access?"],["explain","What do you actually do?"],["explore","Show me around."]]];
+      if(action==="custom"){
+        const q=(text||"").toLowerCase();
+        if(/privacy|data|safe|permission|access|cookie/.test(q))return ["Fair question. Hermix should only use the apps and page context you choose to share, and this public-page preview doesn't store your message.",[["access","What can you access?"],["how","How do you work?"],["casual","Keep chatting."]]];
+        if(/email|meeting|task|brief|work|help/.test(q))return ["That's the kind of everyday context I'm here to help with: what changed, what needs attention, and a sensible next step. This preview itself is scripted, though.",[["explain","Tell me a bit more."],["casual","Keep chatting."],["explore","Show me around."]]];
+        return ["I'm listening. This little landing-page chat uses prepared replies rather than a live AI model, but you can explore how I fit into the work below.",[["explain","What do you actually do?"],["access","What can you access?"],["explore","Show me around."]]];
+      }
+      return ["Only what you choose to connect. You stay in control of the sources and permissions I can use.",[["explain","What can you do?"],["casual","Just talk to me."],["explore","Show me around."]]];
+    };
+    const respond=async(action,text="")=>{if(busy)return;busy=true;section.classList.add("has-replied");controls.replaceChildren();if(text)add("visitor",text);input.disabled=true;section.dataset.mood="thinking";await pause(520);const [answer,next]=reply(action,text);add("hermix",answer);choices(next);busy=false;input.disabled=false;};
+    controls.addEventListener("click",e=>{const b=e.target.closest("[data-meet]");if(!b)return;const action=b.dataset.meet;if(action==="explore"){section.querySelector(".meet-continue").click();return;}if(action==="casual"){add("visitor",b.textContent);section.classList.add("has-replied");controls.replaceChildren();add("hermix","Absolutely. No quiz. What's on your mind?");choices([["explain","What do you do?"],["access","What can you access?"],["explore","Show me around."]]);showInput();return;}respond(action,b.textContent);});
+    form.addEventListener("submit",e=>{e.preventDefault();const text=input.value.trim();if(!text||busy)return;input.value="";respond("custom",text);});
+    const entryObserver=new IntersectionObserver((entries,observer)=>{if(entries.some(e=>e.isIntersecting)){section.classList.add("greeted");if(!reduceMotion.matches){const flight=$(".meet-flight",section);flight?.play().catch(()=>{});setTimeout(()=>{if(flight&&!flight.paused)flight.pause();},3200);}observer.disconnect();}},{threshold:.12});entryObserver.observe(section);
+    section.querySelector(".meet-continue").addEventListener("click",e=>{const target=$("#how");e.preventDefault();scrollToEl(target);target.setAttribute("tabindex","-1");target.focus({preventScroll:true});history.replaceState(null,"","#how");});
   })();
   // ---------- story rail: active step + mascot outfit ----------
   const links = $$("#rail-list a");
