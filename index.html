@@ -26,7 +26,7 @@
   <meta name="theme-color" content="#f6f1e8" />
   <link rel="icon" href="media/landing/favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="media/landing/posters/hermix-hero-poster-v13.webp" />
-  <link rel="stylesheet" href="styles.css?v=20261123meet3" />
+  <link rel="stylesheet" href="styles.css?v=20261124conversation" />
 </head>
 <body class="landing-page">
 
@@ -82,27 +82,23 @@
       <a class="scroll-cue" href="#first-setup" aria-label="Meet Hermix"><span></span></a>
     </section>
 
-    <!-- MEET HERMIX: optional, local-only conversation -->
+    <!-- MEET HERMIX: a local, scripted first encounter -->
     <section class="first-setup meet-hermix" id="first-setup" aria-labelledby="first-setup-title">
-      <p class="kicker">A little introduction</p>
-      <h2 id="first-setup-title">Meet your new coworker.</h2>
-      <div class="meet-stage">
-        <img class="meet-character" src="media/landing/mascot/default.webp" width="200" height="200" alt="Hermix, your winged AI coworker" />
-        <div class="meet-bubble" id="meet-message" role="status" aria-live="polite" aria-atomic="true">Hey! I’m Hermix. Nice to meet you. Want to say hi or see what I can do?</div>
+      <div class="meet-heading"><p class="kicker">A little introduction</p><h2 id="first-setup-title">Meet your new coworker.</h2></div>
+      <div class="meet-layout">
+        <div class="meet-character-wrap"><img class="meet-character" src="media/landing/mascot/default.webp" width="200" height="200" alt="Hermix" /><span class="meet-status">Here when you need me</span></div>
+        <div class="meet-conversation" aria-label="A short conversation with Hermix">
+          <div class="meet-thread" id="meet-thread" aria-live="polite" aria-relevant="additions text">
+            <div class="meet-row hermix-row"><img src="media/landing/mascot/default.webp" alt=""/><p class="meet-bubble">Hey! Finally, we get to meet. I'm Hermix.</p></div>
+          </div>
+          <div class="meet-controls" id="meet-controls" aria-label="Reply to Hermix"><button type="button" class="meet-choice" data-meet="hello">Hello!</button><button type="button" class="meet-choice" data-meet="explain">What do you actually do?</button><button type="button" class="meet-choice" data-meet="how">How does this work?</button></div>
+          <form class="meet-form" id="meet-form"><label class="meet-sr-only" for="meet-input">Write a reply</label><div class="meet-input-row"><input id="meet-input" name="reply" type="text" maxlength="240" autocomplete="off" placeholder="Or say it your way..."/><button class="meet-send" type="submit" aria-label="Send reply">&#8593;</button></div></form>
+          <p class="meet-note">A little scripted preview. Replies stay on this page and aren't saved.</p>
+          <a class="meet-continue" href="#how">Explore what I can do <span aria-hidden="true">&#8595;</span></a>
+        </div>
       </div>
-      <div class="meet-controls" id="meet-controls" aria-label="Reply to Hermix">
-        <button type="button" class="meet-choice" data-meet="hello">Hello!</button>
-        <button type="button" class="meet-choice" data-meet="explain">What’s this?</button>
-      </div>
-      <form class="meet-form" id="meet-form" hidden>
-        <label for="meet-input" id="meet-label">Your reply</label>
-        <div class="meet-input-row"><input id="meet-input" name="reply" type="text" maxlength="240" autocomplete="off" placeholder="A few words is plenty…" /><button class="meet-choice" type="submit">Reply</button></div>
-      </form>
-      <p class="meet-note">A short, scripted introduction. Replies stay on this page and disappear when you leave. No account or connected apps.</p>
-      <a class="meet-continue" href="#how">Continue to Hermix features <span aria-hidden="true">↓</span></a>
       <noscript><p>Hermix brings briefings, tasks and replies into one place. Continue below to explore.</p></noscript>
     </section>
-
     <!-- STORY -->
     <section class="story" id="how" aria-labelledby="story-title">
       <div class="landing-air" aria-hidden="true"><span></span><span></span></div>
