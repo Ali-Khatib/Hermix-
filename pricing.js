@@ -23,7 +23,7 @@
       ],
     },
     plus: {
-      name: "Hermix Plus", word: "PLUS", price: "$12", unit: "per person / month", note: "",
+      name: "Hermix Plus", word: "PLUS", price: "$9", unit: "per person / month", note: "",
       cta: "Join the waitlist", href: "index.html#waitlist",
       headline: "A little more room to hand things over.",
       desc: "Keep using the same coworker with a larger allowance for questions, preparation and supported tasks.",
@@ -36,7 +36,7 @@
       ],
     },
     pro: {
-      name: "Hermix Pro", word: "PRO", price: "$24", unit: "per person / month", note: "",
+      name: "Hermix Pro", word: "PRO", price: "$20", unit: "per person / month", note: "",
       cta: "Join the waitlist", href: "index.html#waitlist",
       headline: "For the work you return to every day.",
       desc: "Make Hermix part of regular work, with more capacity to investigate questions, prepare material and carry tasks through connected tools.",
